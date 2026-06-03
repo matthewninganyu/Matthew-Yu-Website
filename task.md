@@ -1,0 +1,23 @@
+# Task List: Instagram Profile Portfolio Website
+
+- `[x]` Phase 1: Set up core files and design variables
+  - `[x]` Create `index.html` structure
+  - `[x]` Create `style.css` stylesheet with Instagram UI variables
+  - `[x]` Create `app.js` logic file
+  - `[x]` Create placeholder `resume.pdf`
+- `[x]` Phase 2: Design Profile Header & Feed Grid
+  - `[x]` Profile header with stats, placeholder avatar, and "Download Resume" / "Message" buttons
+  - `[x]` Posts grid displaying 4 main projects with hover statistics (likes/comments)
+  - `[x]` Footer layout matching Meta/Instagram links
+- `[x]` Phase 3: Design Split-Screen Detailed Modal
+  - `[x]` Main overlay container with dark semi-transparent backdrop
+  - `[x]` Left side carousel component (slides, arrows, indicator dots)
+  - `[x]` Right side detail view (profile header, scrollable comments feed, interaction buttons, and comment input)
+- `[x]` Phase 4: Build RAG-capable DM Chatbot
+  - `[x]` Pinned layout matching Instagram web DM pane
+  - `[x]` RAG search indexer in `app.js` using content from project overviews
+  - `[x]` Chat input box with dynamic loading, user inputs, and AI typing responses
+- `[x]` Phase 5: Verification & Polishing
+  - `[x]` Responsive scaling for mobile devices
+  - `[x]` Click/toggle triggers for Likes, Saves, and Modals
+  - `[x]` RAG chatbot validation (answers questions using project text correctly)

@@ -1,0 +1,445 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Matthew Ningan Yu • Portfolio</title>
+  <link rel="stylesheet" href="style.css">
+  <!-- Link to Google Fonts for modern typography -->
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&family=Space+Grotesk:wght@400;500;600&display=swap" rel="stylesheet">
+</head>
+<body>
+
+  <!-- Main Application Wrapper -->
+  <div class="app-container">
+    
+    <!-- LEFT & CENTER: Portfolio Feed -->
+    <main class="profile-section">
+      <div class="profile-content">
+        
+        <!-- Profile Header -->
+        <header class="profile-header">
+          <div class="profile-main-row">
+            <!-- Profile picture -->
+            <div class="avatar-container">
+              <div class="avatar-circle">
+                <img class="profile-picture" src="profile_picture.jpg" alt="Matthew Ningan Yu profile picture">
+              </div>
+            </div>
+            
+            <!-- Profile Text -->
+            <div class="profile-info">
+              <div class="username-row">
+                <h2 class="username">Matthew Ningan Yu</h2>
+                <button class="btn-icon">
+                  <svg viewBox="0 0 24 24" class="more-options-svg">
+                    <circle cx="5" cy="12" r="1.5" />
+                    <circle cx="12" cy="12" r="1.5" />
+                    <circle cx="19" cy="12" r="1.5" />
+                  </svg>
+                </button>
+              </div>
+              
+              <!-- Bio Name -->
+              <div class="bio-container">
+                <h1 class="full-name">余宁安</h1>
+              </div>
+
+              <!-- Follower/Post Stats -->
+              <ul class="stats-row">
+                <li><span class="stat-count">4</span> posts</li>
+                <li><span class="stat-count">∞</span> follower</li>
+                <li><span class="stat-count">∞</span> following</li>
+              </ul>
+            </div>
+          </div>
+          
+          <!-- Action Buttons Row (Below PFP and Username info) -->
+          <div class="profile-buttons-row">
+            <button class="btn btn-following" id="btn-resume">
+              Download Resume
+              <svg viewBox="0 0 24 24" class="arrow-down-svg"><path d="M12 16.5l-6-6h12z"/></svg>
+            </button>
+            <button class="btn btn-message" id="btn-dm-open">Message</button>
+          </div>
+
+          <!-- Bio Text (Matthew Ningan Yu Details) -->
+          <div class="profile-bio-details">
+            <p class="bio-text">
+              <strong>Matthew Ningan Yu</strong><br>
+              Software Engineer • ML & Intelligent Systems<br>
+              Building predictive pipelines, RAG frameworks, and interactive models.<br>
+              <span>twin tips > directional</span>
+            </p>
+          </div>
+        </header>
+
+        <!-- Feed Grid Tabs Navbar -->
+        <div class="feed-tabs">
+          <button class="tab-item active" data-tab="posts">
+            <svg viewBox="0 0 24 24" class="tab-icon">
+              <rect x="3" y="3" width="18" height="18" rx="1" fill="none" stroke="currentColor" stroke-width="2" />
+              <line x1="10" y1="3" x2="10" y2="21" stroke="currentColor" stroke-width="2" />
+              <line x1="15" y1="3" x2="15" y2="21" stroke="currentColor" stroke-width="2" />
+              <line x1="3" y1="10" x2="21" y2="10" stroke="currentColor" stroke-width="2" />
+              <line x1="3" y1="15" x2="21" y2="15" stroke="currentColor" stroke-width="2" />
+            </svg>
+            POSTS
+          </button>
+          <button class="tab-item" data-tab="about">
+            <svg viewBox="0 0 24 24" class="tab-icon">
+              <path d="M12 2a5 5 0 100 10 5 5 0 000-10z" fill="none" stroke="currentColor" stroke-width="2"/>
+              <path d="M4 22a8 8 0 0116 0" fill="none" stroke="currentColor" stroke-width="2" />
+            </svg>
+            ABOUT
+          </button>
+        </section>
+
+        <!-- Main Posts Grid -->
+        <div class="posts-grid" id="grid-posts">
+          <!-- Post 1: ScoreShift -->
+          <div class="grid-post-card" data-project="scoreshift">
+            <div class="card-media music-theme">
+              <div class="score-card-bg">
+                <div class="stave-lines"></div>
+                <div class="musical-note c-note">🎵</div>
+                <div class="musical-note f-note">🎶</div>
+                <div class="project-tag">ScoreShift</div>
+              </div>
+            </div>
+            <div class="card-overlay">
+              <div class="overlay-stat">
+                <svg viewBox="0 0 24 24" class="overlay-stat-icon"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z" fill="currentColor"/></svg>
+                <span class="stat-val">1.2k</span>
+              </div>
+              <div class="overlay-stat">
+                <svg viewBox="0 0 24 24" class="overlay-stat-icon"><path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2v10z" fill="currentColor"/></svg>
+                <span class="stat-val">45</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Post 2: HavenIQ HVAC Model -->
+          <div class="grid-post-card" data-project="hvac-model">
+            <div class="card-media model-theme">
+              <div class="model-card-bg">
+                <div class="chart-line"></div>
+                <div class="chart-dot d1"></div>
+                <div class="chart-dot d2"></div>
+                <div class="chart-dot d3"></div>
+                <div class="r2-badge">R² = 0.949</div>
+                <div class="project-tag">XGBoost HVAC</div>
+              </div>
+            </div>
+            <div class="card-overlay">
+              <div class="overlay-stat">
+                <svg viewBox="0 0 24 24" class="overlay-stat-icon"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z" fill="currentColor"/></svg>
+                <span class="stat-val">840</span>
+              </div>
+              <div class="overlay-stat">
+                <svg viewBox="0 0 24 24" class="overlay-stat-icon"><path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2v10z" fill="currentColor"/></svg>
+                <span class="stat-val">12</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Post 3: HavenIQ HVAC RAG System -->
+          <div class="grid-post-card" data-project="hvac-rag">
+            <div class="card-media rag-theme">
+              <div class="rag-card-bg">
+                <div class="vector-network"></div>
+                <div class="database-icon"></div>
+                <div class="retrieval-query">Vector Search</div>
+                <div class="project-tag">HVAC RAG</div>
+              </div>
+            </div>
+            <div class="card-overlay">
+              <div class="overlay-stat">
+                <svg viewBox="0 0 24 24" class="overlay-stat-icon"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z" fill="currentColor"/></svg>
+                <span class="stat-val">950</span>
+              </div>
+              <div class="overlay-stat">
+                <svg viewBox="0 0 24 24" class="overlay-stat-icon"><path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2v10z" fill="currentColor"/></svg>
+                <span class="stat-val">28</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Post 4: AlphaZero Othello Engine -->
+          <div class="grid-post-card" data-project="othello-az">
+            <div class="card-media othello-theme">
+              <div class="othello-card-bg">
+                <div class="othello-board">
+                  <div class="ob-cell val-w"></div>
+                  <div class="ob-cell val-b"></div>
+                  <div class="ob-cell val-b"></div>
+                  <div class="ob-cell val-w"></div>
+                </div>
+                <div class="project-tag">AlphaZero Othello</div>
+              </div>
+            </div>
+            <div class="card-overlay">
+              <div class="overlay-stat">
+                <svg viewBox="0 0 24 24" class="overlay-stat-icon"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z" fill="currentColor"/></svg>
+                <span class="stat-val">1.5k</span>
+              </div>
+              <div class="overlay-stat">
+                <svg viewBox="0 0 24 24" class="overlay-stat-icon"><path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2v10z" fill="currentColor"/></svg>
+                <span class="stat-val">52</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- About Me Section -->
+        <section class="about-section hidden" id="grid-about">
+          <p class="about-intro">
+            I am a software engineer focused on machine learning, backend systems, retrieval-augmented generation, and interactive tools that turn complex workflows into something people can actually use.
+          </p>
+
+          <div class="about-info-list">
+            <div class="about-info-row">
+              <h3>What I build</h3>
+              <p>Predictive pipelines, retrieval systems, deployed web apps, and ML/game engines that connect model behavior to practical product experiences.</p>
+            </div>
+            <div class="about-info-row">
+              <h3>How I work</h3>
+              <p>Practical and systems-minded, comfortable moving from data and model design through APIs, deployment, and user-facing interfaces.</p>
+            </div>
+            <div class="about-info-row">
+              <h3>Outside code</h3>
+              <p>Snowboarding, music, and curiosity-driven projects keep me close to the playful side of building things.</p>
+            </div>
+          </div>
+
+          <div class="about-skills" aria-label="Technical skills">
+            <span>Python</span>
+            <span>PyTorch</span>
+            <span>FastAPI</span>
+            <span>JavaScript</span>
+            <span>Docker</span>
+            <span>XGBoost</span>
+            <span>Qdrant</span>
+            <span>Supabase</span>
+          </div>
+        </div>
+
+        <!-- Footer Links Area -->
+        <footer class="site-footer">
+          <div class="footer-links">
+            <a href="#">Projects</a>
+            <a href="#">Experience</a>
+            <a href="#">Machine Learning</a>
+            <a href="#">Backend Systems</a>
+            <a href="#">Research</a>
+            <a href="#">Resume</a>
+            <a href="#">Contact</a>
+            <a href="#">GitHub</a>
+            <a href="#">LinkedIn</a>
+            <a href="#">Portfolio Notes</a>
+          </div>
+          <div class="footer-copyright">
+            <span>&copy; 2026 Matthew Ningan Yu Portfolio</span>
+          </div>
+        </footer>
+
+      </div>
+    </main>
+
+    <div class="chat-drawer-backdrop" id="chat-drawer-backdrop"></div>
+
+    <!-- RIGHT: Portfolio Chatbot Drawer -->
+    <aside class="chat-sidebar" id="dm-chatbot">
+      <div class="chat-header">
+        <div class="header-user-info">
+          <!-- Back arrow closes the chat drawer -->
+          <button class="btn-icon" id="btn-dm-close" aria-label="Close chat">
+            <svg viewBox="0 0 24 24" class="nav-arrow-svg"><path d="M15.41 16.58L10.83 12l4.58-4.58L14 6l-6 6 6 6z" fill="currentColor"/></svg>
+          </button>
+          
+          <div class="chat-avatar-circle">
+            <img class="profile-picture" src="profile_picture.jpg" alt="Matthew Ningan Yu profile picture">
+          </div>
+          
+          <div class="header-text">
+            <span class="header-username">Matthew Ningan Yu</span>
+            <span class="header-status"><span class="online-dot"></span>Online</span>
+          </div>
+        </div>
+        
+        <div class="header-controls">
+          <button class="btn-icon">
+            <svg viewBox="0 0 24 24" class="dm-action-icon"><path d="M12 2A10 10 0 1022 12 10 10 0 0012 2zm0 18a8 8 0 118-8 8 8 0 01-8 8zm1-13h-2v6h2zm0 8h-2v2h2z" fill="currentColor"/></svg>
+          </button>
+        </div>
+      </div>
+
+      <!-- Messages Stream -->
+      <div class="messages-container" id="chat-messages">
+        
+        <!-- Welcome Card/Profile Header in DM -->
+        <div class="chat-profile-card">
+          <div class="chat-card-avatar">
+            <img class="profile-picture" src="profile_picture.jpg" alt="Matthew Ningan Yu profile picture">
+          </div>
+          <h3>Matthew Ningan Yu</h3>
+          <p class="sub-profile-label">Matthew Ningan Yu • Portfolio Assistant</p>
+          <span class="chat-badge">1 follower • 4 posts</span>
+          <button class="btn-chat-action" id="btn-view-profile-dm">View Profile</button>
+        </div>
+
+        <!-- Time stamp divider -->
+        <div class="chat-time-divider">TODAY, 12:00 AM</div>
+
+        <!-- Initial Message from Bot -->
+        <div class="message msg-received">
+          <div class="msg-avatar">
+            <img class="profile-picture" src="profile_picture.jpg" alt="Matthew Ningan Yu profile picture">
+          </div>
+          <div class="msg-bubble">
+            Hi! I am Matthew's RAG portfolio assistant. Ask me anything about his technical experience, or ask questions about these projects:<br><br>
+            • <strong>ScoreShift</strong> (Music Transposition)<br>
+            • <strong>HavenIQ HVAC Model</strong> (XGBoost/PyTorch)<br>
+            • <strong>HavenIQ HVAC RAG</strong> (Qdrant anomaly explainer)<br>
+            • <strong>AlphaZero Othello Engine</strong>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- Bottom Chat Input Panel -->
+      <div class="chat-input-bar">
+        <button class="input-action-btn" id="btn-chat-emoji" data-emoji-target="chat-input-field" aria-label="Choose emoji">
+          <svg viewBox="0 0 24 24" class="input-svg-icon"><path d="M12 2a10 10 0 1010 10A10 10 0 0012 2zm0 18a8 8 0 118-8 8 8 0 01-8 8zm0-13a2.5 2.5 0 100 5 2.5 2.5 0 000-5zm-5 7.5a1 1 0 00-.8 1.6C7.5 17.8 9.6 19 12 19s4.5-1.2 5.8-2.9a1 1 0 00-.8-1.6z" fill="currentColor"/></svg>
+        </button>
+        <input type="text" id="chat-input-field" placeholder="Message..." autocomplete="off">
+        
+        <div class="input-right-actions">
+          <button class="input-action-btn">
+            <svg viewBox="0 0 24 24" class="input-svg-icon"><path d="M12 14a3 3 0 100-6 3 3 0 000 6zm5-6h-1.2l-.7-1.4A1 1 0 0014.2 6H9.8a1 1 0 00-.9.6L8.2 8H7a3 3 0 00-3 3v6a3 3 0 003 3h10a3 3 0 003-3v-6a3 3 0 00-3-3z" fill="currentColor"/></svg>
+          </button>
+          <button class="input-action-btn" id="btn-like-chat">
+            <svg viewBox="0 0 24 24" class="input-svg-icon"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54z" fill="currentColor"/></svg>
+          </button>
+        </div>
+      </div>
+    </aside>
+
+  </div>
+
+  <!-- OVERLAY DIALOG: Detailed Post Modal -->
+  <div class="modal-overlay hidden" id="project-modal">
+    <!-- Close button outside modal -->
+    <button class="modal-close-btn" id="btn-modal-close">&times;</button>
+    <button class="post-nav-btn post-nav-prev" id="btn-post-prev" aria-label="Previous post">
+      <svg viewBox="0 0 24 24" class="post-nav-svg"><path d="M15.41 16.58L10.83 12l4.58-4.58L14 6l-6 6 6 6z" fill="currentColor"/></svg>
+    </button>
+    <button class="post-nav-btn post-nav-next" id="btn-post-next" aria-label="Next post">
+      <svg viewBox="0 0 24 24" class="post-nav-svg"><path d="M8.59 16.58L13.17 12 8.59 7.41 10 6l6 6-6 6z" fill="currentColor"/></svg>
+    </button>
+    
+    <div class="modal-wrapper">
+      
+      <!-- LEFT PANEL: Technical Image/Slide Gallery -->
+      <div class="modal-media-panel">
+        
+        <!-- Slides Container -->
+        <div class="carousel-container" id="modal-carousel-slides">
+          <!-- Slides injected dynamically by JS -->
+        </div>
+
+        <!-- Left/Right Nav Arrows -->
+        <button class="carousel-nav-btn nav-left" id="btn-carousel-left">
+          <svg viewBox="0 0 24 24" class="arrow-svg"><path d="M15.41 16.58L10.83 12l4.58-4.58L14 6l-6 6 6 6z" fill="currentColor"/></svg>
+        </button>
+        <button class="carousel-nav-btn nav-right" id="btn-carousel-right">
+          <svg viewBox="0 0 24 24" class="arrow-svg"><path d="M8.59 16.58L13.17 12 8.59 7.41 10 6l6 6-6 6z" fill="currentColor"/></svg>
+        </button>
+
+        <!-- Indicator dots at the bottom -->
+        <div class="carousel-indicator-dots" id="modal-carousel-dots">
+          <!-- Dots injected dynamically -->
+        </div>
+
+      </div>
+
+      <!-- RIGHT PANEL: Information & Comments Feed -->
+      <div class="modal-details-panel">
+        <!-- Header -->
+        <div class="details-header">
+          <div class="header-user-avatar">
+            <img class="profile-picture" src="profile_picture.jpg" alt="Matthew Ningan Yu profile picture">
+          </div>
+          <div class="header-username-info">
+            <span class="dt-username">Matthew Ningan Yu</span>
+            <span class="bullet-dot">&bull;</span>
+            <button class="btn-inline-follow" id="btn-modal-follow">Following</button>
+          </div>
+          <button class="btn-icon">
+            <svg viewBox="0 0 24 24" class="more-options-svg">
+              <circle cx="5" cy="12" r="1.5" />
+              <circle cx="12" cy="12" r="1.5" />
+              <circle cx="19" cy="12" r="1.5" />
+            </svg>
+          </button>
+        </div>
+
+        <!-- Scrollable Feed -->
+        <div class="details-comments-feed" id="modal-comments-feed">
+          <!-- Primary post caption and comments injected by JS -->
+        </div>
+
+        <!-- Interactions & Statistics -->
+        <div class="details-interactions">
+          <div class="action-buttons-row">
+            <div class="action-left">
+              <button class="btn-icon-interact" id="btn-modal-like">
+                <svg viewBox="0 0 24 24" class="heart-svg" id="modal-heart-svg"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z" fill="none" stroke="currentColor" stroke-width="2"/></svg>
+              </button>
+              <button class="btn-icon-interact">
+                <svg viewBox="0 0 24 24" class="comment-svg"><path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2v10z" fill="none" stroke="currentColor" stroke-width="2"/></svg>
+              </button>
+              <button class="btn-icon-interact">
+                <svg viewBox="0 0 24 24" class="share-svg"><path d="M22 2L11 13M22 2l-7 20-4-9-9-4 20-7z" fill="none" stroke="currentColor" stroke-width="2"/></svg>
+              </button>
+            </div>
+            <button class="btn-icon-interact" id="btn-modal-bookmark">
+              <svg viewBox="0 0 24 24" class="bookmark-svg" id="modal-bookmark-svg"><path d="M19 21l-7-5-7 5V5a2 2 0 012-2h10a2 2 0 012 2z" fill="none" stroke="currentColor" stroke-width="2"/></svg>
+            </button>
+          </div>
+          <div class="likes-count" id="modal-likes-count">Liked by luc4s.l1 and 108 others</div>
+          <div class="post-date" id="modal-post-date">May 2, 2026</div>
+        </div>
+
+        <!-- Add Comment Panel -->
+        <div class="comment-author-row">
+          <input type="text" id="modal-comment-author" placeholder="Name (optional)" maxlength="30" autocomplete="name">
+        </div>
+        <div class="details-comment-input">
+          <button class="smiley-btn" id="btn-comment-emoji" data-emoji-target="modal-comment-field" aria-label="Choose emoji">
+            <svg viewBox="0 0 24 24" class="smiley-svg"><path d="M12 2A10 10 0 1022 12 10 10 0 0012 2zm0 18a8 8 0 118-8 8 8 0 01-8 8zm0-13a2.5 2.5 0 100 5 2.5 2.5 0 000-5zm-5 7.5a1 1 0 00-.8 1.6C7.5 17.8 9.6 19 12 19s4.5-1.2 5.8-2.9a1 1 0 00-.8-1.6z" fill="currentColor"/></svg>
+          </button>
+          <input class="comment-honeypot" type="text" id="modal-comment-website" tabindex="-1" autocomplete="off" aria-hidden="true">
+          <input type="text" id="modal-comment-field" placeholder="Add a comment...">
+          <button class="post-comment-btn" id="btn-modal-post-comment">Post</button>
+        </div>
+        <div class="comment-submit-status" id="comment-submit-status" aria-live="polite"></div>
+
+      </div>
+
+    </div>
+  </div>
+
+  <!-- Reusable Emoji Picker -->
+  <div class="emoji-picker hidden" id="emoji-picker" role="dialog" aria-label="Emoji picker">
+    <div class="emoji-search-wrap">
+      <svg viewBox="0 0 24 24" class="emoji-search-icon"><path d="M21 21l-4.35-4.35M10.5 18a7.5 7.5 0 100-15 7.5 7.5 0 000 15z" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+      <input type="text" id="emoji-search" placeholder="Search emoji" autocomplete="off">
+    </div>
+    <div class="emoji-scroll" id="emoji-scroll"></div>
+  </div>
+
+  <!-- Core application logic script -->
+  <script src="app.js"></script>
+</body>
+</html>

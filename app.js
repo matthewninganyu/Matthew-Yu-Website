@@ -1,0 +1,1527 @@
+/**
+ * Portfolio Website Logic
+ * Includes Project Data, Detailed Modals, Slideshows, and RAG Chatbot
+ */
+
+// ----------------------------------------------------
+// 1. PROJECT DATA DATABASE
+// ----------------------------------------------------
+const PROJECT_DATA = {
+  "scoreshift": {
+    title: "ScoreShift",
+    likes: 1245,
+    commentsCount: 45,
+    date: "May 2, 2026",
+    link: "https://huggingface.co/spaces/Mahu454/scoreshift",
+    github: "https://github.com",
+    slides: [
+      // Slide 1: Visual Cover Card
+      {
+        type: "visual",
+        html: `
+          <div class="slide-cover-root music-theme">
+            <div class="slide-cover-title">ScoreShift</div>
+            <div class="slide-cover-subtitle">Containerized FastAPI app for transposing sheet music images into transposable digital scores.</div>
+            <div class="slide-tech-badges">
+              <span class="tech-badge">Python</span>
+              <span class="tech-badge">FastAPI</span>
+              <span class="tech-badge">oemer (OMR)</span>
+              <span class="tech-badge">music21</span>
+              <span class="tech-badge">Verovio WASM</span>
+              <span class="tech-badge">Docker</span>
+            </div>
+          </div>
+        `
+      },
+      // Slide 2: Technical Architecture Flow
+      {
+        type: "visual",
+        html: `
+          <div class="slide-diagram-root">
+            <h4 style="color:#ffffff; margin-bottom:10px; font-family:var(--header-font)">Architecture Pipeline</h4>
+            <div class="flow-chart">
+              <div class="flow-node">Uploaded sheet-music photo or MusicXML file</div>
+              <div class="flow-node"><strong>oemer</strong> Optical Music Recognition converts image to MusicXML</div>
+              <div class="flow-node"><strong>music21</strong> processes and transposes pitches / keys signatures</div>
+              <div class="flow-node"><strong>Verovio WASM</strong> renders SVG sheet music in the browser</div>
+            </div>
+          </div>
+        `
+      },
+      // Slide 3: Code Card
+      {
+        type: "code",
+        filename: "app/main.py",
+        code: `
+<span class="code-keyword">@app.post</span>(<span class="code-string">"/api/transpose"</span>)
+<span class="code-keyword">async def</span> <span class="code-function">transpose_score</span>(payload: TransposePayload):
+    <span class="code-comment"># Load MusicXML into music21 converter</span>
+    score = music21.converter.parse(payload.musicxml)
+    
+    <span class="code-keyword">if</span> payload.mode == <span class="code-string">"semitones"</span>:
+        transposed = score.transpose(payload.value)
+    <span class="code-keyword">elif</span> payload.mode == <span class="code-string">"key"</span>:
+        <span class="code-comment"># Transpose to target major/minor key</span>
+        transposed = transpose_to_key(score, payload.value)
+        
+    <span class="code-keyword">return</span> {
+        <span class="code-string">"transposed_xml"</span>: transposed.write(<span class="code-string">'musicxml'</span>).decode(<span class="code-string">'utf-8'</span>)
+    }`
+      }
+    ],
+    comments: [
+      {
+        user: "Matthew Ningan Yu",
+        avatar: "avatar",
+        text: "Just deployed ScoreShift! It transposes uploaded sheet music images or MusicXML files. The optical music recognition (OMR) is powered by oemer, transposition is done using music21, and the score renders dynamically in the browser using Verovio WASM. Live demo on Hugging Face Spaces!",
+        time: "4w"
+      },
+      {
+        user: "zhu.elainee",
+        avatar: "E",
+        text: "Wow! Tried it out with some piano sheets and the transposing is so fast! 🔥 Also the Verovio rendering looks extremely crisp.",
+        time: "4w"
+      },
+      {
+        user: "luc4s.l1",
+        avatar: "L",
+        text: "omg finally. transposing sheets by hand is such a pain. neat work packing everything inside a lightweight Docker container",
+        time: "3w"
+      },
+      {
+        user: "_cindyy7",
+        avatar: "C",
+        text: "how does the mobile photo handling work? standard phone camera images can get huge.",
+        time: "2w"
+      },
+      {
+        user: "Matthew Ningan Yu",
+        avatar: "avatar",
+        text: "@_cindyy7 good question! Before uploading, the browser resizes the image to 2200px max side length and compresses to JPEG. On the backend, we cap it at 1800px max side length for the OMR model to prevent timeouts.",
+        time: "2w"
+      }
+    ]
+  },
+  "hvac-model": {
+    title: "HavenIQ HVAC Model",
+    likes: 840,
+    commentsCount: 12,
+    date: "April 15, 2026",
+    link: "#",
+    github: "https://github.com",
+    slides: [
+      // Slide 1: Cover
+      {
+        type: "visual",
+        html: `
+          <div class="slide-cover-root model-theme">
+            <div class="slide-cover-title">HavenIQ HVAC Model</div>
+            <div class="slide-cover-subtitle">Machine learning pipeline predicting HVAC confidence scores from sliding sensor telemetry.</div>
+            <div class="slide-tech-badges">
+              <span class="tech-badge">Python</span>
+              <span class="tech-badge">XGBoost</span>
+              <span class="tech-badge">PyTorch</span>
+              <span class="tech-badge">pandas</span>
+              <span class="tech-badge">scikit-learn</span>
+              <span class="tech-badge">CUDA</span>
+            </div>
+          </div>
+        `
+      },
+      // Slide 2: Metrics Chart Graphic
+      {
+        type: "visual",
+        html: `
+          <div class="slide-diagram-root">
+            <h4 style="color:#ffffff; margin-bottom:10px; font-family:var(--header-font)">Telemetry Preprocessing & Results</h4>
+            <div class="flow-chart" style="width: 90%;">
+              <div class="flow-node"><strong>Chronological windowing:</strong> Groups 12,709 telemetry rows by device into sliding W=8 windows</div>
+              <div class="flow-node"><strong>Feature Engineering:</strong> Computes comfort deviation (temp - setpoint) and slope metrics</div>
+              <div class="flow-node" style="border-color:#10b981; background:rgba(16,185,129,0.1)"><strong>XGBoost Performance:</strong> Held-out R² of <strong>0.949</strong> and MAE of <strong>4.576</strong> points</div>
+            </div>
+          </div>
+        `
+      },
+      // Slide 3: Code Card
+      {
+        type: "code",
+        filename: "src/train_neural_net.py",
+        code: `
+<span class="code-keyword">class</span> <span class="code-function">HVACRegressor</span>(nn.Module):
+    <span class="code-keyword">def</span> <span class="code-function">__init__</span>(self):
+        super().__init__()
+        self.net = nn.Sequential(
+            nn.Flatten(),
+            nn.Linear(<span class="code-keyword">8</span> * <span class="code-keyword">4</span>, <span class="code-keyword">64</span>), <span class="code-comment"># W=8 window, 4 features per step</span>
+            nn.ReLU(),
+            nn.Linear(<span class="code-keyword">64</span>, <span class="code-keyword">32</span>),
+            nn.ReLU(),
+            nn.Linear(<span class="code-keyword">32</span>, <span class="code-keyword">1</span>)      <span class="code-comment"># predicts continuous confidence_score</span>
+        )
+
+    <span class="code-keyword">def</span> <span class="code-function">forward</span>(self, x):
+        <span class="code-keyword">return</span> self.net(x)`
+      }
+    ],
+    comments: [
+      {
+        user: "Matthew Ningan Yu",
+        avatar: "avatar",
+        text: "Built a dual-model regression pipeline using XGBoost and PyTorch to predict HVAC operational confidence scores. The pipeline reads telemetry windows, engineers features like temp deviation and slope trends, and outputs scores with an R² of 0.949 on held-out tests.",
+        time: "6w"
+      },
+      {
+        user: "hannaxia_",
+        avatar: "H",
+        text: "interpretability is crucial in industrial settings. Nice choice using XGBoost as the interpretable tabular baseline alongside PyTorch!",
+        time: "5w"
+      },
+      {
+        user: "melvin_fung",
+        avatar: "M",
+        text: "How did you prevent data leakage in the test set given overlapping sliding windows?",
+        time: "5w"
+      },
+      {
+        user: "Matthew Ningan Yu",
+        avatar: "avatar",
+        text: "@melvin_fung Important point! We separate train, validation, and test telemetry into completely distinct CSV files grouped by device before windowing. This guarantees that overlapping windows from the same device never leak between training and evaluation.",
+        time: "5w"
+      }
+    ]
+  },
+  "hvac-rag": {
+    title: "HavenIQ HVAC RAG System",
+    likes: 950,
+    commentsCount: 28,
+    date: "May 10, 2026",
+    link: "#",
+    github: "https://github.com",
+    slides: [
+      // Slide 1: Cover
+      {
+        type: "visual",
+        html: `
+          <div class="slide-cover-root rag-theme" style="color:#1e293b">
+            <div class="slide-cover-title" style="color:#0f172a">HavenIQ HVAC RAG</div>
+            <div class="slide-cover-subtitle" style="color:#334155">FastAPI service explaining HVAC anomalies using PyTorch encoders, Qdrant database, and OpenAI GPT grounding.</div>
+            <div class="slide-tech-badges">
+              <span class="tech-badge" style="background:rgba(0,0,0,0.1); color:#334155">FastAPI</span>
+              <span class="tech-badge" style="background:rgba(0,0,0,0.1); color:#334155">PyTorch</span>
+              <span class="tech-badge" style="background:rgba(0,0,0,0.1); color:#334155">Qdrant Cloud</span>
+              <span class="tech-badge" style="background:rgba(0,0,0,0.1); color:#334155">OpenAI API</span>
+              <span class="tech-badge" style="background:rgba(0,0,0,0.1); color:#334155">Docker</span>
+            </div>
+          </div>
+        `
+      },
+      // Slide 2: Vector DB Grid Matcher
+      {
+        type: "visual",
+        html: `
+          <div class="slide-database-root">
+            <h4 style="color:#ffffff; margin-bottom:10px; font-family:var(--header-font)">Qdrant Cosine Retrieval (128-D)</h4>
+            <div class="db-grid">
+              <div class="db-cell">Incident #120<br/>Drift Risk</div>
+              <div class="db-cell matched">Incident #415<br/>Freeze Risk<div class="db-match-label">Match 98%</div></div>
+              <div class="db-cell">Incident #98<br/>Normal</div>
+              <div class="db-cell">Incident #503<br/>Drift Risk</div>
+              <div class="db-cell matched">Incident #1440<br/>Freeze Risk<div class="db-match-label">Match 95%</div></div>
+              <div class="db-cell">Incident #311<br/>Humidity Risk</div>
+            </div>
+          </div>
+        `
+      },
+      // Slide 3: Code Card
+      {
+        type: "code",
+        filename: "app/explainer.py",
+        code: `
+<span class="code-keyword">def</span> <span class="code-function">build_grounded_prompt</span>(incident, matches):
+    <span class="code-comment"># Ground the LLM with direct database citations</span>
+    prompt = f<span class="code-string">"Explain this anomaly: {incident.summary_text}\\n"</span>
+    prompt += <span class="code-string">"Reference these similar historical incidents:\\n"</span>
+    
+    <span class="code-keyword">for</span> idx, match <span class="code-keyword">in</span> enumerate(matches):
+        prompt += f<span class="code-string">"- Incident {idx}: {match.payload['summary_text']} "</span>
+        prompt += f<span class="code-string">"(Similarity: {match.score:.3f})\\n"</span>
+        
+    prompt += <span class="code-string">"Generate concise JSON operator advice."</span>
+    <span class="code-keyword">return</span> prompt`
+      }
+    ],
+    comments: [
+      {
+        user: "Matthew Ningan Yu",
+        avatar: "avatar",
+        text: "Built a containerized RAG service for HVAC monitoring. The FastAPI service processes live sensor windows, embeds them into a 128-dimensional space using a PyTorch encoder, queries Qdrant Cloud for matching historical anomalies, and prompts OpenAI to generate structured operator-facing guidance.",
+        time: "3w"
+      },
+      {
+        user: "_cindyy7",
+        avatar: "C",
+        text: "This is super useful. Using RAG on telemetry rather than just standard text is very unique. What incident classes are currently supported?",
+        time: "3w"
+      },
+      {
+        user: "Matthew Ningan Yu",
+        avatar: "avatar",
+        text: "@_cindyy7 Right now the rules index freeze_risk, hvac_drift, humidity_risk, normal, and hvac_anomaly catch-all. It detects severity levels (critical, high, medium, low) before querying the vector DB.",
+        time: "2w"
+      },
+      {
+        user: "luc4s.l1",
+        avatar: "L",
+        text: "What happens if the OpenAI key is missing? Does it crash?",
+        time: "1w"
+      },
+      {
+        user: "Matthew Ningan Yu",
+        avatar: "avatar",
+        text: "@luc4s.l1 Nope, it has a built-in deterministic fallback generator. If OpenAI is not configured, it compiles the retrieved incidents and rules locally to output the same JSON schema format.",
+        time: "1w"
+      }
+    ]
+  },
+  "othello-az": {
+    title: "AlphaZero Othello Engine",
+    likes: 1540,
+    commentsCount: 52,
+    date: "April 2, 2026",
+    link: "#",
+    github: "https://github.com",
+    slides: [
+      // Slide 1: Cover
+      {
+        type: "visual",
+        html: `
+          <div class="slide-cover-root othello-theme">
+            <div class="slide-cover-title">AlphaZero Othello</div>
+            <div class="slide-cover-subtitle">Self-play reinforcement-learning engine combining PyTorch ResNet and neural-guided MCTS.</div>
+            <div class="slide-tech-badges">
+              <span class="tech-badge">Python</span>
+              <span class="tech-badge">PyTorch</span>
+              <span class="tech-badge">Numba JIT</span>
+              <span class="tech-badge">MCTS</span>
+              <span class="tech-badge">CUDA</span>
+              <span class="tech-badge">Multiprocessing</span>
+            </div>
+          </div>
+        `
+      },
+      // Slide 2: Board Visual representation
+      {
+        type: "visual",
+        html: `
+          <div class="slide-diagram-root" style="background:#0e3a2f">
+            <h4 style="color:#ffffff; margin-bottom:10px; font-family:var(--header-font)">Move Policies (PUCT Simulation)</h4>
+            <div class="othello-board">
+              <div class="ob-cell val-w" style="font-size:10px; color:#111">P=0.04</div>
+              <div class="ob-cell val-b" style="font-size:10px; color:#fff">P=0.45</div>
+              <div class="ob-cell val-b" style="font-size:10px; color:#fff">P=0.32</div>
+              <div class="ob-cell val-w" style="font-size:10px; color:#111">P=0.19</div>
+            </div>
+            <p style="font-size:11px; color:#a3e635; font-family:var(--code-font)">Batched leaf nodes evaluated in shared GPU forward pass</p>
+          </div>
+        `
+      },
+      // Slide 3: Code Card
+      {
+        type: "code",
+        filename: "othello/board.py",
+        code: `
+<span class="code-keyword">@njit</span>
+<span class="code-keyword">def</span> <span class="code-function">apply_move</span>(black_bb, white_bb, move_idx, player):
+    <span class="code-comment"># W=64 uint64 bit index operations</span>
+    move_mask = uint64(1) &lt;&lt; move_idx
+    flipped = uint64(0)
+    
+    <span class="code-comment"># Scan and flip pieces across 8 directions</span>
+    for d in range(8):
+        dir_flipped = scan_direction(black_bb, white_bb, move_mask, d, player)
+        flipped |= dir_flipped
+        
+    if player == 1: <span class="code-comment"># Black</span>
+        black_bb |= move_mask | flipped
+        white_bb &= ~flipped
+    else:           <span class="code-comment"># White</span>
+        white_bb |= move_mask | flipped
+        black_bb &= ~flipped
+    return black_bb, white_bb`
+      }
+    ],
+    comments: [
+      {
+        user: "Matthew Ningan Yu",
+        avatar: "avatar",
+        text: "Completed the PyTorch residual network for Othello. It learns entirely from self-play games utilizing MCTS. The game state is encoded into 64-bit uint64 bitboards, key moves compiled with Numba, and evaluations batched for GPU parallelization. 2.97 million parameters ResNet.",
+        time: "8w"
+      },
+      {
+        user: "luc4s.l1",
+        avatar: "L",
+        text: "Bitboards + Numba JIT makes so much difference. Standard python search loops can get super slow.",
+        time: "8w"
+      },
+      {
+        user: "melvin_fung",
+        avatar: "M",
+        text: "what exploration parameters are you using in MCTS?",
+        time: "7w"
+      },
+      {
+        user: "Matthew Ningan Yu",
+        avatar: "avatar",
+        text: "@melvin_fung PUCT exploration constant is set to 1.5, with Dirichlet noise parameter alpha=0.3 and epsilon=0.25 at the search tree root. This encourages the network to play diverse moves during early self-play iterations.",
+        time: "7w"
+      }
+    ]
+  }
+};
+
+
+// ----------------------------------------------------
+// 2. CLIENT-SIDE RAG TEXT KNOWLEDGE BASE
+// ----------------------------------------------------
+const KNOWLEDGE_BASE = [
+  {
+    project: "scoreshift",
+    title: "ScoreShift (Sheet Music Transposition App)",
+    tech: ["python", "fastapi", "oemer", "omr", "music21", "verovio", "wasm", "docker", "hugging face spaces"],
+    metrics: "Runs on a public Docker-based Hugging Face Space free tier. Prepares large files in the browser resizing to 2200px and capping at 1800px on the backend to avoid processing delays.",
+    text: "ScoreShift is a deployed web application for transposing sheet music. Users can upload/photograph music sheets, trigger OMR (Optical Music Recognition) using oemer, transpose pitch using music21, and preview score sheets dynamically in the browser using Verovio WASM. The site exports vector PDF, individual page PNG/JPEGs, or MusicXML files. Built with FastAPI backend and Docker."
+  },
+  {
+    project: "hvac-model",
+    title: "HavenIQ HVAC Confidence Model",
+    tech: ["python", "xgboost", "pytorch", "pandas", "numpy", "scikit-learn", "cuda"],
+    metrics: "Trained on 12,709 telemetry rows from 350 devices. Achieved R-squared (R²) score of 0.949 and Mean Absolute Error (MAE) of 4.576 points on held-out test data.",
+    text: "This project is a machine learning regression pipeline predicting HVAC operational confidence scores. Telemetry is sorted chronologically and grouped by device into W=8 sliding windows (input shape [8, 4]). Features engineered include temperature values, target setpoints, deviation (temp - setpoint), and slope. Trained an interpretable XGBoost model (25 features per window) and a PyTorch feedforward comparison neural net."
+  },
+  {
+    project: "hvac-rag",
+    title: "HavenIQ HVAC RAG System",
+    tech: ["fastapi", "pytorch", "qdrant cloud", "openai api", "docker", "postgresql"],
+    metrics: "Embeds W=8 HVAC sensor windows into 128-dimensional normalized vectors. Processes 1,996 historical readings into 1,611 indexed database windows. Supports 5 incident classes (freeze_risk, hvac_drift, humidity_risk, normal, hvac_anomaly).",
+    text: "HavenIQ HVAC RAG is an end-to-end telemetry anomaly explainer. A FastAPI server validates 8-reading inputs, engineers an [8, 8] matrix, passes it through a PyTorch MLP encoder to get a 128-d vector, and retrieves the top 5 closest historical match payloads from Qdrant Cloud. Finally, it uses OpenAI API to output structured JSON diagnostic reports containing risk analysis, severity, and recommended operator checks, with a deterministic local rule-based explanation fallback."
+  },
+  {
+    project: "othello-az",
+    title: "AlphaZero-Style Othello Engine",
+    tech: ["python", "pytorch", "numba", "cuda", "multiprocessing", "resnet", "mcts"],
+    metrics: "2.97-million-parameter PyTorch ResNet (10 residual blocks, 128 trunk filters). Pre-allocates replay buffers to hold 384,000 positions. Plays self-play game rounds (75-200 per iteration) across 4 multiprocessing workers.",
+    text: "A self-play reinforcement learning Othello engine modeled on AlphaZero. Boards are represented as two uint64 bitboards, JIT-compiled with Numba for high speed. Uses a neural-guided Monte Carlo Tree Search (MCTS) with PUCT exploration formula (constant 1.5). Evaluates search tree leaf node positions in GPU batches. Positions are rotated and flipped with 8-way board symmetries for data augmentation."
+  },
+  {
+    project: "general",
+    title: "Matthew Ningan Yu Portfolio & Background",
+    tech: ["python", "javascript", "pytorch", "fastapi", "docker", "ml", "neural networks", "vector search"],
+    metrics: "Matthew Ningan Yu is a Software Engineer specializing in Machine Learning, RAG search systems, and robust backend/frontend tool architectures.",
+    text: "Matthew Ningan Yu is a software engineer. His displayed profile name is Matthew Ningan Yu. He has built several key projects: ScoreShift (music processing web app), HavenIQ HVAC Model (XGBoost & PyTorch regression), HavenIQ HVAC RAG (FastAPI/Qdrant vector search explaining anomalies), and AlphaZero Othello (an RL board game engine). You can download his resume directly using the 'Download Resume' button at the top of his page."
+  }
+];
+
+
+// ----------------------------------------------------
+// 3. UI STATE & INITIALIZATION
+// ----------------------------------------------------
+const PROJECT_ORDER = ["scoreshift", "hvac-model", "hvac-rag", "othello-az"];
+// Paste your Supabase Project URL and public anon key here before deploying comments.
+const SUPABASE_URL = "https://ufdkrzjyinmjbivmncch.supabase.co";
+const SUPABASE_ANON_KEY = "sb_publishable_j4Qf-GU3slwGoLxU8vq7Iw_utNc-wb3";
+const COMMENT_MAX_LENGTH = 500;
+const COMMENT_AUTHOR_MAX_LENGTH = 30;
+const COMMENT_AUTHOR_STORAGE_KEY = "portfolio:comment-author";
+const COMMENT_COOLDOWN_MS = 30000;
+const COMMENT_COOLDOWN_STORAGE_KEY = "portfolio:last-comment-submit";
+const EMOJI_RECENT_STORAGE_KEY = "portfolio:recent-emojis";
+const EMOJI_RECENT_LIMIT = 12;
+const EMOJI_CATEGORIES = {
+  recent: { label: "Recently Used", icon: "◷", emojis: [] },
+  smileys: {
+    label: "Smileys & People",
+    icon: "☺",
+    emojis: [
+      ["😀", "grinning face smile happy"],
+      ["😃", "smiley happy"],
+      ["😄", "smile happy laugh"],
+      ["😁", "grin happy"],
+      ["😆", "laugh squint"],
+      ["🥹", "teary happy grateful"],
+      ["😅", "sweat smile relief"],
+      ["😂", "joy laugh tears"],
+      ["🤣", "rolling laugh"],
+      ["🥲", "smiling tear"],
+      ["😊", "blush smile"],
+      ["🙂", "slight smile"],
+      ["😇", "angel halo"],
+      ["🙃", "upside down"],
+      ["😉", "wink"],
+      ["😍", "heart eyes love"],
+      ["🥰", "hearts love"],
+      ["😘", "kiss"],
+      ["🤔", "thinking"],
+      ["🤫", "shush"],
+      ["😎", "cool sunglasses"],
+      ["😭", "cry sob"],
+      ["😤", "triumph"],
+      ["😳", "flushed"],
+      ["👏", "clap applause"],
+      ["🙏", "pray thanks"],
+      ["💪", "strong flex"]
+    ]
+  },
+  people: {
+    label: "People",
+    icon: "♙",
+    emojis: [["👋", "wave hello"], ["👍", "thumbs up"], ["🙌", "raised hands"], ["🤝", "handshake"], ["🧠", "brain smart"], ["👀", "eyes"], ["🧑‍💻", "developer coder"], ["👨‍💻", "man coder"], ["👩‍💻", "woman coder"]]
+  },
+  nature: {
+    label: "Nature",
+    icon: "♧",
+    emojis: [["🔥", "fire hot"], ["✨", "sparkles"], ["🌟", "star"], ["⚡", "lightning"], ["🌙", "moon"], ["☀️", "sun"], ["🌊", "wave"], ["🏔️", "mountain"], ["❄️", "snow"]]
+  },
+  food: {
+    label: "Food",
+    icon: "♨",
+    emojis: [["🍕", "pizza"], ["🍔", "burger"], ["🍣", "sushi"], ["🍜", "ramen noodles"], ["☕", "coffee"], ["🍵", "tea"], ["🍪", "cookie"], ["🍓", "strawberry"], ["🥐", "croissant"]]
+  },
+  activities: {
+    label: "Activities",
+    icon: "◉",
+    emojis: [["🚀", "rocket launch"], ["🏂", "snowboard"], ["🎵", "music"], ["🎮", "game"], ["♟️", "chess"], ["🏆", "trophy"], ["🎯", "target"], ["📈", "chart"], ["💻", "laptop"]]
+  },
+  objects: {
+    label: "Objects",
+    icon: "⌘",
+    emojis: [["💡", "idea light"], ["📌", "pin"], ["📎", "clip"], ["🧪", "lab experiment"], ["🔬", "science"], ["🛠️", "tools"], ["⚙️", "gear"], ["📚", "books"], ["📝", "memo"]]
+  },
+  symbols: {
+    label: "Symbols",
+    icon: "✣",
+    emojis: [["❤️", "heart love"], ["💙", "blue heart"], ["✅", "check done"], ["❌", "cross no"], ["⭐", "star"], ["💯", "hundred"], ["⁉️", "question exclamation"], ["🎉", "party"], ["🔁", "repeat"]]
+  }
+};
+let activeProject = null;
+let currentSlideIndex = 0;
+let activeEmojiInput = null;
+
+document.addEventListener("DOMContentLoaded", () => {
+  initTabs();
+  initModals();
+  initDMChatbot();
+  initResumeDownload();
+  initEmojiPicker();
+});
+
+// Tab toggle (Posts vs About)
+function initTabs() {
+  const tabs = document.querySelectorAll(".tab-item");
+  const postsGrid = document.getElementById("grid-posts");
+  const aboutSection = document.getElementById("grid-about");
+
+  tabs.forEach(tab => {
+    tab.addEventListener("click", () => {
+      tabs.forEach(t => t.classList.remove("active"));
+      tab.classList.add("active");
+
+      const tabName = tab.getAttribute("data-tab");
+      if (tabName === "posts") {
+        postsGrid.classList.remove("hidden");
+        aboutSection.classList.add("hidden");
+      } else {
+        postsGrid.classList.add("hidden");
+        aboutSection.classList.remove("hidden");
+      }
+    });
+  });
+}
+
+// Resume button click handler
+function initResumeDownload() {
+  const btnResume = document.getElementById("btn-resume");
+  btnResume.addEventListener("click", () => {
+    // Create an anchor and trigger a download of resume.pdf
+    const link = document.createElement("a");
+    link.href = "resume.pdf";
+    link.download = "Matthew_Yu_Resume.pdf";
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+  });
+}
+
+function initEmojiPicker() {
+  const picker = document.getElementById("emoji-picker");
+  const search = document.getElementById("emoji-search");
+  const emojiButtons = document.querySelectorAll("[data-emoji-target]");
+
+  emojiButtons.forEach(button => {
+    button.addEventListener("click", (e) => {
+      e.preventDefault();
+      const targetInput = document.getElementById(button.dataset.emojiTarget);
+      openEmojiPicker(targetInput, button);
+    });
+  });
+
+  search.addEventListener("input", () => {
+    renderEmojiSections(search.value);
+  });
+
+  document.addEventListener("click", (e) => {
+    if (picker.classList.contains("hidden")) return;
+    if (picker.contains(e.target) || e.target.closest("[data-emoji-target]")) return;
+    closeEmojiPicker();
+  });
+
+  document.addEventListener("keydown", (e) => {
+    if (e.key === "Escape") closeEmojiPicker();
+  });
+
+  renderEmojiSections("");
+}
+
+function openEmojiPicker(targetInput, anchorButton) {
+  if (!targetInput) return;
+
+  const picker = document.getElementById("emoji-picker");
+  const search = document.getElementById("emoji-search");
+  activeEmojiInput = targetInput;
+
+  search.value = "";
+  picker.classList.remove("hidden");
+  renderEmojiSections("");
+  positionEmojiPicker(anchorButton);
+  setTimeout(() => search.focus(), 0);
+}
+
+function closeEmojiPicker() {
+  const picker = document.getElementById("emoji-picker");
+  if (!picker) return;
+  picker.classList.add("hidden");
+  activeEmojiInput = null;
+}
+
+function positionEmojiPicker(anchorButton) {
+  const picker = document.getElementById("emoji-picker");
+  const rect = anchorButton.getBoundingClientRect();
+  const pickerRect = picker.getBoundingClientRect();
+  const margin = 8;
+
+  const left = Math.min(
+    Math.max(margin, rect.left),
+    window.innerWidth - pickerRect.width - margin
+  );
+  const top = Math.max(margin, rect.top - pickerRect.height - 10);
+
+  picker.style.left = `${left}px`;
+  picker.style.top = `${top}px`;
+}
+
+function renderEmojiSections(query) {
+  const scroll = document.getElementById("emoji-scroll");
+  const normalizedQuery = query.trim().toLowerCase();
+  scroll.innerHTML = "";
+
+  if (normalizedQuery) {
+    const emojis = Object.values(EMOJI_CATEGORIES)
+      .flatMap(category => category.emojis)
+      .filter(([emoji, keywords]) => emoji.includes(normalizedQuery) || keywords.includes(normalizedQuery));
+
+    if (emojis.length === 0) {
+      appendEmojiEmptyState(scroll);
+    } else {
+      appendEmojiSection(scroll, "Search Results", emojis);
+    }
+    return;
+  }
+
+  const recents = getRecentEmojis();
+  appendEmojiSection(
+    scroll,
+    "Recently Used",
+    recents.length > 0
+      ? recents.map(emoji => [emoji, "recent used"])
+      : EMOJI_CATEGORIES.smileys.emojis.slice(0, 12)
+  );
+
+  Object.entries(EMOJI_CATEGORIES).forEach(([key, category]) => {
+    if (key === "recent") return;
+    appendEmojiSection(scroll, category.label, category.emojis);
+  });
+}
+
+function appendEmojiSection(container, labelText, emojis) {
+  const section = document.createElement("section");
+  section.className = "emoji-section";
+
+  const label = document.createElement("div");
+  label.className = "emoji-section-label";
+  label.textContent = labelText;
+
+  const grid = document.createElement("div");
+  grid.className = "emoji-grid";
+
+  emojis.forEach(([emoji]) => {
+    const button = document.createElement("button");
+    button.type = "button";
+    button.className = "emoji-option";
+    button.textContent = emoji;
+    button.addEventListener("click", () => {
+      insertEmojiAtCursor(activeEmojiInput, emoji);
+      saveRecentEmoji(emoji);
+      renderEmojiSections(document.getElementById("emoji-search").value);
+    });
+    grid.appendChild(button);
+  });
+
+  section.appendChild(label);
+  section.appendChild(grid);
+  container.appendChild(section);
+}
+
+function appendEmojiEmptyState(container) {
+  const empty = document.createElement("div");
+  empty.className = "emoji-empty";
+  empty.textContent = "No emoji found";
+  container.appendChild(empty);
+}
+
+function insertEmojiAtCursor(input, emoji) {
+  if (!input) return;
+
+  const start = input.selectionStart ?? input.value.length;
+  const end = input.selectionEnd ?? input.value.length;
+  input.value = `${input.value.slice(0, start)}${emoji}${input.value.slice(end)}`;
+  const cursor = start + emoji.length;
+  input.focus();
+  input.setSelectionRange(cursor, cursor);
+  input.dispatchEvent(new Event("input", { bubbles: true }));
+}
+
+function saveRecentEmoji(emoji) {
+  const recents = getRecentEmojis().filter(item => item !== emoji);
+  recents.unshift(emoji);
+  localStorage.setItem(EMOJI_RECENT_STORAGE_KEY, JSON.stringify(recents.slice(0, EMOJI_RECENT_LIMIT)));
+}
+
+function getRecentEmojis() {
+  try {
+    return JSON.parse(localStorage.getItem(EMOJI_RECENT_STORAGE_KEY) || "[]");
+  } catch {
+    return [];
+  }
+}
+
+
+// ----------------------------------------------------
+// 4. DETAILED MODAL CONTROLS & CAROUSELS
+// ----------------------------------------------------
+function initModals() {
+  const gridPostCards = document.querySelectorAll(".grid-post-card");
+  const modal = document.getElementById("project-modal");
+  const closeBtn = document.getElementById("btn-modal-close");
+  const overlay = document.getElementById("project-modal");
+
+  gridPostCards.forEach(card => {
+    card.addEventListener("click", () => {
+      const projectKey = card.getAttribute("data-project");
+      openProjectModal(projectKey);
+    });
+  });
+
+  closeBtn.addEventListener("click", closeProjectModal);
+  
+  // Close modal when clicking outside content wrapper
+  overlay.addEventListener("click", (e) => {
+    if (e.target === overlay) {
+      closeProjectModal();
+    }
+  });
+
+  // Carousel navigation click handlers
+  document.getElementById("btn-carousel-left").addEventListener("click", () => navigateCarousel(-1));
+  document.getElementById("btn-carousel-right").addEventListener("click", () => navigateCarousel(1));
+  document.getElementById("btn-post-prev").addEventListener("click", (e) => {
+    e.stopPropagation();
+    navigateProject(-1);
+  });
+  document.getElementById("btn-post-next").addEventListener("click", (e) => {
+    e.stopPropagation();
+    navigateProject(1);
+  });
+
+  document.addEventListener("keydown", (e) => {
+    if (modal.classList.contains("hidden")) return;
+    const isTyping = e.target.matches("input, textarea, [contenteditable='true']");
+    if (isTyping) return;
+
+    if (e.key === "ArrowLeft") {
+      e.preventDefault();
+      navigateProject(-1);
+    } else if (e.key === "ArrowRight") {
+      e.preventDefault();
+      navigateProject(1);
+    }
+  });
+
+  // Like & Bookmark toggles inside modal
+  const btnLike = document.getElementById("btn-modal-like");
+  const heartSvg = document.getElementById("modal-heart-svg");
+  const likesCountText = document.getElementById("modal-likes-count");
+  
+  btnLike.addEventListener("click", () => {
+    if (activeProject) {
+      const proj = PROJECT_DATA[activeProject];
+      const isLiked = heartSvg.getAttribute("fill") === "red";
+      
+      if (isLiked) {
+        heartSvg.setAttribute("fill", "none");
+        heartSvg.setAttribute("stroke", "currentColor");
+        proj.likes -= 1;
+      } else {
+        heartSvg.setAttribute("fill", "red");
+        heartSvg.setAttribute("stroke", "red");
+        proj.likes += 1;
+        
+        // Add pop bounce effect
+        btnLike.style.transform = "scale(1.3)";
+        setTimeout(() => btnLike.style.transform = "scale(1)", 150);
+      }
+      likesCountText.textContent = `Liked by luc4s.l1 and ${proj.likes - 1} others`;
+    }
+  });
+
+  const btnBookmark = document.getElementById("btn-modal-bookmark");
+  const bookmarkSvg = document.getElementById("modal-bookmark-svg");
+  btnBookmark.addEventListener("click", () => {
+    const isBookmarked = bookmarkSvg.getAttribute("fill") === "currentColor";
+    if (isBookmarked) {
+      bookmarkSvg.setAttribute("fill", "none");
+    } else {
+      bookmarkSvg.setAttribute("fill", "currentColor");
+    }
+  });
+
+  // Add Comment input inside modal
+  const commentAuthorField = document.getElementById("modal-comment-author");
+  const commentField = document.getElementById("modal-comment-field");
+  const commentHoneypot = document.getElementById("modal-comment-website");
+  const commentStatus = document.getElementById("comment-submit-status");
+  const postCommentBtn = document.getElementById("btn-modal-post-comment");
+  let isSubmittingComment = false;
+
+  commentAuthorField.value = localStorage.getItem(COMMENT_AUTHOR_STORAGE_KEY) || "";
+
+  const updateCommentButton = () => {
+    const isReady = commentField.value.trim() !== "" && !isSubmittingComment;
+    if (isReady) {
+      postCommentBtn.style.opacity = "1";
+      postCommentBtn.classList.add("active");
+    } else {
+      postCommentBtn.style.opacity = "0.5";
+      postCommentBtn.classList.remove("active");
+    }
+    postCommentBtn.disabled = isSubmittingComment;
+  };
+
+  commentField.addEventListener("input", () => {
+    setCommentStatus("");
+    updateCommentButton();
+  });
+
+  commentAuthorField.addEventListener("input", () => {
+    setCommentStatus("");
+  });
+
+  postCommentBtn.addEventListener("click", async () => {
+    const commentVal = commentField.value.trim();
+    const authorValidation = normalizeCommentAuthor(commentAuthorField.value);
+    if (isSubmittingComment || !activeProject) return;
+
+    if (commentHoneypot.value.trim() !== "") {
+      commentField.value = "";
+      updateCommentButton();
+      return;
+    }
+
+    if (commentVal.length === 0) {
+      setCommentStatus("Write a comment before posting.", "error");
+      return;
+    }
+
+    if (countCharacters(commentVal) > COMMENT_MAX_LENGTH) {
+      setCommentStatus(`Comments must be ${COMMENT_MAX_LENGTH} characters or fewer.`, "error");
+      return;
+    }
+
+    if (!authorValidation.valid) {
+      setCommentStatus(authorValidation.message, "error");
+      return;
+    }
+
+    if (!isSupabaseConfigured()) {
+      setCommentStatus("Comment storage needs Supabase config before launch.", "error");
+      return;
+    }
+
+    const lastSubmittedAt = Number(localStorage.getItem(COMMENT_COOLDOWN_STORAGE_KEY) || 0);
+    const cooldownRemaining = COMMENT_COOLDOWN_MS - (Date.now() - lastSubmittedAt);
+    if (cooldownRemaining > 0) {
+      setCommentStatus(`Please wait ${Math.ceil(cooldownRemaining / 1000)}s before posting again.`, "error");
+      return;
+    }
+
+    isSubmittingComment = true;
+    postCommentBtn.textContent = "Posting";
+    updateCommentButton();
+
+    try {
+      await submitVisitorComment(activeProject, authorValidation.authorName, commentVal);
+      localStorage.setItem(COMMENT_COOLDOWN_STORAGE_KEY, String(Date.now()));
+      if (authorValidation.authorName !== "visitor") {
+        localStorage.setItem(COMMENT_AUTHOR_STORAGE_KEY, authorValidation.authorName);
+      } else {
+        localStorage.removeItem(COMMENT_AUTHOR_STORAGE_KEY);
+      }
+      commentField.value = "";
+      setCommentStatus("Comment submitted for review.", "success");
+    } catch (error) {
+      console.error("Comment submit failed:", error);
+      setCommentStatus("Could not submit comment right now. Please try again later.", "error");
+    } finally {
+      isSubmittingComment = false;
+      postCommentBtn.textContent = "Post";
+      updateCommentButton();
+    }
+  });
+}
+
+async function openProjectModal(projectKey) {
+  activeProject = projectKey;
+  const project = PROJECT_DATA[projectKey];
+  if (!project) return;
+
+  currentSlideIndex = 0;
+
+  // 1. Populate Media Slides
+  const slidesContainer = document.getElementById("modal-carousel-slides");
+  slidesContainer.innerHTML = "";
+  project.slides.forEach(slide => {
+    const slideDiv = document.createElement("div");
+    slideDiv.className = "carousel-slide";
+    
+    if (slide.type === "visual") {
+      slideDiv.innerHTML = slide.html;
+    } else if (slide.type === "code") {
+      slideDiv.innerHTML = `
+        <div class="code-viewer-panel">
+          <div class="code-header">
+            <div class="code-title">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
+              ${slide.filename}
+            </div>
+            <div class="code-window-dots">
+              <span class="cwd red"></span>
+              <span class="cwd yellow"></span>
+              <span class="cwd green"></span>
+            </div>
+          </div>
+          <pre class="code-content-block"><code>${slide.code.trim()}</code></pre>
+        </div>
+      `;
+    }
+    slidesContainer.appendChild(slideDiv);
+  });
+
+  // Reset slide position
+  slidesContainer.style.transform = `translateX(0)`;
+
+  // Update dots indicator
+  updateDots(project.slides.length);
+
+  // 2. Populate Comments Feed
+  const feed = document.getElementById("modal-comments-feed");
+  const commentAuthorField = document.getElementById("modal-comment-author");
+  const commentField = document.getElementById("modal-comment-field");
+  const commentHoneypot = document.getElementById("modal-comment-website");
+  const postCommentBtn = document.getElementById("btn-modal-post-comment");
+  feed.innerHTML = "";
+  commentAuthorField.value = localStorage.getItem(COMMENT_AUTHOR_STORAGE_KEY) || "";
+  commentField.value = "";
+  commentHoneypot.value = "";
+  postCommentBtn.textContent = "Post";
+  postCommentBtn.style.opacity = "0.5";
+  postCommentBtn.classList.remove("active");
+  postCommentBtn.disabled = false;
+  project.comments.forEach(c => {
+    feed.appendChild(createCommentRow({
+      user: c.user,
+      text: c.text,
+      time: c.time,
+      avatar: c.avatar,
+      showReply: c.user !== "Matthew Ningan Yu"
+    }));
+  });
+
+  setCommentStatus("");
+  loadApprovedVisitorComments(projectKey);
+
+  // 3. Populate Statistics
+  const heartSvg = document.getElementById("modal-heart-svg");
+  heartSvg.setAttribute("fill", "none");
+  heartSvg.setAttribute("stroke", "currentColor");
+  
+  document.getElementById("modal-likes-count").textContent = `Liked by luc4s.l1 and ${project.likes - 1} others`;
+  document.getElementById("modal-post-date").textContent = project.date;
+
+  // Show Modal
+  const modal = document.getElementById("project-modal");
+  modal.classList.remove("hidden");
+  document.body.style.overflow = "hidden"; // Disable background scrolling
+
+  updateCarouselNav();
+}
+
+function closeProjectModal() {
+  const modal = document.getElementById("project-modal");
+  modal.classList.add("hidden");
+  document.body.style.overflow = "auto";
+  activeProject = null;
+  closeEmojiPicker();
+}
+
+function navigateProject(direction) {
+  if (!activeProject) return;
+  const currentIndex = PROJECT_ORDER.indexOf(activeProject);
+  if (currentIndex === -1) return;
+
+  const nextIndex = (currentIndex + direction + PROJECT_ORDER.length) % PROJECT_ORDER.length;
+  openProjectModal(PROJECT_ORDER[nextIndex]);
+}
+
+function isSupabaseConfigured() {
+  return SUPABASE_URL.startsWith("https://") && SUPABASE_ANON_KEY.length > 20;
+}
+
+function setCommentStatus(message, type = "") {
+  const commentStatus = document.getElementById("comment-submit-status");
+  if (!commentStatus) return;
+
+  commentStatus.textContent = message;
+  commentStatus.classList.remove("success", "error");
+  if (type) commentStatus.classList.add(type);
+}
+
+function normalizeCommentAuthor(rawAuthor) {
+  const normalized = rawAuthor.trim().replace(/\s+/g, " ");
+
+  if (normalized === "") {
+    return { valid: true, authorName: "visitor" };
+  }
+
+  const nameLength = countCharacters(normalized);
+
+  if (nameLength < 2) {
+    return { valid: false, message: "Name must be at least 2 characters." };
+  }
+
+  if (nameLength > COMMENT_AUTHOR_MAX_LENGTH) {
+    return { valid: false, message: `Name must be ${COMMENT_AUTHOR_MAX_LENGTH} characters or fewer.` };
+  }
+
+  if (!isAllowedCommentAuthorName(normalized)) {
+    return {
+      valid: false,
+      message: "Name can use letters, numbers, spaces, hyphens, underscores, and Chinese characters."
+    };
+  }
+
+  return { valid: true, authorName: normalized };
+}
+
+function isAllowedCommentAuthorName(name) {
+  return /^[\p{Script=Han}\p{Letter}\p{Number}_ -]+$/u.test(name);
+}
+
+function countCharacters(value) {
+  return Array.from(value).length;
+}
+
+function createCommentRow({ user, text, time, avatar = "V", showReply = false }) {
+  const row = document.createElement("div");
+  row.className = "comment-row";
+
+  const isOwner = user === "Matthew Ningan Yu";
+  const avatarEl = document.createElement("div");
+  avatarEl.className = isOwner ? "comment-avatar" : "comment-avatar-text";
+
+  if (isOwner) {
+    const img = document.createElement("img");
+    img.className = "profile-picture";
+    img.src = "profile_picture.jpg";
+    img.alt = "Matthew Ningan Yu profile picture";
+    avatarEl.appendChild(img);
+  } else {
+    avatarEl.textContent = avatar || user.charAt(0) || "V";
+  }
+
+  const content = document.createElement("div");
+  content.className = "comment-content";
+
+  const userEl = document.createElement("span");
+  userEl.className = "comment-user";
+  userEl.textContent = user;
+
+  const bodyEl = document.createElement("span");
+  bodyEl.className = "comment-body";
+  bodyEl.textContent = text;
+
+  const meta = document.createElement("div");
+  meta.className = "comment-meta";
+
+  const timeEl = document.createElement("span");
+  timeEl.textContent = time;
+  meta.appendChild(timeEl);
+
+  if (showReply) {
+    const replyEl = document.createElement("span");
+    replyEl.textContent = "Reply";
+    meta.appendChild(replyEl);
+  }
+
+  content.appendChild(userEl);
+  content.appendChild(bodyEl);
+  content.appendChild(meta);
+  row.appendChild(avatarEl);
+  row.appendChild(content);
+
+  return row;
+}
+
+async function loadApprovedVisitorComments(projectKey) {
+  if (!isSupabaseConfigured()) return;
+
+  const feed = document.getElementById("modal-comments-feed");
+  const endpoint = new URL(`${SUPABASE_URL}/rest/v1/comments`);
+  endpoint.searchParams.set("select", "author_name,body,created_at");
+  endpoint.searchParams.set("project_key", `eq.${projectKey}`);
+  endpoint.searchParams.set("status", "eq.approved");
+  endpoint.searchParams.set("order", "created_at.asc");
+
+  try {
+    const response = await fetch(endpoint.toString(), {
+      headers: getSupabaseHeaders()
+    });
+
+    if (!response.ok) {
+      throw new Error(`Supabase select failed: ${response.status}`);
+    }
+
+    const comments = await response.json();
+    if (activeProject !== projectKey) return;
+
+    comments.forEach(comment => {
+      feed.appendChild(createCommentRow({
+        user: comment.author_name || "visitor",
+        text: comment.body,
+        time: formatVisitorCommentTime(comment.created_at),
+        avatar: (comment.author_name || "visitor").charAt(0),
+        showReply: true
+      }));
+    });
+  } catch (error) {
+    console.error("Comment load failed:", error);
+    setCommentStatus("Could not load visitor comments right now.", "error");
+  }
+}
+
+async function submitVisitorComment(projectKey, authorName, body) {
+  const response = await fetch(`${SUPABASE_URL}/rest/v1/comments`, {
+    method: "POST",
+    headers: {
+      ...getSupabaseHeaders(),
+      "Content-Type": "application/json",
+      "Prefer": "return=minimal"
+    },
+    body: JSON.stringify({
+      project_key: projectKey,
+      author_name: authorName,
+      body,
+      status: "pending"
+    })
+  });
+
+  if (!response.ok) {
+    throw new Error(`Supabase insert failed: ${response.status}`);
+  }
+}
+
+function getSupabaseHeaders() {
+  const headers = { "apikey": SUPABASE_ANON_KEY };
+
+  if (!SUPABASE_ANON_KEY.startsWith("sb_publishable_")) {
+    headers.Authorization = `Bearer ${SUPABASE_ANON_KEY}`;
+  }
+
+  return headers;
+}
+
+function formatVisitorCommentTime(createdAt) {
+  const created = new Date(createdAt);
+  if (Number.isNaN(created.getTime())) return "just now";
+
+  const diffSeconds = Math.max(0, Math.floor((Date.now() - created.getTime()) / 1000));
+  if (diffSeconds < 60) return `${diffSeconds || 1}s`;
+
+  const diffMinutes = Math.floor(diffSeconds / 60);
+  if (diffMinutes < 60) return `${diffMinutes}m`;
+
+  const diffHours = Math.floor(diffMinutes / 60);
+  if (diffHours < 24) return `${diffHours}h`;
+
+  const diffDays = Math.floor(diffHours / 24);
+  return `${diffDays}d`;
+}
+
+function updateDots(count) {
+  const container = document.getElementById("modal-carousel-dots");
+  container.innerHTML = "";
+  for (let i = 0; i < count; i++) {
+    const dot = document.createElement("span");
+    dot.className = `dot ${i === 0 ? 'active' : ''}`;
+    container.appendChild(dot);
+  }
+}
+
+function navigateCarousel(direction) {
+  if (!activeProject) return;
+  const project = PROJECT_DATA[activeProject];
+  const slideCount = project.slides.length;
+  
+  currentSlideIndex += direction;
+  
+  if (currentSlideIndex < 0) currentSlideIndex = 0;
+  if (currentSlideIndex >= slideCount) currentSlideIndex = slideCount - 1;
+
+  // Move slide track
+  const track = document.getElementById("modal-carousel-slides");
+  track.style.transform = `translateX(-${currentSlideIndex * 100}%)`;
+
+  // Update dots active class
+  const dots = document.querySelectorAll("#modal-carousel-dots .dot");
+  dots.forEach((dot, idx) => {
+    if (idx === currentSlideIndex) {
+      dot.classList.add("active");
+    } else {
+      dot.classList.remove("active");
+    }
+  });
+
+  updateCarouselNav();
+}
+
+function updateCarouselNav() {
+  if (!activeProject) return;
+  const project = PROJECT_DATA[activeProject];
+  const slideCount = project.slides.length;
+
+  const btnLeft = document.getElementById("btn-carousel-left");
+  const btnRight = document.getElementById("btn-carousel-right");
+
+  if (currentSlideIndex === 0) {
+    btnLeft.classList.add("disabled");
+  } else {
+    btnLeft.classList.remove("disabled");
+  }
+
+  if (currentSlideIndex === slideCount - 1) {
+    btnRight.classList.add("disabled");
+  } else {
+    btnRight.classList.remove("disabled");
+  }
+}
+
+
+// ----------------------------------------------------
+// 5. RAG-CAPABLE DM CHATBOT ENGINE
+// ----------------------------------------------------
+function initDMChatbot() {
+  const btnDmOpen = document.getElementById("btn-dm-open");
+  const btnDmClose = document.getElementById("btn-dm-close");
+  const dmPanel = document.getElementById("dm-chatbot");
+  const dmBackdrop = document.getElementById("chat-drawer-backdrop");
+  const chatInput = document.getElementById("chat-input-field");
+  const btnViewProfile = document.getElementById("btn-view-profile-dm");
+  const btnLikeChat = document.getElementById("btn-like-chat");
+
+  const openChatDrawer = () => {
+    dmPanel.classList.add("open");
+    dmBackdrop.classList.add("open");
+    setTimeout(() => chatInput.focus(), 250);
+  };
+
+  const closeChatDrawer = () => {
+    dmPanel.classList.remove("open");
+    dmBackdrop.classList.remove("open");
+    closeEmojiPicker();
+  };
+
+  btnDmOpen.addEventListener("click", openChatDrawer);
+  btnDmClose.addEventListener("click", closeChatDrawer);
+  dmBackdrop.addEventListener("click", closeChatDrawer);
+
+  document.addEventListener("keydown", (e) => {
+    if (e.key === "Escape" && dmPanel.classList.contains("open")) {
+      closeChatDrawer();
+    }
+  });
+
+  btnViewProfile.addEventListener("click", () => {
+    // Scrolls feed container back to top
+    document.querySelector(".profile-section").scrollTop = 0;
+  });
+
+  // Handle enter key in chat field
+  chatInput.addEventListener("keydown", (e) => {
+    if (e.key === "Enter") {
+      const text = chatInput.value.trim();
+      if (text !== "") {
+        sendUserMessage(text);
+        chatInput.value = "";
+      }
+    }
+  });
+
+  // Heart like response trigger
+  btnLikeChat.addEventListener("click", () => {
+    appendUserHeartReaction();
+  });
+}
+
+function sendUserMessage(text) {
+  const chatMessages = document.getElementById("chat-messages");
+  
+  // Append user bubble
+  const userMsgDiv = document.createElement("div");
+  userMsgDiv.className = "message msg-sent";
+  userMsgDiv.innerHTML = `
+    <div class="msg-bubble">${escapeHTML(text)}</div>
+  `;
+  chatMessages.appendChild(userMsgDiv);
+  chatMessages.scrollTop = chatMessages.scrollHeight;
+
+  // Trigger RAG analysis & show typing dots
+  showBotTyping();
+}
+
+function appendUserHeartReaction() {
+  const chatMessages = document.getElementById("chat-messages");
+  
+  const userMsgDiv = document.createElement("div");
+  userMsgDiv.className = "message msg-sent";
+  userMsgDiv.innerHTML = `
+    <div class="msg-bubble" style="background:none; color: red; font-size:24px; padding:0;">❤️</div>
+  `;
+  chatMessages.appendChild(userMsgDiv);
+  chatMessages.scrollTop = chatMessages.scrollHeight;
+
+  showBotTyping(true);
+}
+
+function showBotTyping(isHeartReact = false) {
+  const chatMessages = document.getElementById("chat-messages");
+
+  // Create typing element
+  const typingDiv = document.createElement("div");
+  typingDiv.className = "message msg-received typing-container";
+  typingDiv.innerHTML = `
+    <div class="msg-avatar">
+      <img class="profile-picture" src="profile_picture.jpg" alt="Matthew Ningan Yu profile picture">
+    </div>
+    <div class="msg-bubble" style="padding: 10px 14px;">
+      <div class="typing-indicator">
+        <span class="typing-dot"></span>
+        <span class="typing-dot"></span>
+        <span class="typing-dot"></span>
+      </div>
+    </div>
+  `;
+  chatMessages.appendChild(typingDiv);
+  chatMessages.scrollTop = chatMessages.scrollHeight;
+
+  // Process response after delay
+  const userMessages = document.querySelectorAll(".message.msg-sent:not([data-replied])");
+  let lastUserMsg = "like";
+  if (userMessages.length > 0) {
+    const lastMsgNode = userMessages[userMessages.length - 1];
+    lastMsgNode.setAttribute("data-replied", "true");
+    lastUserMsg = lastMsgNode.querySelector(".msg-bubble").textContent.trim();
+  }
+
+  setTimeout(() => {
+    // Remove typing indicator
+    typingDiv.remove();
+
+    let responseText = "";
+    if (isHeartReact) {
+      responseText = "Aww, thanks for the heart! ❤️ Let me know if you have any questions about Matthew's engineering projects or want to see his code snippets.";
+    } else {
+      responseText = queryRAGIndexer(lastUserMsg);
+    }
+    
+    appendBotMessage(responseText);
+  }, 1400);
+}
+
+function appendBotMessage(text) {
+  const chatMessages = document.getElementById("chat-messages");
+
+  const botMsgDiv = document.createElement("div");
+  botMsgDiv.className = "message msg-received";
+  botMsgDiv.innerHTML = `
+    <div class="msg-avatar">
+      <img class="profile-picture" src="profile_picture.jpg" alt="Matthew Ningan Yu profile picture">
+    </div>
+    <div class="msg-bubble"></div>
+  `;
+  chatMessages.appendChild(botMsgDiv);
+  chatMessages.scrollTop = chatMessages.scrollHeight;
+
+  // Typewriter typing effect
+  const bubble = botMsgDiv.querySelector(".msg-bubble");
+  let idx = 0;
+  
+  // Quick token parser to handle basic inline html formatting (<br>, <strong>, etc.)
+  function typeNext() {
+    if (idx < text.length) {
+      if (text.substr(idx, 4) === "<br>") {
+        bubble.innerHTML += "<br>";
+        idx += 4;
+      } else if (text.substr(idx, 8) === "<strong>") {
+        const closeIdx = text.indexOf("</strong>", idx);
+        if (closeIdx !== -1) {
+          const boldText = text.substring(idx + 8, closeIdx);
+          bubble.innerHTML += `<strong>${boldText}</strong>`;
+          idx = closeIdx + 9;
+        } else {
+          bubble.innerHTML += text[idx];
+          idx++;
+        }
+      } else {
+        bubble.innerHTML += text[idx];
+        idx++;
+      }
+      chatMessages.scrollTop = chatMessages.scrollHeight;
+      setTimeout(typeNext, 8); // Fast typing speed
+    }
+  }
+  
+  typeNext();
+}
+
+/**
+ * Client-Side RAG Search Indexer
+ * Takes user query, finds the best matching text blocks, and returns a cohesive answer.
+ */
+function queryRAGIndexer(query) {
+  const cleanQuery = query.toLowerCase().trim();
+  
+  // 1. Scoring projects based on keyword mapping
+  let scores = [];
+  KNOWLEDGE_BASE.forEach(entry => {
+    let score = 0;
+    
+    // Check key technology keywords
+    entry.tech.forEach(t => {
+      if (cleanQuery.includes(t)) score += 3;
+    });
+
+    // Check specific terms
+    if (entry.project === "scoreshift" && (cleanQuery.includes("music") || cleanQuery.includes("transpose") || cleanQuery.includes("sheet") || cleanQuery.includes("clef") || cleanQuery.includes("pdf"))) {
+      score += 5;
+    }
+    if (entry.project === "hvac-model" && (cleanQuery.includes("hvac") || cleanQuery.includes("xgboost") || cleanQuery.includes("regression") || cleanQuery.includes("mae") || cleanQuery.includes("slope") || cleanQuery.includes("comfort") || cleanQuery.includes("r2") || cleanQuery.includes("telemetry"))) {
+      score += 5;
+    }
+    if (entry.project === "hvac-rag" && (cleanQuery.includes("rag") || cleanQuery.includes("qdrant") || cleanQuery.includes("vector") || cleanQuery.includes("embedding") || cleanQuery.includes("anomal") || cleanQuery.includes("openai"))) {
+      score += 5;
+    }
+    if (entry.project === "othello-az" && (cleanQuery.includes("othello") || cleanQuery.includes("alphazero") || cleanQuery.includes("bitboard") || cleanQuery.includes("numba") || cleanQuery.includes("mcts") || cleanQuery.includes("resnet") || cleanQuery.includes("game"))) {
+      score += 5;
+    }
+    if (entry.project === "general" && (cleanQuery.includes("resume") || cleanQuery.includes("education") || cleanQuery.includes("experience") || cleanQuery.includes("skills") || cleanQuery.includes("matthew") || cleanQuery.includes("contact"))) {
+      score += 4;
+    }
+
+    scores.push({ project: entry.project, score });
+  });
+
+  // Sort scores descending
+  scores.sort((a, b) => b.score - a.score);
+  
+  // 2. Formulate grounded answer based on best match (score > 1)
+  const bestMatch = scores[0];
+  if (bestMatch && bestMatch.score > 1) {
+    const data = KNOWLEDGE_BASE.find(k => k.project === bestMatch.project);
+    
+    if (bestMatch.project === "scoreshift") {
+      return `<strong>ScoreShift</strong> is Matthew's web app designed to transpose printed sheet music. Here is the context retrieved:<br><br>` + 
+             `• ${data.text}<br><br>` +
+             `• <strong>Performance detail:</strong> ${data.metrics}<br><br>` +
+             `• <strong>Stack:</strong> ${data.tech.join(", ")}.<br><br>` +
+             `Feel free to click on the first grid post to view the interactive notation and code snippets!`;
+    }
+    
+    if (bestMatch.project === "hvac-model") {
+      return `Here is the retrieved documentation for the <strong>HavenIQ HVAC Confidence Model</strong>:<br><br>` + 
+             `• ${data.text}<br><br>` +
+             `• <strong>Key metrics:</strong> ${data.metrics}<br><br>` +
+             `• <strong>Stack:</strong> ${data.tech.join(", ")}.<br><br>` +
+             `You can inspect the PyTorch neural network layer code by opening the second post in Matthew's feed.`;
+    }
+    
+    if (bestMatch.project === "hvac-rag") {
+      return `I found the following specs for the <strong>HavenIQ HVAC RAG system</strong> in the local corpus:<br><br>` + 
+             `• ${data.text}<br><br>` +
+             `• <strong>System details:</strong> ${data.metrics}<br><br>` +
+             `• <strong>Stack:</strong> ${data.tech.join(", ")}.<br><br>` +
+             `It embeds telemetries with a PyTorch model and retrieves closest incidents using Qdrant Cloud vector search. Open the third post to inspect the LLM prompt code!`;
+    }
+    
+    if (bestMatch.project === "othello-az") {
+      return `Here is the telemetry context for the <strong>AlphaZero Othello Engine</strong>:<br><br>` + 
+             `• ${data.text}<br><br>` +
+             `• <strong>Model parameters & workers:</strong> ${data.metrics}<br><br>` +
+             `• <strong>Stack:</strong> ${data.tech.join(", ")}.<br><br>` +
+             `It implements 64-bit uint64 bitboards compiled with Numba JIT. Check out the board grid and search code inside the fourth post in Matthew's feed.`;
+    }
+
+    if (bestMatch.project === "general") {
+      return `Sure! Matthew is a software engineer. Here is a summary of his background:<br><br>` +
+             `• ${data.text}<br><br>` +
+             `• ${data.metrics}<br><br>` +
+             `You can download his resume by clicking the <strong>Download Resume</strong> button on the header of the page, or check out his four main project posts in the feed below.`;
+    }
+  }
+
+  // Fallback if no specific project scored high enough
+  return `I couldn't find a specific match for that question in Matthew's project documentation.<br><br>` +
+         `Try asking questions about:<br>` +
+         `• Matthew's <strong>resume</strong> or general background<br>` +
+         `• <strong>ScoreShift</strong> (OMR and sheet music transposition)<br>` +
+         `• <strong>HavenIQ HVAC Model</strong> (XGBoost regression)<br>` +
+         `• <strong>HavenIQ RAG</strong> (FastAPI, Qdrant & LLM)<br>` +
+         `• <strong>AlphaZero Othello</strong> (MCTS and bitboards)`;
+}
+
+// Simple HTML escaping helper
+function escapeHTML(str) {
+  return str
+    .replace(/&/g, "&amp;")
+    .replace(/</g, "&lt;")
+    .replace(/>/g, "&gt;")
+    .replace(/"/g, "&quot;")
+    .replace(/'/g, "&#039;");
+}
+
