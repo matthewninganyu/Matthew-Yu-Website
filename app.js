@@ -3,6 +3,10 @@
  * Includes Project Data, Detailed Modals, Slideshows, and RAG Chatbot
  */
 
+const DISPLAY_NAME = "Matthew Yu";
+const FULL_NAME = "Matthew Ningan Yu";
+const OWNER_COMMENT_NAMES = new Set([DISPLAY_NAME, FULL_NAME]);
+
 // ----------------------------------------------------
 // 1. PROJECT DATA DATABASE
 // ----------------------------------------------------
@@ -71,7 +75,7 @@ const PROJECT_DATA = {
     ],
     comments: [
       {
-        user: "Matthew Ningan Yu",
+        user: DISPLAY_NAME,
         avatar: "avatar",
         text: "Just deployed ScoreShift! It transposes uploaded sheet music images or MusicXML files. The optical music recognition (OMR) is powered by oemer, transposition is done using music21, and the score renders dynamically in the browser using Verovio WASM. Live demo on Hugging Face Spaces!",
         time: "4w"
@@ -95,7 +99,7 @@ const PROJECT_DATA = {
         time: "2w"
       },
       {
-        user: "Matthew Ningan Yu",
+        user: DISPLAY_NAME,
         avatar: "avatar",
         text: "@_cindyy7 good question! Before uploading, the browser resizes the image to 2200px max side length and compresses to JPEG. On the backend, we cap it at 1800px max side length for the OMR model to prevent timeouts.",
         time: "2w"
@@ -165,7 +169,7 @@ const PROJECT_DATA = {
     ],
     comments: [
       {
-        user: "Matthew Ningan Yu",
+        user: DISPLAY_NAME,
         avatar: "avatar",
         text: "Built a dual-model regression pipeline using XGBoost and PyTorch to predict HVAC operational confidence scores. The pipeline reads telemetry windows, engineers features like temp deviation and slope trends, and outputs scores with an R² of 0.949 on held-out tests.",
         time: "6w"
@@ -183,7 +187,7 @@ const PROJECT_DATA = {
         time: "5w"
       },
       {
-        user: "Matthew Ningan Yu",
+        user: DISPLAY_NAME,
         avatar: "avatar",
         text: "@melvin_fung Important point! We separate train, validation, and test telemetry into completely distinct CSV files grouped by device before windowing. This guarantees that overlapping windows from the same device never leak between training and evaluation.",
         time: "5w"
@@ -252,7 +256,7 @@ const PROJECT_DATA = {
     ],
     comments: [
       {
-        user: "Matthew Ningan Yu",
+        user: DISPLAY_NAME,
         avatar: "avatar",
         text: "Built a containerized RAG service for HVAC monitoring. The FastAPI service processes live sensor windows, embeds them into a 128-dimensional space using a PyTorch encoder, queries Qdrant Cloud for matching historical anomalies, and prompts OpenAI to generate structured operator-facing guidance.",
         time: "3w"
@@ -264,7 +268,7 @@ const PROJECT_DATA = {
         time: "3w"
       },
       {
-        user: "Matthew Ningan Yu",
+        user: DISPLAY_NAME,
         avatar: "avatar",
         text: "@_cindyy7 Right now the rules index freeze_risk, hvac_drift, humidity_risk, normal, and hvac_anomaly catch-all. It detects severity levels (critical, high, medium, low) before querying the vector DB.",
         time: "2w"
@@ -276,7 +280,7 @@ const PROJECT_DATA = {
         time: "1w"
       },
       {
-        user: "Matthew Ningan Yu",
+        user: DISPLAY_NAME,
         avatar: "avatar",
         text: "@luc4s.l1 Nope, it has a built-in deterministic fallback generator. If OpenAI is not configured, it compiles the retrieved incidents and rules locally to output the same JSON schema format.",
         time: "1w"
@@ -352,7 +356,7 @@ const PROJECT_DATA = {
     ],
     comments: [
       {
-        user: "Matthew Ningan Yu",
+        user: DISPLAY_NAME,
         avatar: "avatar",
         text: "Completed the PyTorch residual network for Othello. It learns entirely from self-play games utilizing MCTS. The game state is encoded into 64-bit uint64 bitboards, key moves compiled with Numba, and evaluations batched for GPU parallelization. 2.97 million parameters ResNet.",
         time: "8w"
@@ -370,7 +374,7 @@ const PROJECT_DATA = {
         time: "7w"
       },
       {
-        user: "Matthew Ningan Yu",
+        user: DISPLAY_NAME,
         avatar: "avatar",
         text: "@melvin_fung PUCT exploration constant is set to 1.5, with Dirichlet noise parameter alpha=0.3 and epsilon=0.25 at the search tree root. This encourages the network to play diverse moves during early self-play iterations.",
         time: "7w"
@@ -414,10 +418,10 @@ const KNOWLEDGE_BASE = [
   },
   {
     project: "general",
-    title: "Matthew Ningan Yu Portfolio & Background",
+    title: `${DISPLAY_NAME} Portfolio & Background`,
     tech: ["python", "javascript", "pytorch", "fastapi", "docker", "ml", "neural networks", "vector search"],
-    metrics: "Matthew Ningan Yu is a Software Engineer specializing in Machine Learning, RAG search systems, and robust backend/frontend tool architectures.",
-    text: "Matthew Ningan Yu is a software engineer. His displayed profile name is Matthew Ningan Yu. He has built several key projects: ScoreShift (music processing web app), HavenIQ HVAC Model (XGBoost & PyTorch regression), HavenIQ HVAC RAG (FastAPI/Qdrant vector search explaining anomalies), and AlphaZero Othello (an RL board game engine). You can download his resume directly using the 'Download Resume' button at the top of his page."
+    metrics: `${DISPLAY_NAME} is a Software Engineer specializing in Machine Learning, RAG search systems, and robust backend/frontend tool architectures.`,
+    text: `${DISPLAY_NAME} is a software engineer whose full name is ${FULL_NAME}. He has built several key projects: ScoreShift (music processing web app), HavenIQ HVAC Model (XGBoost & PyTorch regression), HavenIQ HVAC RAG (FastAPI/Qdrant vector search explaining anomalies), and AlphaZero Othello (an RL board game engine). You can download his resume directly using the 'Download Resume' button at the top of his page.`
   }
 ];
 
@@ -541,13 +545,7 @@ function initTabs() {
 function initResumeDownload() {
   const btnResume = document.getElementById("btn-resume");
   btnResume.addEventListener("click", () => {
-    // Create an anchor and trigger a download of resume.pdf
-    const link = document.createElement("a");
-    link.href = "resume.pdf";
-    link.download = "Matthew_Yu_Resume.pdf";
-    document.body.appendChild(link);
-    link.click();
-    document.body.removeChild(link);
+    window.open("Matthew_Yu_Resume.pdf", "_blank", "noopener,noreferrer");
   });
 }
 
@@ -811,90 +809,92 @@ function initModals() {
   const postCommentBtn = document.getElementById("btn-modal-post-comment");
   let isSubmittingComment = false;
 
-  commentAuthorField.value = localStorage.getItem(COMMENT_AUTHOR_STORAGE_KEY) || "";
+  if (commentAuthorField && commentField && commentHoneypot && commentStatus && postCommentBtn) {
+    commentAuthorField.value = localStorage.getItem(COMMENT_AUTHOR_STORAGE_KEY) || "";
 
-  const updateCommentButton = () => {
-    const isReady = commentField.value.trim() !== "" && !isSubmittingComment;
-    if (isReady) {
-      postCommentBtn.style.opacity = "1";
-      postCommentBtn.classList.add("active");
-    } else {
-      postCommentBtn.style.opacity = "0.5";
-      postCommentBtn.classList.remove("active");
-    }
-    postCommentBtn.disabled = isSubmittingComment;
-  };
-
-  commentField.addEventListener("input", () => {
-    setCommentStatus("");
-    updateCommentButton();
-  });
-
-  commentAuthorField.addEventListener("input", () => {
-    setCommentStatus("");
-  });
-
-  postCommentBtn.addEventListener("click", async () => {
-    const commentVal = commentField.value.trim();
-    const authorValidation = normalizeCommentAuthor(commentAuthorField.value);
-    if (isSubmittingComment || !activeProject) return;
-
-    if (commentHoneypot.value.trim() !== "") {
-      commentField.value = "";
-      updateCommentButton();
-      return;
-    }
-
-    if (commentVal.length === 0) {
-      setCommentStatus("Write a comment before posting.", "error");
-      return;
-    }
-
-    if (countCharacters(commentVal) > COMMENT_MAX_LENGTH) {
-      setCommentStatus(`Comments must be ${COMMENT_MAX_LENGTH} characters or fewer.`, "error");
-      return;
-    }
-
-    if (!authorValidation.valid) {
-      setCommentStatus(authorValidation.message, "error");
-      return;
-    }
-
-    if (!isSupabaseConfigured()) {
-      setCommentStatus("Comment storage needs Supabase config before launch.", "error");
-      return;
-    }
-
-    const lastSubmittedAt = Number(localStorage.getItem(COMMENT_COOLDOWN_STORAGE_KEY) || 0);
-    const cooldownRemaining = COMMENT_COOLDOWN_MS - (Date.now() - lastSubmittedAt);
-    if (cooldownRemaining > 0) {
-      setCommentStatus(`Please wait ${Math.ceil(cooldownRemaining / 1000)}s before posting again.`, "error");
-      return;
-    }
-
-    isSubmittingComment = true;
-    postCommentBtn.textContent = "Posting";
-    updateCommentButton();
-
-    try {
-      await submitVisitorComment(activeProject, authorValidation.authorName, commentVal);
-      localStorage.setItem(COMMENT_COOLDOWN_STORAGE_KEY, String(Date.now()));
-      if (authorValidation.authorName !== "visitor") {
-        localStorage.setItem(COMMENT_AUTHOR_STORAGE_KEY, authorValidation.authorName);
+    const updateCommentButton = () => {
+      const isReady = commentField.value.trim() !== "" && !isSubmittingComment;
+      if (isReady) {
+        postCommentBtn.style.opacity = "1";
+        postCommentBtn.classList.add("active");
       } else {
-        localStorage.removeItem(COMMENT_AUTHOR_STORAGE_KEY);
+        postCommentBtn.style.opacity = "0.5";
+        postCommentBtn.classList.remove("active");
       }
-      commentField.value = "";
-      setCommentStatus("Comment submitted for review.", "success");
-    } catch (error) {
-      console.error("Comment submit failed:", error);
-      setCommentStatus("Could not submit comment right now. Please try again later.", "error");
-    } finally {
-      isSubmittingComment = false;
-      postCommentBtn.textContent = "Post";
+      postCommentBtn.disabled = isSubmittingComment;
+    };
+
+    commentField.addEventListener("input", () => {
+      setCommentStatus("");
       updateCommentButton();
-    }
-  });
+    });
+
+    commentAuthorField.addEventListener("input", () => {
+      setCommentStatus("");
+    });
+
+    postCommentBtn.addEventListener("click", async () => {
+      const commentVal = commentField.value.trim();
+      const authorValidation = normalizeCommentAuthor(commentAuthorField.value);
+      if (isSubmittingComment || !activeProject) return;
+
+      if (commentHoneypot.value.trim() !== "") {
+        commentField.value = "";
+        updateCommentButton();
+        return;
+      }
+
+      if (commentVal.length === 0) {
+        setCommentStatus("Write a comment before posting.", "error");
+        return;
+      }
+
+      if (countCharacters(commentVal) > COMMENT_MAX_LENGTH) {
+        setCommentStatus(`Comments must be ${COMMENT_MAX_LENGTH} characters or fewer.`, "error");
+        return;
+      }
+
+      if (!authorValidation.valid) {
+        setCommentStatus(authorValidation.message, "error");
+        return;
+      }
+
+      if (!isSupabaseConfigured()) {
+        setCommentStatus("Comment storage needs Supabase config before launch.", "error");
+        return;
+      }
+
+      const lastSubmittedAt = Number(localStorage.getItem(COMMENT_COOLDOWN_STORAGE_KEY) || 0);
+      const cooldownRemaining = COMMENT_COOLDOWN_MS - (Date.now() - lastSubmittedAt);
+      if (cooldownRemaining > 0) {
+        setCommentStatus(`Please wait ${Math.ceil(cooldownRemaining / 1000)}s before posting again.`, "error");
+        return;
+      }
+
+      isSubmittingComment = true;
+      postCommentBtn.textContent = "Posting";
+      updateCommentButton();
+
+      try {
+        await submitVisitorComment(activeProject, authorValidation.authorName, commentVal);
+        localStorage.setItem(COMMENT_COOLDOWN_STORAGE_KEY, String(Date.now()));
+        if (authorValidation.authorName !== "visitor") {
+          localStorage.setItem(COMMENT_AUTHOR_STORAGE_KEY, authorValidation.authorName);
+        } else {
+          localStorage.removeItem(COMMENT_AUTHOR_STORAGE_KEY);
+        }
+        commentField.value = "";
+        setCommentStatus("Comment submitted for review.", "success");
+      } catch (error) {
+        console.error("Comment submit failed:", error);
+        setCommentStatus("Could not submit comment right now. Please try again later.", "error");
+      } finally {
+        isSubmittingComment = false;
+        postCommentBtn.textContent = "Post";
+        updateCommentButton();
+      }
+    });
+  }
 }
 
 async function openProjectModal(projectKey) {
@@ -940,34 +940,36 @@ async function openProjectModal(projectKey) {
   // Update dots indicator
   updateDots(project.slides.length);
 
-  // 2. Populate Comments Feed
-  const feed = document.getElementById("modal-comments-feed");
+  // 2. Render owner caption as the first comment row
+  const approvedCommentsList = document.getElementById("modal-approved-comments");
+  const ownerCaption = project.comments.find(comment => OWNER_COMMENT_NAMES.has(comment.user));
+  if (approvedCommentsList) {
+    approvedCommentsList.innerHTML = "";
+    approvedCommentsList.appendChild(createCommentRow({
+      user: DISPLAY_NAME,
+      text: ownerCaption ? ownerCaption.text : project.title,
+      time: project.date,
+      showReply: false
+    }));
+  }
+
+  // 3. Reset Add Comment form
   const commentAuthorField = document.getElementById("modal-comment-author");
   const commentField = document.getElementById("modal-comment-field");
   const commentHoneypot = document.getElementById("modal-comment-website");
   const postCommentBtn = document.getElementById("btn-modal-post-comment");
-  feed.innerHTML = "";
-  commentAuthorField.value = localStorage.getItem(COMMENT_AUTHOR_STORAGE_KEY) || "";
-  commentField.value = "";
-  commentHoneypot.value = "";
-  postCommentBtn.textContent = "Post";
-  postCommentBtn.style.opacity = "0.5";
-  postCommentBtn.classList.remove("active");
-  postCommentBtn.disabled = false;
-  project.comments.forEach(c => {
-    feed.appendChild(createCommentRow({
-      user: c.user,
-      text: c.text,
-      time: c.time,
-      avatar: c.avatar,
-      showReply: c.user !== "Matthew Ningan Yu"
-    }));
-  });
+  if (commentAuthorField && commentField && commentHoneypot && postCommentBtn) {
+    commentAuthorField.value = localStorage.getItem(COMMENT_AUTHOR_STORAGE_KEY) || "";
+    commentField.value = "";
+    commentHoneypot.value = "";
+    postCommentBtn.textContent = "Post";
+    postCommentBtn.style.opacity = "0.5";
+    postCommentBtn.classList.remove("active");
+    postCommentBtn.disabled = false;
+    setCommentStatus("");
+  }
 
-  setCommentStatus("");
-  loadApprovedVisitorComments(projectKey);
-
-  // 3. Populate Statistics
+  // 4. Populate Statistics
   const heartSvg = document.getElementById("modal-heart-svg");
   heartSvg.setAttribute("fill", "none");
   heartSvg.setAttribute("stroke", "currentColor");
@@ -980,6 +982,7 @@ async function openProjectModal(projectKey) {
   modal.classList.remove("hidden");
   document.body.style.overflow = "hidden"; // Disable background scrolling
 
+  loadApprovedVisitorComments(projectKey);
   updateCarouselNav();
 }
 
@@ -1052,7 +1055,7 @@ function createCommentRow({ user, text, time, avatar = "V", showReply = false })
   const row = document.createElement("div");
   row.className = "comment-row";
 
-  const isOwner = user === "Matthew Ningan Yu";
+  const isOwner = OWNER_COMMENT_NAMES.has(user);
   const avatarEl = document.createElement("div");
   avatarEl.className = isOwner ? "comment-avatar" : "comment-avatar-text";
 
@@ -1060,7 +1063,7 @@ function createCommentRow({ user, text, time, avatar = "V", showReply = false })
     const img = document.createElement("img");
     img.className = "profile-picture";
     img.src = "profile_picture.jpg";
-    img.alt = "Matthew Ningan Yu profile picture";
+    img.alt = `${DISPLAY_NAME} profile picture`;
     avatarEl.appendChild(img);
   } else {
     avatarEl.textContent = avatar || user.charAt(0) || "V";
@@ -1102,7 +1105,9 @@ function createCommentRow({ user, text, time, avatar = "V", showReply = false })
 async function loadApprovedVisitorComments(projectKey) {
   if (!isSupabaseConfigured()) return;
 
-  const feed = document.getElementById("modal-comments-feed");
+  const approvedCommentsList = document.getElementById("modal-approved-comments");
+  if (!approvedCommentsList) return;
+
   const endpoint = new URL(`${SUPABASE_URL}/rest/v1/comments`);
   endpoint.searchParams.set("select", "author_name,body,created_at");
   endpoint.searchParams.set("project_key", `eq.${projectKey}`);
@@ -1122,7 +1127,7 @@ async function loadApprovedVisitorComments(projectKey) {
     if (activeProject !== projectKey) return;
 
     comments.forEach(comment => {
-      feed.appendChild(createCommentRow({
+      approvedCommentsList.appendChild(createCommentRow({
         user: comment.author_name || "visitor",
         text: comment.body,
         time: formatVisitorCommentTime(comment.created_at),
@@ -1246,6 +1251,10 @@ function updateCarouselNav() {
 // ----------------------------------------------------
 // 5. RAG-CAPABLE DM CHATBOT ENGINE
 // ----------------------------------------------------
+// Short-term conversation memory for the chatbot. Held in-memory only, so it
+// resets on every page refresh (no persistence by design).
+let chatHistory = [];
+
 function initDMChatbot() {
   const btnDmOpen = document.getElementById("btn-dm-open");
   const btnDmClose = document.getElementById("btn-dm-close");
@@ -1311,6 +1320,9 @@ function sendUserMessage(text) {
   chatMessages.appendChild(userMsgDiv);
   chatMessages.scrollTop = chatMessages.scrollHeight;
 
+  // Record the user turn in short-term memory before requesting a reply.
+  chatHistory.push({ role: "user", content: text });
+
   // Trigger RAG analysis & show typing dots
   showBotTyping();
 }
@@ -1337,7 +1349,7 @@ function showBotTyping(isHeartReact = false) {
   typingDiv.className = "message msg-received typing-container";
   typingDiv.innerHTML = `
     <div class="msg-avatar">
-      <img class="profile-picture" src="profile_picture.jpg" alt="Matthew Ningan Yu profile picture">
+      <img class="profile-picture" src="profile_picture.jpg" alt="${DISPLAY_NAME} profile picture">
     </div>
     <div class="msg-bubble" style="padding: 10px 14px;">
       <div class="typing-indicator">
@@ -1359,19 +1371,68 @@ function showBotTyping(isHeartReact = false) {
     lastUserMsg = lastMsgNode.querySelector(".msg-bubble").textContent.trim();
   }
 
-  setTimeout(() => {
-    // Remove typing indicator
-    typingDiv.remove();
+  // Heart reactions stay fully local with a short canned reply.
+  if (isHeartReact) {
+    setTimeout(() => {
+      typingDiv.remove();
+      appendBotMessage("Aww, thanks for the heart! ❤️ Let me know if you have any questions about Matthew's engineering projects or want to see his code snippets.");
+    }, 1400);
+    return;
+  }
 
-    let responseText = "";
-    if (isHeartReact) {
-      responseText = "Aww, thanks for the heart! ❤️ Let me know if you have any questions about Matthew's engineering projects or want to see his code snippets.";
-    } else {
-      responseText = queryRAGIndexer(lastUserMsg);
-    }
-    
+  // Real messages call the Groq-backed serverless endpoint, with the
+  // client-side RAG indexer as an offline fallback.
+  fetchBotReply(lastUserMsg).then((responseText) => {
+    typingDiv.remove();
     appendBotMessage(responseText);
-  }, 1400);
+  });
+}
+
+/**
+ * Calls the /api/chat serverless function (Groq LLM), sending the last
+ * ~12 turns of conversation memory for context. Records the assistant reply
+ * in chatHistory and falls back to the local RAG indexer if the request fails.
+ *
+ * @param {string} userText - the latest user message (used for the offline fallback).
+ */
+async function fetchBotReply(userText) {
+  try {
+    const response = await fetch("/api/chat", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ messages: chatHistory.slice(-12) }),
+    });
+
+    if (!response.ok) {
+      throw new Error(`Chat API returned ${response.status}`);
+    }
+
+    const data = await response.json();
+    if (data && typeof data.reply === "string" && data.reply.trim() !== "") {
+      // Store the raw reply as the assistant turn so later requests carry
+      // clean text (not the HTML-rendered version) back to the model.
+      chatHistory.push({ role: "assistant", content: data.reply });
+      return renderReply(data.reply);
+    }
+    throw new Error("Empty reply from chat API");
+  } catch (error) {
+    console.warn("Chat API unavailable, using local RAG fallback:", error);
+    const fallback = queryRAGIndexer(userText);
+    // Keep the conversation coherent: record a plain-text version of the
+    // fallback (the indexer emits HTML markup we don't want fed back to the LLM).
+    chatHistory.push({ role: "assistant", content: fallback.replace(/<[^>]+>/g, "").trim() });
+    return fallback;
+  }
+}
+
+/**
+ * Sanitizes an LLM reply for the innerHTML typewriter: strips angle brackets so
+ * no HTML tag can be injected, then converts newlines into <br> tokens that the
+ * typewriter renders natively. (Pre-encoding entities would double-encode and
+ * display literally, e.g. "&#039;".)
+ */
+function renderReply(text) {
+  return text.replace(/[<>]/g, "").replace(/\n/g, "<br>");
 }
 
 function appendBotMessage(text) {
@@ -1381,7 +1442,7 @@ function appendBotMessage(text) {
   botMsgDiv.className = "message msg-received";
   botMsgDiv.innerHTML = `
     <div class="msg-avatar">
-      <img class="profile-picture" src="profile_picture.jpg" alt="Matthew Ningan Yu profile picture">
+      <img class="profile-picture" src="profile_picture.jpg" alt="${DISPLAY_NAME} profile picture">
     </div>
     <div class="msg-bubble"></div>
   `;
@@ -1524,4 +1585,3 @@ function escapeHTML(str) {
     .replace(/"/g, "&quot;")
     .replace(/'/g, "&#039;");
 }
-
