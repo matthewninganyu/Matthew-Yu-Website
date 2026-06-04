@@ -1051,21 +1051,33 @@ function countCharacters(value) {
   return Array.from(value).length;
 }
 
+function getVisitorAvatarTheme(authorName) {
+  const normalized = (authorName || "visitor").trim().toLowerCase() || "visitor";
+  let hash = 0;
+
+  for (const char of normalized) {
+    hash = (hash * 31 + char.codePointAt(0)) >>> 0;
+  }
+
+  return hash % 8;
+}
+
 function createCommentRow({ user, text, time, avatar = "V", showReply = false }) {
   const row = document.createElement("div");
   row.className = "comment-row";
 
   const isOwner = OWNER_COMMENT_NAMES.has(user);
   const avatarEl = document.createElement("div");
-  avatarEl.className = isOwner ? "comment-avatar" : "comment-avatar-text";
 
   if (isOwner) {
+    avatarEl.className = "comment-avatar";
     const img = document.createElement("img");
     img.className = "profile-picture";
     img.src = "profile_picture.jpg";
     img.alt = `${DISPLAY_NAME} profile picture`;
     avatarEl.appendChild(img);
   } else {
+    avatarEl.className = `comment-avatar-text avatar-theme-${getVisitorAvatarTheme(user)}`;
     avatarEl.textContent = avatar || user.charAt(0) || "V";
   }
 

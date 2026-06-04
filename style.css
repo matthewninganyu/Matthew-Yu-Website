@@ -1590,8 +1590,8 @@ body {
   width: 32px;
   height: 32px;
   border-radius: 50%;
-  background-color: var(--btn-hover);
-  color: var(--text-primary);
+  background: linear-gradient(135deg, #f97316, #fb7185);
+  color: #ffffff;
   font-weight: 600;
   font-size: 12px;
   display: flex;
@@ -1599,7 +1599,18 @@ body {
   align-items: center;
   flex-shrink: 0;
   text-transform: uppercase;
+  box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.22), 0 1px 2px rgba(0, 0, 0, 0.12);
+  text-shadow: 0 1px 1px rgba(0, 0, 0, 0.18);
 }
+
+.avatar-theme-0 { background: linear-gradient(135deg, #f97316, #fb7185); }
+.avatar-theme-1 { background: linear-gradient(135deg, #14b8a6, #22c55e); }
+.avatar-theme-2 { background: linear-gradient(135deg, #3b82f6, #06b6d4); }
+.avatar-theme-3 { background: linear-gradient(135deg, #8b5cf6, #ec4899); }
+.avatar-theme-4 { background: linear-gradient(135deg, #f59e0b, #ef4444); }
+.avatar-theme-5 { background: linear-gradient(135deg, #6366f1, #0ea5e9); }
+.avatar-theme-6 { background: linear-gradient(135deg, #10b981, #84cc16); }
+.avatar-theme-7 { background: linear-gradient(135deg, #64748b, #a855f7); }
 
 .comment-content {
   flex: 1;

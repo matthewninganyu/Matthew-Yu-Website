@@ -15,11 +15,11 @@ This document is intended to provide enough context to describe the project accu
 
 ## Portfolio Summary
 
-Built a dual-model HVAC telemetry regression pipeline using Python, XGBoost, and PyTorch. The preprocessing workflow groups readings by device, sorts them chronologically, engineers temperature-deviation and slope features, and converts the data into overlapping 8-reading windows. The XGBoost model achieved an `R²` of `0.949` and an average absolute error of `4.576` points on a held-out test set. A PyTorch neural network provides a second learned baseline for model comparison and single-window inference.
+Built a dual-model HVAC telemetry regression pipeline using Python, XGBoost, and PyTorch. The preprocessing workflow groups readings by device, sorts them chronologically, engineers temperature-deviation and slope features, and converts the data into overlapping 8-reading windows. The XGBoost model achieved an `R²` of `0.949` and an average absolute error of `4.576` points on a held-out test set. A PyTorch neural network provides a second learned baseline for model comparison and single-window inference. The PyTorch MLP converged after 100 epochs with a training loss of 29.80 and validation loss of 31.33, indicating minimal overfitting and good generalization. The model achieved an MAE of 4.31, RMSE of 5.60, and R² of 0.954 on the validation set, explaining over 95% of the variance in incident confidence scores while maintaining an average prediction error of approximately 4.3 confidence points.
 
 ## Resume Bullet
 
-Built an HVAC telemetry regression pipeline using XGBoost and PyTorch, engineering sliding-window temperature features across 12,709 training readings and achieving an `R²` of `0.949` with a `4.576`-point MAE on a held-out test set.
+Built an HVAC telemetry regression pipeline using XGBoost and PyTorch, engineering sliding-window temperature features across 12,709 training readings and achieving an `R²` of `0.949` with a `4.576`-point MAE on a held-out test set. 
 
 ## Verified Project Metrics
 
@@ -221,6 +221,18 @@ of 4.576 points.
 ```
 
 Avoid describing `R² = 0.949` as "95% accuracy." Accuracy is normally a classification metric, while this project predicts a continuous score.
+
+The verified PyTorch MLP held-out validation results are:
+
+MAE:  4.305
+RMSE: 5.598
+R²:   0.954
+
+The clearest portfolio interpretation is:
+
+The PyTorch neural network explained 95.4% of the variation in held-out
+HVAC confidence scores and predicted scores with an average absolute error
+of 4.305 points.
 
 ## Repository Layout
 
