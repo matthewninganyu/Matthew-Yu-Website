@@ -428,6 +428,54 @@
     </div>
   </div>
 
+  <!-- MOBILE: Instagram-style vertical post viewer -->
+  <div class="mobile-post-viewer hidden" id="mobile-post-viewer" aria-hidden="true">
+    <div class="mobile-post-topbar">
+      <button class="mobile-icon-btn" id="btn-mobile-post-close" aria-label="Back to profile">
+        <svg viewBox="0 0 24 24" class="mobile-back-svg"><path d="M15.41 16.58L10.83 12l4.58-4.58L14 6l-6 6 6 6z" fill="currentColor"/></svg>
+      </button>
+      <div class="mobile-post-title">
+        <strong>Posts</strong>
+        <span>Matthew Yu</span>
+      </div>
+      <button class="btn btn-mobile-follow">Following</button>
+    </div>
+    <div class="mobile-post-feed" id="mobile-post-feed"></div>
+  </div>
+
+  <!-- MOBILE: Comments bottom sheet -->
+  <div class="mobile-comments-backdrop hidden" id="mobile-comments-backdrop"></div>
+  <section class="mobile-comments-sheet hidden" id="mobile-comments-sheet" aria-label="Comments" aria-hidden="true">
+    <div class="mobile-sheet-handle" aria-hidden="true"></div>
+    <div class="mobile-comments-header">
+      <h2>Comments</h2>
+      <button class="mobile-icon-btn" id="btn-mobile-comments-close" aria-label="Close comments">&times;</button>
+    </div>
+    <div class="mobile-comments-list" id="mobile-comments-list" aria-live="polite"></div>
+    <div class="mobile-comment-composer">
+      <div class="mobile-emoji-strip" aria-label="Quick emoji reactions">
+        <button type="button" data-mobile-emoji="❤️">❤️</button>
+        <button type="button" data-mobile-emoji="🙌">🙌</button>
+        <button type="button" data-mobile-emoji="🔥">🔥</button>
+        <button type="button" data-mobile-emoji="👏">👏</button>
+        <button type="button" data-mobile-emoji="🥲">🥲</button>
+        <button type="button" data-mobile-emoji="😍">😍</button>
+        <button type="button" data-mobile-emoji="😮">😮</button>
+        <button type="button" data-mobile-emoji="😂">😂</button>
+      </div>
+      <div class="mobile-comment-author-row">
+        <input type="text" id="mobile-comment-author" placeholder="Name (optional)" maxlength="30" autocomplete="name">
+      </div>
+      <div class="mobile-comment-input-row">
+        <img class="profile-picture mobile-composer-avatar" src="profile_picture.jpg" alt="Matthew Yu profile picture">
+        <input class="comment-honeypot" type="text" id="mobile-comment-website" tabindex="-1" autocomplete="off" aria-hidden="true">
+        <input type="text" id="mobile-comment-field" placeholder="Join the conversation...">
+        <button class="post-comment-btn" id="btn-mobile-post-comment">Post</button>
+      </div>
+      <div class="comment-submit-status mobile-comment-status" id="mobile-comment-submit-status" aria-live="polite"></div>
+    </div>
+  </section>
+
   <!-- Reusable Emoji Picker -->
   <div class="emoji-picker hidden" id="emoji-picker" role="dialog" aria-label="Emoji picker">
     <div class="emoji-search-wrap">

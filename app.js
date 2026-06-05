@@ -440,6 +440,7 @@ const COMMENT_COOLDOWN_MS = 30000;
 const COMMENT_COOLDOWN_STORAGE_KEY = "portfolio:last-comment-submit";
 const EMOJI_RECENT_STORAGE_KEY = "portfolio:recent-emojis";
 const EMOJI_RECENT_LIMIT = 12;
+const MOBILE_BREAKPOINT = 767;
 const EMOJI_CATEGORIES = {
   recent: { label: "Recently Used", icon: "◷", emojis: [] },
   smileys: {
@@ -507,6 +508,7 @@ const EMOJI_CATEGORIES = {
   }
 };
 let activeProject = null;
+let activeMobileProject = null;
 let currentSlideIndex = 0;
 let activeEmojiInput = null;
 
@@ -724,7 +726,11 @@ function initModals() {
   gridPostCards.forEach(card => {
     card.addEventListener("click", () => {
       const projectKey = card.getAttribute("data-project");
-      openProjectModal(projectKey);
+      if (isMobileViewport()) {
+        openMobilePostFeed(projectKey);
+      } else {
+        openProjectModal(projectKey);
+      }
     });
   });
 
@@ -750,6 +756,21 @@ function initModals() {
   });
 
   document.addEventListener("keydown", (e) => {
+    if (e.key === "Escape") {
+      const mobileSheet = document.getElementById("mobile-comments-sheet");
+      const mobileViewer = document.getElementById("mobile-post-viewer");
+      if (mobileSheet && !mobileSheet.classList.contains("hidden")) {
+        e.preventDefault();
+        closeMobileCommentsSheet();
+        return;
+      }
+      if (mobileViewer && !mobileViewer.classList.contains("hidden")) {
+        e.preventDefault();
+        closeMobilePostFeed();
+        return;
+      }
+    }
+
     if (modal.classList.contains("hidden")) return;
     const isTyping = e.target.matches("input, textarea, [contenteditable='true']");
     if (isTyping) return;
@@ -762,6 +783,56 @@ function initModals() {
       navigateProject(1);
     }
   });
+
+  const mobileCloseBtn = document.getElementById("btn-mobile-post-close");
+  const mobileCommentsBackdrop = document.getElementById("mobile-comments-backdrop");
+  const mobileCommentsCloseBtn = document.getElementById("btn-mobile-comments-close");
+  const mobileCommentField = document.getElementById("mobile-comment-field");
+  const mobileCommentAuthor = document.getElementById("mobile-comment-author");
+  const mobileCommentHoneypot = document.getElementById("mobile-comment-website");
+  const mobileCommentStatus = document.getElementById("mobile-comment-submit-status");
+  const mobilePostCommentBtn = document.getElementById("btn-mobile-post-comment");
+
+  mobileCloseBtn?.addEventListener("click", closeMobilePostFeed);
+  mobileCommentsBackdrop?.addEventListener("click", closeMobileCommentsSheet);
+  mobileCommentsCloseBtn?.addEventListener("click", closeMobileCommentsSheet);
+
+  document.querySelectorAll("[data-mobile-emoji]").forEach(button => {
+    button.addEventListener("click", () => {
+      insertEmojiAtCursor(mobileCommentField, button.getAttribute("data-mobile-emoji"));
+    });
+  });
+
+  if (mobileCommentAuthor && mobileCommentField && mobileCommentHoneypot && mobileCommentStatus && mobilePostCommentBtn) {
+    mobileCommentAuthor.value = localStorage.getItem(COMMENT_AUTHOR_STORAGE_KEY) || "";
+
+    const updateMobileCommentButton = () => {
+      const isReady = mobileCommentField.value.trim() !== "";
+      mobilePostCommentBtn.classList.toggle("active", isReady);
+      mobilePostCommentBtn.style.opacity = isReady ? "1" : "0.5";
+    };
+
+    mobileCommentField.addEventListener("input", () => {
+      setCommentStatus("", "", mobileCommentStatus);
+      updateMobileCommentButton();
+    });
+
+    mobileCommentAuthor.addEventListener("input", () => {
+      setCommentStatus("", "", mobileCommentStatus);
+    });
+
+    mobilePostCommentBtn.addEventListener("click", async () => {
+      await handleVisitorCommentSubmit({
+        projectKey: activeMobileProject,
+        authorField: mobileCommentAuthor,
+        commentField: mobileCommentField,
+        honeypotField: mobileCommentHoneypot,
+        statusEl: mobileCommentStatus,
+        postButton: mobilePostCommentBtn,
+        updateButton: updateMobileCommentButton
+      });
+    });
+  }
 
   // Like & Bookmark toggles inside modal
   const btnLike = document.getElementById("btn-modal-like");
@@ -807,13 +878,13 @@ function initModals() {
   const commentHoneypot = document.getElementById("modal-comment-website");
   const commentStatus = document.getElementById("comment-submit-status");
   const postCommentBtn = document.getElementById("btn-modal-post-comment");
-  let isSubmittingComment = false;
 
   if (commentAuthorField && commentField && commentHoneypot && commentStatus && postCommentBtn) {
     commentAuthorField.value = localStorage.getItem(COMMENT_AUTHOR_STORAGE_KEY) || "";
 
     const updateCommentButton = () => {
-      const isReady = commentField.value.trim() !== "" && !isSubmittingComment;
+      const isPosting = postCommentBtn.disabled;
+      const isReady = commentField.value.trim() !== "" && !isPosting;
       if (isReady) {
         postCommentBtn.style.opacity = "1";
         postCommentBtn.classList.add("active");
@@ -821,7 +892,6 @@ function initModals() {
         postCommentBtn.style.opacity = "0.5";
         postCommentBtn.classList.remove("active");
       }
-      postCommentBtn.disabled = isSubmittingComment;
     };
 
     commentField.addEventListener("input", () => {
@@ -834,65 +904,15 @@ function initModals() {
     });
 
     postCommentBtn.addEventListener("click", async () => {
-      const commentVal = commentField.value.trim();
-      const authorValidation = normalizeCommentAuthor(commentAuthorField.value);
-      if (isSubmittingComment || !activeProject) return;
-
-      if (commentHoneypot.value.trim() !== "") {
-        commentField.value = "";
-        updateCommentButton();
-        return;
-      }
-
-      if (commentVal.length === 0) {
-        setCommentStatus("Write a comment before posting.", "error");
-        return;
-      }
-
-      if (countCharacters(commentVal) > COMMENT_MAX_LENGTH) {
-        setCommentStatus(`Comments must be ${COMMENT_MAX_LENGTH} characters or fewer.`, "error");
-        return;
-      }
-
-      if (!authorValidation.valid) {
-        setCommentStatus(authorValidation.message, "error");
-        return;
-      }
-
-      if (!isSupabaseConfigured()) {
-        setCommentStatus("Comment storage needs Supabase config before launch.", "error");
-        return;
-      }
-
-      const lastSubmittedAt = Number(localStorage.getItem(COMMENT_COOLDOWN_STORAGE_KEY) || 0);
-      const cooldownRemaining = COMMENT_COOLDOWN_MS - (Date.now() - lastSubmittedAt);
-      if (cooldownRemaining > 0) {
-        setCommentStatus(`Please wait ${Math.ceil(cooldownRemaining / 1000)}s before posting again.`, "error");
-        return;
-      }
-
-      isSubmittingComment = true;
-      postCommentBtn.textContent = "Posting";
-      updateCommentButton();
-
-      try {
-        await submitVisitorComment(activeProject, authorValidation.authorName, commentVal);
-        localStorage.setItem(COMMENT_COOLDOWN_STORAGE_KEY, String(Date.now()));
-        if (authorValidation.authorName !== "visitor") {
-          localStorage.setItem(COMMENT_AUTHOR_STORAGE_KEY, authorValidation.authorName);
-        } else {
-          localStorage.removeItem(COMMENT_AUTHOR_STORAGE_KEY);
-        }
-        commentField.value = "";
-        setCommentStatus("Comment submitted for review.", "success");
-      } catch (error) {
-        console.error("Comment submit failed:", error);
-        setCommentStatus("Could not submit comment right now. Please try again later.", "error");
-      } finally {
-        isSubmittingComment = false;
-        postCommentBtn.textContent = "Post";
-        updateCommentButton();
-      }
+      await handleVisitorCommentSubmit({
+        projectKey: activeProject,
+        authorField: commentAuthorField,
+        commentField,
+        honeypotField: commentHoneypot,
+        statusEl: commentStatus,
+        postButton: postCommentBtn,
+        updateButton: updateCommentButton
+      });
     });
   }
 }
@@ -942,12 +962,12 @@ async function openProjectModal(projectKey) {
 
   // 2. Render owner caption as the first comment row
   const approvedCommentsList = document.getElementById("modal-approved-comments");
-  const ownerCaption = project.comments.find(comment => OWNER_COMMENT_NAMES.has(comment.user));
+  const ownerCaption = getOwnerCaption(project);
   if (approvedCommentsList) {
     approvedCommentsList.innerHTML = "";
     approvedCommentsList.appendChild(createCommentRow({
       user: DISPLAY_NAME,
-      text: ownerCaption ? ownerCaption.text : project.title,
+      text: ownerCaption.text,
       time: project.date,
       showReply: false
     }));
@@ -994,6 +1014,164 @@ function closeProjectModal() {
   closeEmojiPicker();
 }
 
+function isMobileViewport() {
+  return window.matchMedia(`(max-width: ${MOBILE_BREAKPOINT}px)`).matches;
+}
+
+function openMobilePostFeed(projectKey) {
+  const viewer = document.getElementById("mobile-post-viewer");
+  const feed = document.getElementById("mobile-post-feed");
+  if (!viewer || !feed) return;
+
+  activeMobileProject = projectKey;
+  renderMobilePostFeed();
+  viewer.classList.remove("hidden");
+  viewer.setAttribute("aria-hidden", "false");
+  document.body.style.overflow = "hidden";
+
+  requestAnimationFrame(() => {
+    const targetPost = feed.querySelector(`[data-mobile-project="${projectKey}"]`);
+    if (targetPost) {
+      targetPost.scrollIntoView({ block: "start" });
+    }
+  });
+}
+
+function closeMobilePostFeed() {
+  const viewer = document.getElementById("mobile-post-viewer");
+  if (!viewer) return;
+
+  closeMobileCommentsSheet();
+  viewer.classList.add("hidden");
+  viewer.setAttribute("aria-hidden", "true");
+  document.body.style.overflow = "auto";
+  activeMobileProject = null;
+}
+
+function renderMobilePostFeed() {
+  const feed = document.getElementById("mobile-post-feed");
+  if (!feed) return;
+
+  feed.innerHTML = "";
+  PROJECT_ORDER.forEach(projectKey => {
+    const project = PROJECT_DATA[projectKey];
+    if (!project) return;
+
+    const article = document.createElement("article");
+    article.className = "mobile-post";
+    article.dataset.mobileProject = projectKey;
+
+    const ownerCaption = getOwnerCaption(project);
+    article.innerHTML = `
+      <header class="mobile-post-userbar">
+        <img class="profile-picture mobile-post-avatar" src="profile_picture.jpg" alt="${DISPLAY_NAME} profile picture">
+        <div class="mobile-post-usertext">
+          <strong>${DISPLAY_NAME}</strong>
+          <span>${project.title}</span>
+        </div>
+        <button class="mobile-icon-btn" aria-label="More options">
+          <svg viewBox="0 0 24 24" class="more-options-svg"><circle cx="5" cy="12" r="1.5"/><circle cx="12" cy="12" r="1.5"/><circle cx="19" cy="12" r="1.5"/></svg>
+        </button>
+      </header>
+      <div class="mobile-post-media">${getMobilePostMedia(project)}</div>
+      <section class="mobile-post-meta">
+        <div class="mobile-post-actions">
+          <div class="mobile-post-actions-left">
+            <button class="btn-icon-interact mobile-like-btn" aria-label="Like post">
+              <svg viewBox="0 0 24 24" class="heart-svg"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z" fill="none" stroke="currentColor" stroke-width="2"/></svg>
+            </button>
+            <span>${project.likes}</span>
+            <button class="btn-icon-interact mobile-comment-open" data-mobile-comment-project="${projectKey}" aria-label="Open comments">
+              <svg viewBox="0 0 24 24" class="comment-svg"><path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2v10z" fill="none" stroke="currentColor" stroke-width="2"/></svg>
+            </button>
+            <span>${project.commentsCount}</span>
+            <button class="btn-icon-interact" aria-label="Share post">
+              <svg viewBox="0 0 24 24" class="share-svg"><path d="M22 2L11 13M22 2l-7 20-4-9-9-4 20-7z" fill="none" stroke="currentColor" stroke-width="2"/></svg>
+            </button>
+          </div>
+          <button class="btn-icon-interact" aria-label="Save post">
+            <svg viewBox="0 0 24 24" class="bookmark-svg"><path d="M19 21l-7-5-7 5V5a2 2 0 012-2h10a2 2 0 012 2z" fill="none" stroke="currentColor" stroke-width="2"/></svg>
+          </button>
+        </div>
+        <p class="mobile-post-caption"><strong>${DISPLAY_NAME}</strong> ${escapeHTML(ownerCaption.text)}</p>
+        <button class="mobile-view-comments" data-mobile-comment-project="${projectKey}">View approved comments</button>
+        <div class="post-date">${project.date}</div>
+      </section>
+    `;
+
+    feed.appendChild(article);
+  });
+
+  feed.querySelectorAll("[data-mobile-comment-project]").forEach(button => {
+    button.addEventListener("click", () => {
+      openMobileCommentsSheet(button.getAttribute("data-mobile-comment-project"));
+    });
+  });
+}
+
+function getMobilePostMedia(project) {
+  const firstSlide = project.slides[0];
+  if (!firstSlide) return `<div class="mobile-post-placeholder">${escapeHTML(project.title)}</div>`;
+  if (firstSlide.type === "visual") return firstSlide.html;
+  return `
+    <div class="code-viewer-panel">
+      <div class="code-header">
+        <div class="code-title">${escapeHTML(firstSlide.filename || project.title)}</div>
+      </div>
+      <pre class="code-content-block"><code>${firstSlide.code.trim()}</code></pre>
+    </div>
+  `;
+}
+
+async function openMobileCommentsSheet(projectKey) {
+  const sheet = document.getElementById("mobile-comments-sheet");
+  const backdrop = document.getElementById("mobile-comments-backdrop");
+  const list = document.getElementById("mobile-comments-list");
+  const authorField = document.getElementById("mobile-comment-author");
+  const commentField = document.getElementById("mobile-comment-field");
+  const honeypotField = document.getElementById("mobile-comment-website");
+  const statusEl = document.getElementById("mobile-comment-submit-status");
+  const postButton = document.getElementById("btn-mobile-post-comment");
+  const project = PROJECT_DATA[projectKey];
+  if (!sheet || !backdrop || !list || !project) return;
+
+  activeMobileProject = projectKey;
+  list.innerHTML = "";
+  list.appendChild(createCommentRow({
+    user: DISPLAY_NAME,
+    text: getOwnerCaption(project).text,
+    time: project.date,
+    showReply: false
+  }));
+
+  if (authorField && commentField && honeypotField && statusEl && postButton) {
+    authorField.value = localStorage.getItem(COMMENT_AUTHOR_STORAGE_KEY) || "";
+    commentField.value = "";
+    honeypotField.value = "";
+    postButton.textContent = "Post";
+    postButton.classList.remove("active");
+    postButton.style.opacity = "0.5";
+    postButton.disabled = false;
+    setCommentStatus("", "", statusEl);
+  }
+
+  sheet.classList.remove("hidden");
+  backdrop.classList.remove("hidden");
+  sheet.setAttribute("aria-hidden", "false");
+  await loadApprovedVisitorComments(projectKey, list);
+}
+
+function closeMobileCommentsSheet() {
+  const sheet = document.getElementById("mobile-comments-sheet");
+  const backdrop = document.getElementById("mobile-comments-backdrop");
+  if (!sheet || !backdrop) return;
+
+  sheet.classList.add("hidden");
+  backdrop.classList.add("hidden");
+  sheet.setAttribute("aria-hidden", "true");
+  closeEmojiPicker();
+}
+
 function navigateProject(direction) {
   if (!activeProject) return;
   const currentIndex = PROJECT_ORDER.indexOf(activeProject);
@@ -1007,13 +1185,88 @@ function isSupabaseConfigured() {
   return SUPABASE_URL.startsWith("https://") && SUPABASE_ANON_KEY.length > 20;
 }
 
-function setCommentStatus(message, type = "") {
-  const commentStatus = document.getElementById("comment-submit-status");
+function setCommentStatus(message, type = "", target = null) {
+  const commentStatus = target || document.getElementById("comment-submit-status");
   if (!commentStatus) return;
 
   commentStatus.textContent = message;
   commentStatus.classList.remove("success", "error");
   if (type) commentStatus.classList.add(type);
+}
+
+function getOwnerCaption(project) {
+  const ownerCaption = project.comments.find(comment => OWNER_COMMENT_NAMES.has(comment.user));
+  return ownerCaption || { text: project.title, time: project.date };
+}
+
+async function handleVisitorCommentSubmit({
+  projectKey,
+  authorField,
+  commentField,
+  honeypotField,
+  statusEl,
+  postButton,
+  updateButton
+}) {
+  const commentVal = commentField.value.trim();
+  const authorValidation = normalizeCommentAuthor(authorField.value);
+  if (postButton.disabled || !projectKey) return;
+
+  if (honeypotField.value.trim() !== "") {
+    commentField.value = "";
+    updateButton();
+    return;
+  }
+
+  if (commentVal.length === 0) {
+    setCommentStatus("Write a comment before posting.", "error", statusEl);
+    return;
+  }
+
+  if (countCharacters(commentVal) > COMMENT_MAX_LENGTH) {
+    setCommentStatus(`Comments must be ${COMMENT_MAX_LENGTH} characters or fewer.`, "error", statusEl);
+    return;
+  }
+
+  if (!authorValidation.valid) {
+    setCommentStatus(authorValidation.message, "error", statusEl);
+    return;
+  }
+
+  if (!isSupabaseConfigured()) {
+    setCommentStatus("Comment storage needs Supabase config before launch.", "error", statusEl);
+    return;
+  }
+
+  const lastSubmittedAt = Number(localStorage.getItem(COMMENT_COOLDOWN_STORAGE_KEY) || 0);
+  const cooldownRemaining = COMMENT_COOLDOWN_MS - (Date.now() - lastSubmittedAt);
+  if (cooldownRemaining > 0) {
+    setCommentStatus(`Please wait ${Math.ceil(cooldownRemaining / 1000)}s before posting again.`, "error", statusEl);
+    return;
+  }
+
+  postButton.disabled = true;
+  postButton.textContent = "Posting";
+  updateButton();
+
+  try {
+    await submitVisitorComment(projectKey, authorValidation.authorName, commentVal);
+    localStorage.setItem(COMMENT_COOLDOWN_STORAGE_KEY, String(Date.now()));
+    if (authorValidation.authorName !== "visitor") {
+      localStorage.setItem(COMMENT_AUTHOR_STORAGE_KEY, authorValidation.authorName);
+    } else {
+      localStorage.removeItem(COMMENT_AUTHOR_STORAGE_KEY);
+    }
+    commentField.value = "";
+    setCommentStatus("Comment submitted for review.", "success", statusEl);
+  } catch (error) {
+    console.error("Comment submit failed:", error);
+    setCommentStatus("Could not submit comment right now. Please try again later.", "error", statusEl);
+  } finally {
+    postButton.disabled = false;
+    postButton.textContent = "Post";
+    updateButton();
+  }
 }
 
 function normalizeCommentAuthor(rawAuthor) {
@@ -1114,10 +1367,10 @@ function createCommentRow({ user, text, time, avatar = "V", showReply = false })
   return row;
 }
 
-async function loadApprovedVisitorComments(projectKey) {
+async function loadApprovedVisitorComments(projectKey, targetList = null) {
   if (!isSupabaseConfigured()) return;
 
-  const approvedCommentsList = document.getElementById("modal-approved-comments");
+  const approvedCommentsList = targetList || document.getElementById("modal-approved-comments");
   if (!approvedCommentsList) return;
 
   const endpoint = new URL(`${SUPABASE_URL}/rest/v1/comments`);
@@ -1136,7 +1389,8 @@ async function loadApprovedVisitorComments(projectKey) {
     }
 
     const comments = await response.json();
-    if (activeProject !== projectKey) return;
+    const activeContextProject = targetList ? activeMobileProject : activeProject;
+    if (activeContextProject !== projectKey) return;
 
     comments.forEach(comment => {
       approvedCommentsList.appendChild(createCommentRow({
