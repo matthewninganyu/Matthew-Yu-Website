@@ -704,11 +704,14 @@ body {
   right: -100%;
   width: var(--sidebar-width);
   max-width: 420px;
+  min-height: 100vh;
   height: 100vh;
+  height: 100dvh;
   border-left: 1px solid var(--border-primary);
   background-color: var(--bg-primary);
   display: flex;
   flex-direction: column;
+  overflow: hidden;
   z-index: 120;
   box-shadow: -10px 0 30px rgba(0,0,0,0.1);
   transition: right 0.3s cubic-bezier(0.4, 0, 0.2, 1);
@@ -735,6 +738,7 @@ body {
 
 .chat-header {
   height: 75px;
+  flex-shrink: 0;
   border-bottom: 1px solid var(--border-primary);
   display: flex;
   justify-content: space-between;
@@ -793,9 +797,23 @@ body {
   color: var(--text-primary);
 }
 
+#btn-dm-close {
+  width: 40px;
+  height: 40px;
+  flex: 0 0 40px;
+  border-radius: 50%;
+}
+
+.nav-arrow-svg {
+  width: 24px;
+  height: 24px;
+  display: block;
+}
+
 /* Messages Stream */
 .messages-container {
   flex: 1;
+  min-height: 0;
   overflow-y: auto;
   padding: 20px;
   display: flex;
@@ -927,6 +945,7 @@ body {
 /* DM Input Bar */
 .chat-input-bar {
   padding: 16px 20px;
+  flex-shrink: 0;
   display: flex;
   align-items: center;
   gap: 12px;
@@ -949,6 +968,7 @@ body {
 
 #chat-input-field {
   flex: 1;
+  min-width: 0;
   border: 1px solid var(--border-primary);
   border-radius: 22px;
   padding: 10px 16px;
@@ -2434,6 +2454,60 @@ body {
 
 /* Mobile Portrait Layout Adjustments */
 @media (max-width: 767px) {
+  .chat-sidebar {
+    width: 100vw;
+    max-width: none;
+    min-height: 100vh;
+    height: 100vh;
+    height: 100dvh;
+    border-left: none;
+  }
+
+  .chat-header {
+    height: 64px;
+    padding: 0 12px;
+  }
+
+  #btn-dm-close {
+    width: 40px;
+    height: 40px;
+    flex: 0 0 40px;
+    border-radius: 50%;
+    margin-left: -8px;
+  }
+
+  .chat-avatar-circle {
+    width: 38px;
+    height: 38px;
+  }
+
+  .messages-container {
+    padding: 14px;
+  }
+
+  .chat-input-bar {
+    gap: 8px;
+    padding: 10px 12px calc(12px + env(safe-area-inset-bottom));
+  }
+
+  .input-right-actions {
+    gap: 8px;
+    flex-shrink: 0;
+  }
+
+  .input-action-btn {
+    width: 32px;
+    min-width: 32px;
+    height: 32px;
+    justify-content: center;
+    flex-shrink: 0;
+  }
+
+  #chat-input-field {
+    min-width: 0;
+    padding: 9px 13px;
+  }
+
   .emoji-grid {
     grid-template-columns: repeat(7, 1fr);
   }
