@@ -1107,18 +1107,50 @@ function renderMobilePostFeed() {
       openMobileCommentsSheet(button.getAttribute("data-mobile-comment-project"));
     });
   });
+
+  feed.querySelectorAll(".mobile-post-slide-track").forEach(track => {
+    const dots = track.parentElement.querySelectorAll(".mobile-slide-dot");
+    track.addEventListener("scroll", () => {
+      const activeIndex = Math.round(track.scrollLeft / Math.max(1, track.clientWidth));
+      dots.forEach((dot, index) => {
+        dot.classList.toggle("active", index === activeIndex);
+      });
+    });
+  });
 }
 
 function getMobilePostMedia(project) {
-  const firstSlide = project.slides[0];
-  if (!firstSlide) return `<div class="mobile-post-placeholder">${escapeHTML(project.title)}</div>`;
-  if (firstSlide.type === "visual") return firstSlide.html;
+  if (!project.slides.length) {
+    return `<div class="mobile-post-placeholder">${escapeHTML(project.title)}</div>`;
+  }
+
+  const slides = project.slides.map(slide => `
+    <div class="mobile-post-slide">
+      ${renderMobilePostSlide(slide, project.title)}
+    </div>
+  `).join("");
+
+  const dots = project.slides.map((_, index) => (
+    `<span class="mobile-slide-dot ${index === 0 ? "active" : ""}" aria-hidden="true"></span>`
+  )).join("");
+
+  return `
+    <div class="mobile-post-slide-track">
+      ${slides}
+    </div>
+    <div class="mobile-slide-dots">${dots}</div>
+  `;
+}
+
+function renderMobilePostSlide(slide, projectTitle) {
+  if (slide.type === "visual") return slide.html;
+
   return `
     <div class="code-viewer-panel">
       <div class="code-header">
-        <div class="code-title">${escapeHTML(firstSlide.filename || project.title)}</div>
+        <div class="code-title">${escapeHTML(slide.filename || projectTitle)}</div>
       </div>
-      <pre class="code-content-block"><code>${firstSlide.code.trim()}</code></pre>
+      <pre class="code-content-block"><code>${slide.code.trim()}</code></pre>
     </div>
   `;
 }

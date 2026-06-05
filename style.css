@@ -1919,18 +1919,38 @@ body {
 
 .mobile-post-media {
   width: 100%;
-  min-height: min(72vh, 620px);
-  aspect-ratio: 4 / 5;
-  background-color: #000000;
+  height: min(72vh, 620px);
+  min-height: 430px;
+  background-color: var(--bg-secondary);
   overflow: hidden;
-  display: flex;
+  position: relative;
 }
 
-.mobile-post-media > * {
+.mobile-post-slide-track {
   width: 100%;
   height: 100%;
-  min-height: 100%;
-  border-radius: 0;
+  display: flex;
+  overflow-x: auto;
+  overflow-y: hidden;
+  scroll-snap-type: x mandatory;
+  scroll-behavior: smooth;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: none;
+}
+
+.mobile-post-slide-track::-webkit-scrollbar {
+  display: none;
+}
+
+.mobile-post-slide {
+  width: 100%;
+  height: 100%;
+  flex: 0 0 100%;
+  min-width: 100%;
+  scroll-snap-align: start;
+  overflow: hidden;
+  display: flex;
+  background-color: var(--bg-secondary);
 }
 
 .mobile-post-media .slide-cover-root,
@@ -1940,7 +1960,42 @@ body {
 .mobile-post-media .code-viewer-panel {
   width: 100%;
   height: 100%;
+  min-height: 100%;
   border-radius: 0;
+}
+
+.mobile-post-media .code-viewer-panel {
+  overflow: hidden;
+}
+
+.mobile-post-media .code-content-block {
+  max-height: none;
+  height: 100%;
+  overflow: auto;
+}
+
+.mobile-slide-dots {
+  position: absolute;
+  left: 50%;
+  bottom: 10px;
+  transform: translateX(-50%);
+  display: flex;
+  gap: 5px;
+  padding: 5px 7px;
+  border-radius: 999px;
+  background-color: rgba(255, 255, 255, 0.72);
+  box-shadow: 0 1px 8px rgba(0, 0, 0, 0.08);
+}
+
+.mobile-slide-dot {
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background-color: rgba(0, 0, 0, 0.26);
+}
+
+.mobile-slide-dot.active {
+  background-color: var(--accent-color);
 }
 
 .mobile-post-placeholder {
@@ -2004,7 +2059,8 @@ body {
   position: fixed;
   inset: 0;
   z-index: 180;
-  background-color: rgba(0, 0, 0, 0.28);
+  background-color: rgba(255, 255, 255, 0.72);
+  backdrop-filter: blur(1px);
 }
 
 .mobile-comments-sheet {
@@ -2099,7 +2155,7 @@ body {
   border: 1px solid var(--border-secondary);
   border-radius: 999px;
   outline: none;
-  font-size: 12px;
+  font-size: 16px;
   background-color: var(--bg-secondary);
   color: var(--text-primary);
   padding: 5px 10px;
@@ -2122,14 +2178,14 @@ body {
 #mobile-comment-field {
   flex: 1;
   min-width: 0;
-  height: 42px;
+  height: 44px;
   border: 1px solid var(--border-secondary);
   border-radius: 999px;
   padding: 0 14px;
   outline: none;
   background-color: var(--bg-secondary);
   color: var(--text-primary);
-  font-size: 14px;
+  font-size: 16px;
 }
 
 .mobile-comment-status {
@@ -2266,6 +2322,15 @@ body {
   .bio-text {
     font-size: 14px;
     line-height: 1.36;
+  }
+
+  #modal-comment-author,
+  #modal-comment-field,
+  #mobile-comment-author,
+  #mobile-comment-field,
+  #chat-input-field,
+  #emoji-search {
+    font-size: 16px;
   }
 
   .posts-grid {
