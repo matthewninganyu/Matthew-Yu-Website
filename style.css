@@ -398,6 +398,43 @@ body {
   align-items: center;
 }
 
+.score-card-logo-cover {
+  background-color: #f6f6f8;
+  padding: clamp(18px, 4vw, 34px);
+}
+
+.score-logo-lockup {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: clamp(8px, 2vw, 14px);
+  max-width: 100%;
+  min-width: 0;
+}
+
+.score-logo-icon {
+  width: clamp(34px, 9vw, 58px);
+  height: clamp(34px, 9vw, 58px);
+  display: block;
+  flex-shrink: 0;
+  object-fit: contain;
+}
+
+.score-logo-wordmark {
+  color: #6c63ff;
+  font-family: var(--header-font);
+  font-size: clamp(23px, 5.8vw, 43px);
+  font-weight: 700;
+  line-height: 1;
+  letter-spacing: 0;
+  white-space: nowrap;
+}
+
+.score-card-logo-cover .musical-note,
+.score-card-logo-cover .project-tag {
+  display: none;
+}
+
 .stave-lines {
   position: absolute;
   width: 80%;
@@ -1266,6 +1303,107 @@ body {
   font-weight: 600;
 }
 
+/* Product screenshot slides */
+.project-image-slide {
+  width: 100%;
+  height: 100%;
+  background: #0b0f19;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 26px;
+  gap: 16px;
+}
+
+.project-screenshot {
+  width: 100%;
+  max-height: calc(100% - 74px);
+  object-fit: contain;
+  display: block;
+  border-radius: 8px;
+  background-color: #ffffff;
+  box-shadow: 0 18px 45px rgba(0, 0, 0, 0.35);
+}
+
+.workflow-caption {
+  width: min(100%, 560px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  color: #ffffff;
+  text-align: center;
+  line-height: 1.3;
+}
+
+.workflow-caption span,
+.score-compare-panel span {
+  flex-shrink: 0;
+  border-radius: 999px;
+  background-color: rgba(255, 255, 255, 0.14);
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  color: #ffffff;
+  padding: 5px 10px;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.3px;
+  text-transform: uppercase;
+}
+
+.workflow-caption strong {
+  font-size: 13px;
+  font-weight: 600;
+  color: rgba(255, 255, 255, 0.88);
+}
+
+.score-before-after {
+  width: 100%;
+  height: 100%;
+  background: #111827;
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 16px;
+  padding: 24px;
+}
+
+.score-compare-panel {
+  min-width: 0;
+  min-height: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+}
+
+.score-compare-panel img {
+  width: 100%;
+  height: calc(100% - 34px);
+  object-fit: contain;
+  display: block;
+  border-radius: 8px;
+  background-color: #ffffff;
+  box-shadow: 0 16px 38px rgba(0, 0, 0, 0.28);
+}
+
+.scoreshift-architecture h4 {
+  color: #ffffff;
+  margin-bottom: 2px;
+  font-family: var(--header-font);
+}
+
+.scoreshift-architecture .flow-chart {
+  gap: 10px;
+}
+
+.scoreshift-architecture .flow-node {
+  padding: 8px 14px;
+}
+
+.scoreshift-architecture .flow-node::after {
+  bottom: -16px;
+}
+
 /* Code Viewer Slide */
 .code-viewer-panel {
   width: 100%;
@@ -1957,11 +2095,79 @@ body {
 .mobile-post-media .slide-diagram-root,
 .mobile-post-media .slide-database-root,
 .mobile-post-media .slide-stave-root,
+.mobile-post-media .project-image-slide,
+.mobile-post-media .score-before-after,
 .mobile-post-media .code-viewer-panel {
   width: 100%;
   height: 100%;
   min-height: 100%;
   border-radius: 0;
+}
+
+.mobile-post-media .project-image-slide {
+  padding: 14px;
+  gap: 12px;
+}
+
+.mobile-post-media .project-screenshot {
+  max-height: calc(100% - 86px);
+  border-radius: 6px;
+}
+
+.mobile-post-media .workflow-caption {
+  flex-direction: column;
+  gap: 6px;
+  padding: 0 8px;
+}
+
+.mobile-post-media .workflow-caption strong {
+  font-size: 12px;
+}
+
+.mobile-post-media .score-before-after {
+  gap: 10px;
+  padding: 14px;
+}
+
+.mobile-post-media .score-compare-panel {
+  gap: 7px;
+}
+
+.mobile-post-media .score-compare-panel img {
+  height: calc(100% - 31px);
+  border-radius: 6px;
+}
+
+.mobile-post-media .scoreshift-architecture {
+  padding: 18px;
+  gap: 12px;
+}
+
+.mobile-post-media .scoreshift-architecture h4 {
+  font-size: 18px;
+}
+
+.mobile-post-media .scoreshift-architecture .flow-chart {
+  width: 100%;
+  gap: 7px;
+}
+
+.mobile-post-media .scoreshift-architecture .flow-node {
+  padding: 6px 9px;
+  font-size: 11px;
+}
+
+.mobile-post-media .scoreshift-architecture .flow-node::after {
+  display: none;
+}
+
+.mobile-post-media .scoreshift-architecture .slide-tech-badges {
+  gap: 5px;
+}
+
+.mobile-post-media .scoreshift-architecture .tech-badge {
+  padding: 4px 8px;
+  font-size: 10px;
 }
 
 .mobile-post-media .code-viewer-panel {

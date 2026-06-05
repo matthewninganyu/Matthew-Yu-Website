@@ -19,17 +19,87 @@ const PROJECT_DATA = {
     link: "https://huggingface.co/spaces/Mahu454/scoreshift",
     github: "https://github.com",
     slides: [
-      // Slide 1: Visual Cover Card
       {
         type: "visual",
         html: `
-          <div class="slide-cover-root music-theme">
-            <div class="slide-cover-title">ScoreShift</div>
-            <div class="slide-cover-subtitle">Containerized FastAPI app for transposing sheet music images into transposable digital scores.</div>
+          <div class="project-image-slide">
+            <img class="project-screenshot" src="ScoreShift/ScoreShift-homepage.png" alt="ScoreShift homepage upload screen">
+            <div class="workflow-caption">
+              <span>Upload</span>
+              <strong>Start from an image or MusicXML score.</strong>
+            </div>
+          </div>
+        `
+      },
+      {
+        type: "visual",
+        html: `
+          <div class="project-image-slide">
+            <img class="project-screenshot" src="ScoreShift/ScoreShift-loading.png" alt="ScoreShift loading screen while OMR processing runs">
+            <div class="workflow-caption">
+              <span>OMR Processing</span>
+              <strong>FastAPI accepts the job while oemer converts notation into MusicXML.</strong>
+            </div>
+          </div>
+        `
+      },
+      {
+        type: "visual",
+        html: `
+          <div class="project-image-slide">
+            <img class="project-screenshot" src="ScoreShift/Apply%20Transposition.png" alt="ScoreShift target key selection after a score is loaded">
+            <div class="workflow-caption">
+              <span>Transpose</span>
+              <strong>music21 rewrites the symbolic score to the selected key.</strong>
+            </div>
+          </div>
+        `
+      },
+      {
+        type: "visual",
+        html: `
+          <div class="project-image-slide">
+            <img class="project-screenshot" src="ScoreShift/Export.png" alt="ScoreShift export format selector">
+            <div class="workflow-caption">
+              <span>Export</span>
+              <strong>Verovio renders previews and exports PDF, image pages, or MusicXML.</strong>
+            </div>
+          </div>
+        `
+      },
+      {
+        type: "visual",
+        html: `
+          <div class="score-before-after">
+            <div class="score-compare-panel">
+              <span>Before</span>
+              <img src="ScoreShift/flute.jpg" alt="Original flute sheet music before transposition">
+            </div>
+            <div class="score-compare-panel">
+              <span>After</span>
+              <img src="ScoreShift/ScoreShift%20Finished.png" alt="Finished ScoreShift output after transposition">
+            </div>
+          </div>
+        `
+      },
+      {
+        type: "visual",
+        html: `
+          <div class="slide-diagram-root scoreshift-architecture">
+            <h4>ScoreShift Architecture</h4>
+            <div class="flow-chart">
+              <div class="flow-node">Upload image or MusicXML</div>
+              <div class="flow-node">Browser normalizes large camera images</div>
+              <div class="flow-node"><strong>FastAPI</strong> creates a long-running processing job</div>
+              <div class="flow-node"><strong>oemer</strong> OMR extracts notation into MusicXML</div>
+              <div class="flow-node">File-hash cache skips repeated OMR work</div>
+              <div class="flow-node"><strong>music21</strong> transposes the symbolic score</div>
+              <div class="flow-node"><strong>Verovio WASM</strong> renders preview and export formats</div>
+            </div>
             <div class="slide-tech-badges">
-              <span class="tech-badge">Python</span>
               <span class="tech-badge">FastAPI</span>
-              <span class="tech-badge">oemer (OMR)</span>
+              <span class="tech-badge">oemer</span>
+              <span class="tech-badge">MusicXML</span>
               <span class="tech-badge">music21</span>
               <span class="tech-badge">Verovio WASM</span>
               <span class="tech-badge">Docker</span>
@@ -37,29 +107,13 @@ const PROJECT_DATA = {
           </div>
         `
       },
-      // Slide 2: Technical Architecture Flow
-      {
-        type: "visual",
-        html: `
-          <div class="slide-diagram-root">
-            <h4 style="color:#ffffff; margin-bottom:10px; font-family:var(--header-font)">Architecture Pipeline</h4>
-            <div class="flow-chart">
-              <div class="flow-node">Uploaded sheet-music photo or MusicXML file</div>
-              <div class="flow-node"><strong>oemer</strong> Optical Music Recognition converts image to MusicXML</div>
-              <div class="flow-node"><strong>music21</strong> processes and transposes pitches / keys signatures</div>
-              <div class="flow-node"><strong>Verovio WASM</strong> renders SVG sheet music in the browser</div>
-            </div>
-          </div>
-        `
-      },
-      // Slide 3: Code Card
       {
         type: "code",
         filename: "app/main.py",
         code: `
 <span class="code-keyword">@app.post</span>(<span class="code-string">"/api/transpose"</span>)
 <span class="code-keyword">async def</span> <span class="code-function">transpose_score</span>(payload: TransposePayload):
-    <span class="code-comment"># Load MusicXML into music21 converter</span>
+    <span class="code-comment"># MusicXML is the source of truth after OMR</span>
     score = music21.converter.parse(payload.musicxml)
     
     <span class="code-keyword">if</span> payload.mode == <span class="code-string">"semitones"</span>:
@@ -77,7 +131,7 @@ const PROJECT_DATA = {
       {
         user: DISPLAY_NAME,
         avatar: "avatar",
-        text: "Just deployed ScoreShift! It transposes uploaded sheet music images or MusicXML files. The optical music recognition (OMR) is powered by oemer, transposition is done using music21, and the score renders dynamically in the browser using Verovio WASM. Live demo on Hugging Face Spaces!",
+        text: "Built ScoreShift as a full-stack AI music app, not just a model demo. The FastAPI backend handles uploads, long-running OMR jobs, MusicXML processing, transposition, caching, and exports. oemer performs optical music recognition, music21 rewrites the symbolic score, Verovio WASM renders the browser preview, and Docker/Hugging Face Spaces made the deployment reproducible.",
         time: "4w"
       },
       {
