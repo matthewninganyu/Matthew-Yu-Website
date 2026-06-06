@@ -565,14 +565,17 @@ let activeProject = null;
 let activeMobileProject = null;
 let currentSlideIndex = 0;
 let activeEmojiInput = null;
+let appInitialized = false;
 
-document.addEventListener("DOMContentLoaded", () => {
+function initApp() {
+  if (appInitialized) return;
+  appInitialized = true;
   initTabs();
   initModals();
   initDMChatbot();
   initResumeDownload();
   initEmojiPicker();
-});
+}
 
 // Tab toggle (Posts vs About)
 function initTabs() {
@@ -1956,3 +1959,11 @@ function escapeHTML(str) {
     .replace(/"/g, "&quot;")
     .replace(/'/g, "&#039;");
 }
+
+if (document.readyState === "loading") {
+  document.addEventListener("DOMContentLoaded", initApp);
+} else {
+  initApp();
+}
+
+window.setTimeout(initApp, 0);

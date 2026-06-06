@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Matthew Yu • Portfolio</title>
   <link rel="icon" type="image/png" href="favicon.png">
-  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="style.css?v=20260606-about">
   <!-- Link to Google Fonts for modern typography -->
   <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&family=Space+Grotesk:wght@400;500;600&display=swap" rel="stylesheet">
 </head>
@@ -191,34 +191,103 @@
 
         <!-- About Me Section -->
         <section class="about-section hidden" id="grid-about">
-          <p class="about-intro">
-            I am a software engineer focused on machine learning, backend systems, retrieval-augmented generation, and interactive tools that turn complex workflows into something people can actually use.
-          </p>
-
-          <div class="about-info-list">
-            <div class="about-info-row">
-              <h3>What I build</h3>
-              <p>Predictive pipelines, retrieval systems, deployed web apps, and ML/game engines that connect model behavior to practical product experiences.</p>
+          <div class="about-hero-card">
+            <div class="about-hero-copy">
+              <h2>Software Engineer</h2>
+              <p>I build machine learning systems, data pipelines, and backend infrastructure.</p>
+              <span>Currently studying Computer Engineering at the University of Waterloo.</span>
             </div>
-            <div class="about-info-row">
-              <h3>How I work</h3>
-              <p>Practical and systems-minded, comfortable moving from data and model design through APIs, deployment, and user-facing interfaces.</p>
-            </div>
-            <div class="about-info-row">
-              <h3>Outside code</h3>
-              <p>Snowboarding, music, and curiosity-driven projects keep me close to the playful side of building things.</p>
+            <div class="about-cube-visual" aria-hidden="true">
+              <span class="cube cube-1"></span>
+              <span class="cube cube-2"></span>
+              <span class="cube cube-3"></span>
+              <span class="cube cube-4"></span>
+              <span class="cube cube-5"></span>
+              <span class="cube cube-6"></span>
+              <span class="cube cube-7"></span>
+              <span class="cube cube-8"></span>
+              <span class="cube cube-9"></span>
             </div>
           </div>
 
-          <div class="about-skills" aria-label="Technical skills">
-            <span>Python</span>
-            <span>PyTorch</span>
-            <span>FastAPI</span>
-            <span>JavaScript</span>
-            <span>Docker</span>
-            <span>XGBoost</span>
-            <span>Qdrant</span>
-            <span>Supabase</span>
+          <div class="about-skill-grid" aria-label="Technical skills">
+            <article class="about-skill-card skill-pink">
+              <div class="skill-card-heading">
+                <span class="skill-icon">ML</span>
+                <h3>Machine Learning</h3>
+              </div>
+              <ul>
+                <li>PyTorch</li>
+                <li>XGBoost</li>
+                <li>Scikit-Learn</li>
+                <li>Time-Series Forecasting</li>
+              </ul>
+            </article>
+
+            <article class="about-skill-card skill-green">
+              <div class="skill-card-heading">
+                <span class="skill-icon">API</span>
+                <h3>Backend Systems</h3>
+              </div>
+              <ul>
+                <li>FastAPI</li>
+                <li>Python</li>
+                <li>SQL</li>
+                <li>REST APIs</li>
+              </ul>
+            </article>
+
+            <article class="about-skill-card skill-blue">
+              <div class="skill-card-heading">
+                <span class="skill-icon">CL</span>
+                <h3>Cloud &amp; Infra</h3>
+              </div>
+              <ul>
+                <li>AWS Lambda</li>
+                <li>ECS</li>
+                <li>Docker</li>
+                <li>BigQuery</li>
+              </ul>
+            </article>
+
+            <article class="about-skill-card skill-purple">
+              <div class="skill-card-heading">
+                <span class="skill-icon">AI</span>
+                <h3>AI Applications</h3>
+              </div>
+              <ul>
+                <li>RAG</li>
+                <li>LangGraph</li>
+                <li>Qdrant</li>
+                <li>LLM Workflows</li>
+              </ul>
+            </article>
+
+            <article class="about-skill-card skill-orange">
+              <div class="skill-card-heading">
+                <span class="skill-icon">PD</span>
+                <h3>Product Development</h3>
+              </div>
+              <ul>
+                <li>Next.js</li>
+                <li>Supabase</li>
+                <li>Stripe</li>
+                <li>Full-Stack Apps</li>
+              </ul>
+            </article>
+
+            <article class="about-skill-card skill-slate">
+              <div class="skill-card-heading">
+                <span class="skill-icon">TW</span>
+                <h3>Tools &amp; Workflow</h3>
+              </div>
+              <ul>
+                <li>Git / GitHub</li>
+                <li>Docker</li>
+                <li>Postman</li>
+                <li>CI/CD</li>
+              </ul>
+            </article>
           </div>
         </section>
 
@@ -487,6 +556,6 @@
   </div>
 
   <!-- Core application logic script -->
-  <script src="app.js"></script>
+  <script src="app.js?v=20260606-about"></script>
 </body>
 </html>
