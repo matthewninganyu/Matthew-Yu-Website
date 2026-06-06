@@ -1619,18 +1619,37 @@ function initDMChatbot() {
   const openChatDrawer = () => {
     dmPanel.classList.add("open");
     dmBackdrop.classList.add("open");
+    dmPanel.setAttribute("aria-hidden", "false");
+    dmBackdrop.setAttribute("aria-hidden", "false");
+    document.body.classList.add("chat-drawer-active");
     setTimeout(() => chatInput.focus(), 250);
   };
 
   const closeChatDrawer = () => {
     dmPanel.classList.remove("open");
     dmBackdrop.classList.remove("open");
+    dmPanel.setAttribute("aria-hidden", "true");
+    dmBackdrop.setAttribute("aria-hidden", "true");
+    document.body.classList.remove("chat-drawer-active");
+    document.body.style.overflow = "";
     closeEmojiPicker();
+  };
+
+  const cleanupClosedChatDrawer = () => {
+    if (dmPanel.classList.contains("open")) return;
+    dmBackdrop.classList.remove("open");
+    dmPanel.setAttribute("aria-hidden", "true");
+    dmBackdrop.setAttribute("aria-hidden", "true");
+    document.body.classList.remove("chat-drawer-active");
+    document.body.style.overflow = "";
   };
 
   btnDmOpen.addEventListener("click", openChatDrawer);
   btnDmClose.addEventListener("click", closeChatDrawer);
   dmBackdrop.addEventListener("click", closeChatDrawer);
+  window.addEventListener("pageshow", cleanupClosedChatDrawer);
+  window.addEventListener("resize", cleanupClosedChatDrawer);
+  window.addEventListener("orientationchange", cleanupClosedChatDrawer);
 
   document.addEventListener("keydown", (e) => {
     if (e.key === "Escape" && dmPanel.classList.contains("open")) {
