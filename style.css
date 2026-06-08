@@ -594,6 +594,113 @@ body {
   background-color: #111111;
 }
 
+/* Firefighter Bot Visual Theme */
+.firefighter-theme {
+  background: radial-gradient(circle at 72% 28%, rgba(255, 171, 64, 0.32), transparent 30%),
+              linear-gradient(135deg, #1f2937 0%, #0f172a 100%);
+}
+
+.firefighter-card-bg {
+  width: 100%;
+  height: 100%;
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+}
+
+.maze-path {
+  position: absolute;
+  inset: 24px;
+  opacity: 0.62;
+}
+
+.maze-line {
+  position: absolute;
+  display: block;
+  background: rgba(255, 255, 255, 0.22);
+  border-radius: 999px;
+}
+
+.line-a { left: 4%; top: 14%; width: 70%; height: 4px; }
+.line-b { left: 18%; top: 14%; width: 4px; height: 58%; }
+.line-c { left: 18%; top: 70%; width: 58%; height: 4px; }
+.line-d { right: 18%; top: 35%; width: 4px; height: 39%; }
+
+.robot-body {
+  width: 58px;
+  height: 58px;
+  position: relative;
+  border-radius: 12px;
+  background: linear-gradient(145deg, #e5e7eb, #94a3b8);
+  box-shadow: 0 18px 34px rgba(0, 0, 0, 0.32);
+  transform: rotate(-12deg);
+  z-index: 2;
+}
+
+.robot-eye,
+.robot-sensor {
+  position: absolute;
+  border-radius: 50%;
+  background: #0f172a;
+}
+
+.robot-eye {
+  width: 10px;
+  height: 10px;
+  left: 14px;
+  top: 15px;
+  box-shadow: 18px 0 0 #0f172a;
+}
+
+.robot-sensor {
+  width: 24px;
+  height: 8px;
+  left: 17px;
+  bottom: 13px;
+  border-radius: 999px;
+}
+
+.sensor-beam {
+  position: absolute;
+  width: 86px;
+  height: 3px;
+  background: linear-gradient(90deg, rgba(56, 189, 248, 0.8), transparent);
+  transform-origin: left center;
+  z-index: 1;
+}
+
+.beam-left {
+  transform: translate(-14px, 22px) rotate(178deg);
+}
+
+.beam-front {
+  transform: translate(20px, -18px) rotate(-25deg);
+}
+
+.flame-mark {
+  position: absolute;
+  right: 22%;
+  top: 22%;
+  width: 34px;
+  height: 44px;
+  border-radius: 50% 50% 50% 50%;
+  background: linear-gradient(180deg, #fef3c7 0%, #fb923c 48%, #ef4444 100%);
+  clip-path: polygon(50% 0, 82% 38%, 72% 88%, 50% 100%, 28% 88%, 18% 38%);
+  filter: drop-shadow(0 0 18px rgba(251, 146, 60, 0.65));
+}
+
+.flame-mark span {
+  position: absolute;
+  left: 11px;
+  top: 14px;
+  width: 12px;
+  height: 20px;
+  border-radius: 999px;
+  background: #fff7ed;
+}
+
 /* About Me */
 .about-section {
   width: 100%;
@@ -1535,6 +1642,360 @@ body {
   color: rgba(255, 255, 255, 0.88);
 }
 
+.firefighter-cover {
+  color: #ffffff;
+  background: radial-gradient(circle at 72% 26%, rgba(251, 146, 60, 0.38), transparent 30%),
+              linear-gradient(135deg, #111827 0%, #1e293b 54%, #7f1d1d 100%);
+}
+
+.firefighter-photo-slide,
+.firefighter-video-slide,
+.firefighter-system-slide,
+.sensor-stack-slide,
+.extinguisher-slide,
+.motor-control-slide {
+  width: 100%;
+  height: 100%;
+  color: #ffffff;
+  background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
+}
+
+.firefighter-photo-slide,
+.firefighter-video-slide {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 14px;
+  padding: 24px;
+}
+
+.firefighter-build-photo {
+  width: 100%;
+  max-height: calc(100% - 78px);
+  object-fit: cover;
+  object-position: center;
+  border-radius: 8px;
+  box-shadow: 0 20px 48px rgba(0, 0, 0, 0.4);
+}
+
+.build-callout {
+  position: absolute;
+  z-index: 2;
+  max-width: 160px;
+  border: 1px solid rgba(255, 255, 255, 0.22);
+  border-radius: 999px;
+  background: rgba(15, 23, 42, 0.78);
+  color: #ffffff;
+  padding: 7px 10px;
+  font-size: 11px;
+  font-weight: 700;
+}
+
+.callout-fan { left: 32px; top: 34px; }
+.callout-pcb { right: 32px; top: 34px; }
+.callout-sensor { right: 36px; bottom: 92px; }
+
+.firefighter-system-slide,
+.sensor-stack-slide,
+.extinguisher-slide,
+.motor-control-slide {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 34px;
+  text-align: center;
+}
+
+.firefighter-system-slide h4,
+.sensor-stack-slide h4,
+.extinguisher-slide h4,
+.motor-control-slide h4,
+.pcb-copy h4,
+.nav-copy h4 {
+  font-family: var(--header-font);
+  font-size: 22px;
+  margin-bottom: 16px;
+}
+
+.system-flow-grid {
+  width: min(100%, 620px);
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 12px;
+  margin-bottom: 18px;
+}
+
+.system-node,
+.system-bus,
+.circuit-node {
+  border: 1px solid rgba(148, 163, 184, 0.35);
+  border-radius: 8px;
+  background: rgba(255, 255, 255, 0.08);
+  padding: 14px 12px;
+  font-size: 13px;
+  font-weight: 700;
+}
+
+.system-bus {
+  grid-column: 1 / -1;
+  color: #111827;
+  background: linear-gradient(135deg, #f8fafc, #bfdbfe);
+}
+
+.firefighter-system-slide p,
+.extinguisher-slide p,
+.nav-copy p {
+  max-width: 560px;
+  color: rgba(255, 255, 255, 0.78);
+  font-size: 13px;
+  line-height: 1.5;
+}
+
+.pcb-slide,
+.navigation-slide {
+  width: 100%;
+  height: 100%;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(260px, 0.9fr);
+  align-items: center;
+  gap: 28px;
+  padding: 36px;
+  color: #ffffff;
+  background: linear-gradient(135deg, #0b1220 0%, #172554 100%);
+}
+
+.pcb-board {
+  position: relative;
+  min-height: 300px;
+  border-radius: 16px;
+  background: linear-gradient(90deg, rgba(34, 197, 94, 0.18) 1px, transparent 1px),
+              linear-gradient(rgba(34, 197, 94, 0.18) 1px, transparent 1px),
+              #064e3b;
+  background-size: 28px 28px;
+  border: 1px solid rgba(187, 247, 208, 0.42);
+  box-shadow: inset 0 0 0 8px rgba(255, 255, 255, 0.04), 0 22px 50px rgba(0, 0, 0, 0.35);
+}
+
+.pcb-chip {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  border-radius: 8px;
+  background: #020617;
+  border: 1px solid #475569;
+  color: #cbd5e1;
+  padding: 18px 24px;
+  font-family: var(--code-font);
+  font-size: 13px;
+  font-weight: 700;
+}
+
+.pcb-component,
+.pcb-header,
+.pcb-trace {
+  position: absolute;
+  display: block;
+}
+
+.pcb-component {
+  width: 34px;
+  height: 20px;
+  border-radius: 4px;
+  background: #f59e0b;
+  box-shadow: 0 0 0 4px rgba(245, 158, 11, 0.18);
+}
+
+.comp-a { left: 18%; top: 20%; }
+.comp-b { right: 18%; top: 26%; background: #38bdf8; }
+.comp-c { left: 22%; bottom: 22%; background: #f43f5e; }
+
+.pcb-header {
+  width: 84px;
+  height: 18px;
+  border-radius: 999px;
+  background: repeating-linear-gradient(90deg, #e5e7eb 0 8px, #0f172a 8px 12px);
+}
+
+.header-a { left: 10%; top: 8%; }
+.header-b { right: 10%; bottom: 10%; }
+
+.pcb-trace {
+  height: 3px;
+  border-radius: 999px;
+  background: #facc15;
+  transform-origin: left center;
+}
+
+.trace-a { left: 27%; top: 31%; width: 32%; transform: rotate(20deg); }
+.trace-b { left: 28%; bottom: 30%; width: 36%; transform: rotate(-16deg); }
+.trace-c { right: 20%; top: 45%; width: 24%; transform: rotate(90deg); }
+
+.pcb-copy {
+  text-align: left;
+}
+
+.pcb-copy ul,
+.sensor-card-grid,
+.control-blocks {
+  display: grid;
+  gap: 12px;
+}
+
+.pcb-copy li {
+  margin-left: 18px;
+  font-size: 13px;
+  line-height: 1.5;
+  color: rgba(255, 255, 255, 0.82);
+}
+
+.sensor-card-grid {
+  width: min(100%, 680px);
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+.sensor-card,
+.control-blocks div {
+  border: 1px solid rgba(148, 163, 184, 0.28);
+  border-radius: 8px;
+  background: rgba(255, 255, 255, 0.08);
+  padding: 18px;
+  text-align: left;
+}
+
+.sensor-card span {
+  display: inline-flex;
+  margin-bottom: 10px;
+  border-radius: 999px;
+  background: rgba(251, 146, 60, 0.16);
+  color: #fed7aa;
+  padding: 4px 8px;
+  font-size: 10px;
+  font-weight: 800;
+  text-transform: uppercase;
+}
+
+.sensor-card strong,
+.control-blocks strong {
+  display: block;
+  margin-bottom: 8px;
+  font-family: var(--header-font);
+  font-size: 15px;
+}
+
+.sensor-card p,
+.control-blocks span {
+  color: rgba(255, 255, 255, 0.72);
+  font-size: 12px;
+  line-height: 1.45;
+}
+
+.maze-diagram {
+  position: relative;
+  min-height: 320px;
+  border-radius: 16px;
+  background: #f8fafc;
+  overflow: hidden;
+}
+
+.maze-wall {
+  position: absolute;
+  display: block;
+  background: #0f172a;
+  border-radius: 6px;
+}
+
+.wall-a { left: 28px; top: 30px; right: 28px; height: 16px; }
+.wall-b { left: 28px; top: 30px; bottom: 28px; width: 16px; }
+.wall-c { left: 28px; bottom: 28px; right: 80px; height: 16px; }
+.wall-d { right: 80px; top: 92px; bottom: 28px; width: 16px; }
+
+.maze-robot {
+  position: absolute;
+  left: 122px;
+  bottom: 76px;
+  width: 46px;
+  height: 46px;
+  border-radius: 10px;
+  background: linear-gradient(145deg, #60a5fa, #2563eb);
+  transform: rotate(-10deg);
+}
+
+.maze-arrow {
+  position: absolute;
+  border-radius: 999px;
+  background: #f97316;
+  color: #ffffff;
+  padding: 6px 10px;
+  font-size: 11px;
+  font-weight: 800;
+}
+
+.arrow-a { left: 56px; bottom: 96px; }
+.arrow-b { right: 36px; top: 58px; }
+
+.nav-copy {
+  text-align: left;
+}
+
+.nav-copy code {
+  display: block;
+  margin-top: 8px;
+  border-radius: 6px;
+  background: rgba(15, 23, 42, 0.68);
+  color: #bfdbfe;
+  padding: 8px 10px;
+  font-family: var(--code-font);
+  font-size: 12px;
+}
+
+.circuit-flow {
+  width: min(100%, 640px);
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 14px;
+  margin-bottom: 18px;
+}
+
+.circuit-notes {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 8px;
+  margin-bottom: 18px;
+}
+
+.circuit-notes span {
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.1);
+  padding: 7px 10px;
+  font-size: 11px;
+  font-weight: 700;
+}
+
+.control-blocks {
+  width: min(100%, 680px);
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.control-blocks div:first-child {
+  grid-column: 1 / -1;
+}
+
+.project-video {
+  width: auto;
+  max-width: 100%;
+  height: calc(100% - 76px);
+  max-height: 520px;
+  display: block;
+  border-radius: 10px;
+  background: #000000;
+  box-shadow: 0 20px 52px rgba(0, 0, 0, 0.42);
+}
+
 .score-before-after {
   width: 100%;
   height: 100%;
@@ -2308,12 +2769,80 @@ body {
   padding: 0 8px;
 }
 
-.mobile-post-media .workflow-caption strong {
-  font-size: 12px;
-}
+  .mobile-post-media .workflow-caption strong {
+    font-size: 12px;
+  }
 
-.mobile-post-media .score-before-after {
-  gap: 10px;
+  .mobile-post-media .firefighter-photo-slide,
+  .mobile-post-media .firefighter-video-slide,
+  .mobile-post-media .firefighter-system-slide,
+  .mobile-post-media .sensor-stack-slide,
+  .mobile-post-media .extinguisher-slide,
+  .mobile-post-media .motor-control-slide,
+  .mobile-post-media .pcb-slide,
+  .mobile-post-media .navigation-slide {
+    width: 100%;
+    height: 100%;
+    min-height: 100%;
+    border-radius: 0;
+  }
+
+  .mobile-post-media .firefighter-photo-slide,
+  .mobile-post-media .firefighter-video-slide,
+  .mobile-post-media .firefighter-system-slide,
+  .mobile-post-media .sensor-stack-slide,
+  .mobile-post-media .extinguisher-slide,
+  .mobile-post-media .motor-control-slide {
+    padding: 16px;
+  }
+
+  .mobile-post-media .pcb-slide,
+  .mobile-post-media .navigation-slide {
+    grid-template-columns: 1fr;
+    gap: 12px;
+    padding: 16px;
+    overflow-y: auto;
+  }
+
+  .mobile-post-media .system-flow-grid,
+  .mobile-post-media .sensor-card-grid,
+  .mobile-post-media .circuit-flow,
+  .mobile-post-media .control-blocks {
+    grid-template-columns: 1fr;
+    gap: 8px;
+  }
+
+  .mobile-post-media .system-node,
+  .mobile-post-media .system-bus,
+  .mobile-post-media .sensor-card,
+  .mobile-post-media .control-blocks div,
+  .mobile-post-media .circuit-node {
+    padding: 10px;
+    font-size: 11px;
+  }
+
+  .mobile-post-media .firefighter-system-slide h4,
+  .mobile-post-media .sensor-stack-slide h4,
+  .mobile-post-media .extinguisher-slide h4,
+  .mobile-post-media .motor-control-slide h4,
+  .mobile-post-media .pcb-copy h4,
+  .mobile-post-media .nav-copy h4 {
+    font-size: 18px;
+    margin-bottom: 10px;
+  }
+
+  .mobile-post-media .pcb-board,
+  .mobile-post-media .maze-diagram {
+    min-height: 190px;
+  }
+
+  .mobile-post-media .project-video {
+    height: calc(100% - 92px);
+    max-height: none;
+  }
+
+  .mobile-post-media .score-before-after {
+    gap: 10px;
   padding: 14px;
 }
 

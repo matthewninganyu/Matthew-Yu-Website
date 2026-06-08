@@ -434,6 +434,228 @@ const PROJECT_DATA = {
         time: "7w"
       }
     ]
+  },
+  "firefighter-bot": {
+    title: "Firefighter Bot",
+    likes: 760,
+    commentsCount: 18,
+    date: "June 8, 2026",
+    link: "#",
+    github: "https://github.com",
+    slides: [
+      {
+        type: "visual",
+        html: `
+          <div class="slide-cover-root firefighter-cover">
+            <div class="slide-cover-title">Firefighter Bot</div>
+            <div class="slide-cover-subtitle">Autonomous maze robot with custom PCB boards, soldered sensor circuits, wall-following logic, and flame response.</div>
+            <div class="slide-tech-badges">
+              <span class="tech-badge">Embedded Systems</span>
+              <span class="tech-badge">TraxMaker PCB</span>
+              <span class="tech-badge">Sensors</span>
+              <span class="tech-badge">Motor Control</span>
+            </div>
+          </div>
+        `
+      },
+      {
+        type: "visual",
+        html: `
+          <div class="firefighter-photo-slide">
+            <img class="firefighter-build-photo" src="Firefighter%20bot/Flahamey.jpeg" alt="Firefighter Bot chassis with custom electronics and wiring">
+            <div class="build-callout callout-fan">Fan / extinguisher module</div>
+            <div class="build-callout callout-pcb">Soldered PCB boards</div>
+            <div class="build-callout callout-sensor">Sensor wiring</div>
+            <div class="workflow-caption">
+              <span>Build</span>
+              <strong>Triple-layer chassis with custom electronics mounted directly into the robot.</strong>
+            </div>
+          </div>
+        `
+      },
+      {
+        type: "visual",
+        html: `
+          <div class="firefighter-system-slide">
+            <h4>System Architecture</h4>
+            <div class="system-flow-grid">
+              <div class="system-node">Line Sensor</div>
+              <div class="system-node">Wall Sensors</div>
+              <div class="system-node">Flame Sensor</div>
+              <div class="system-bus">ATMEGA328P Controller</div>
+              <div class="system-node">Motor Driver</div>
+              <div class="system-node">LCD Debug</div>
+              <div class="system-node">Extinguisher Circuit</div>
+            </div>
+            <p>Separate sensing boards feed an embedded controller that decides whether to navigate, correct drift, turn, or trigger the extinguisher.</p>
+          </div>
+        `
+      },
+      {
+        type: "visual",
+        html: `
+          <div class="pcb-slide">
+            <div class="pcb-board">
+              <span class="pcb-chip">ATMEGA</span>
+              <span class="pcb-component comp-a"></span>
+              <span class="pcb-component comp-b"></span>
+              <span class="pcb-component comp-c"></span>
+              <span class="pcb-header header-a"></span>
+              <span class="pcb-header header-b"></span>
+              <span class="pcb-trace trace-a"></span>
+              <span class="pcb-trace trace-b"></span>
+              <span class="pcb-trace trace-c"></span>
+            </div>
+            <div class="pcb-copy">
+              <h4>Custom PCB Boards in TraxMaker</h4>
+              <ul>
+                <li>Designed custom boards for sensing, control, and power circuits.</li>
+                <li>Soldered headers, screw terminals, resistors, capacitors, sensors, and transistor-driver components.</li>
+                <li>Debugged sensor noise, power stability, loose wiring, and board-level reliability.</li>
+              </ul>
+            </div>
+          </div>
+        `
+      },
+      {
+        type: "visual",
+        html: `
+          <div class="sensor-stack-slide">
+            <h4>Sensor Stack</h4>
+            <div class="sensor-card-grid">
+              <div class="sensor-card">
+                <span>Line</span>
+                <strong>LED + Vishay BPW17N</strong>
+                <p>Detects black floor versus white maze lines for room tracking.</p>
+              </div>
+              <div class="sensor-card">
+                <span>Wall</span>
+                <strong>Parallax 28015</strong>
+                <p>Uses front and left distance readings for wall-following navigation.</p>
+              </div>
+              <div class="sensor-card">
+                <span>Flame</span>
+                <strong>QSD123 IR Sensor</strong>
+                <p>Detects candle flame signatures and switches the robot into extinguish mode.</p>
+              </div>
+            </div>
+          </div>
+        `
+      },
+      {
+        type: "visual",
+        html: `
+          <div class="navigation-slide">
+            <div class="maze-diagram">
+              <span class="maze-wall wall-a"></span>
+              <span class="maze-wall wall-b"></span>
+              <span class="maze-wall wall-c"></span>
+              <span class="maze-wall wall-d"></span>
+              <span class="maze-robot"></span>
+              <span class="maze-arrow arrow-a">12 cm</span>
+              <span class="maze-arrow arrow-b">turn right</span>
+            </div>
+            <div class="nav-copy">
+              <h4>Wall-Hugging Maze Logic</h4>
+              <p>The bot maintains roughly 12 cm from the left wall, corrects drift through motor timing, tracks line crossings, and turns right when front and left paths are blocked.</p>
+              <code>if flame_detected: extinguish()</code>
+              <code>elif front_blocked and left_blocked: turn_right()</code>
+              <code>else: follow_left_wall()</code>
+            </div>
+          </div>
+        `
+      },
+      {
+        type: "visual",
+        html: `
+          <div class="extinguisher-slide">
+            <h4>Extinguisher Driver Circuit</h4>
+            <div class="circuit-flow">
+              <div class="circuit-node">ATMEGA Signal</div>
+              <div class="circuit-node">TIP120 Switch</div>
+              <div class="circuit-node">Fan Motor</div>
+            </div>
+            <div class="circuit-notes">
+              <span>1N4001G flyback diode</span>
+              <span>1000 uF power capacitor</span>
+              <span>10k clean switching resistor</span>
+            </div>
+            <p>Low-power control logic safely triggers the higher-current fan mechanism when the IR flame sensor crosses threshold.</p>
+          </div>
+        `
+      },
+      {
+        type: "visual",
+        html: `
+          <div class="motor-control-slide">
+            <h4>Embedded Control System</h4>
+            <div class="control-blocks">
+              <div><strong>ATMEGA328P-PU</strong><span>sensor processing and navigation decisions</span></div>
+              <div><strong>SN754410NE</strong><span>bidirectional motor driver</span></div>
+              <div><strong>Nema 17 Motors</strong><span>high-torque movement</span></div>
+              <div><strong>LCD Display</strong><span>real-time debugging output</span></div>
+              <div><strong>10,000 uF Capacitor</strong><span>motor power smoothing</span></div>
+            </div>
+          </div>
+        `
+      },
+      {
+        type: "visual",
+        html: `
+          <div class="firefighter-video-slide">
+            <video class="project-video" controls muted playsinline preload="metadata" poster="Firefighter%20bot/Flahamey.jpeg">
+              <source src="Firefighter%20bot/firefighter-demo.webm" type="video/webm">
+              <source src="Firefighter%20bot/firefighter-demo.mp4" type="video/mp4">
+              Your browser does not support embedded video.
+            </video>
+            <div class="workflow-caption">
+              <span>Demo</span>
+              <strong>Maze testing exposed the real engineering work: calibration, timing, power stability, and physical debugging.</strong>
+            </div>
+          </div>
+        `
+      },
+      {
+        type: "code",
+        filename: "firefighter_bot/navigation.ino",
+        code: `
+<span class="code-keyword">loop</span>() {
+  line_state = readLineSensor();
+  left_cm = readLeftDistance();
+  front_cm = readFrontDistance();
+  flame = readFlameSensor();
+
+  <span class="code-keyword">if</span> (flame.detected) {
+    stopMotors();
+    activateExtinguisher();
+  } <span class="code-keyword">else if</span> (front_cm &lt; FRONT_LIMIT &amp;&amp; left_cm &lt; LEFT_LIMIT) {
+    turnRight();
+  } <span class="code-keyword">else</span> {
+    followLeftWall(left_cm, 12);
+  }
+}`
+      }
+    ],
+    comments: [
+      {
+        user: DISPLAY_NAME,
+        avatar: "avatar",
+        text: "Built an autonomous firefighter robot around custom TraxMaker PCB boards, soldered sensor/control circuits, wall-following logic, and flame detection. The robot uses line sensing for room tracking, Parallax distance sensors for maze navigation, an IR flame sensor for candle detection, and a transistor-driven fan circuit for extinguishing.",
+        time: "1d"
+      },
+      {
+        user: "melvin_fung",
+        avatar: "M",
+        text: "custom pcb and sensor calibration in one project is no joke. did the flame sensor get noisy?",
+        time: "1d"
+      },
+      {
+        user: DISPLAY_NAME,
+        avatar: "avatar",
+        text: "@melvin_fung definitely. A lot of the work was tuning thresholds, reducing false positives from ambient light, and keeping the sensor position stable enough that the robot behaved consistently in the maze.",
+        time: "1d"
+      }
+    ]
   }
 };
 
@@ -471,11 +693,18 @@ const KNOWLEDGE_BASE = [
     text: "A self-play reinforcement learning Othello engine modeled on AlphaZero. Boards are represented as two uint64 bitboards, JIT-compiled with Numba for high speed. Uses a neural-guided Monte Carlo Tree Search (MCTS) with PUCT exploration formula (constant 1.5). Evaluates search tree leaf node positions in GPU batches. Positions are rotated and flipped with 8-way board symmetries for data augmentation."
   },
   {
+    project: "firefighter-bot",
+    title: "Firefighter Bot",
+    tech: ["embedded systems", "traxmaker", "pcb", "soldering", "atmega328p", "sensors", "motor control", "robotics"],
+    metrics: "Triple-layer 15 cm x 15 cm x 21 cm chassis with custom TraxMaker PCB boards, LED/phototransistor line detection, Parallax distance sensors, QSD123 IR flame detection, SN754410NE motor driving, and TIP120 fan switching.",
+    text: "Firefighter Bot is an autonomous maze robot built from custom soldered electronics and embedded navigation logic. It uses line detection to track room transitions, front and left distance sensors to follow walls, an IR phototransistor to detect candle flame signatures, and a transistor-driven fan circuit to extinguish the flame. The project included TraxMaker PCB design, soldering headers and components, sensor calibration, power stabilization, and repeated maze testing."
+  },
+  {
     project: "general",
     title: `${DISPLAY_NAME} Portfolio & Background`,
-    tech: ["python", "javascript", "pytorch", "fastapi", "docker", "ml", "neural networks", "vector search"],
+    tech: ["python", "javascript", "pytorch", "fastapi", "docker", "ml", "neural networks", "vector search", "embedded systems"],
     metrics: `${DISPLAY_NAME} is a Software Engineer specializing in Machine Learning, RAG search systems, and robust backend/frontend tool architectures.`,
-    text: `${DISPLAY_NAME} is a software engineer whose full name is ${FULL_NAME}. He has built several key projects: ScoreShift (music processing web app), HavenIQ HVAC Model (XGBoost & PyTorch regression), HavenIQ HVAC RAG (FastAPI/Qdrant vector search explaining anomalies), and AlphaZero Othello (an RL board game engine). You can download his resume directly using the 'Download Resume' button at the top of his page.`
+    text: `${DISPLAY_NAME} is a software engineer whose full name is ${FULL_NAME}. He has built several key projects: ScoreShift (music processing web app), HavenIQ HVAC Model (XGBoost & PyTorch regression), HavenIQ HVAC RAG (FastAPI/Qdrant vector search explaining anomalies), AlphaZero Othello (an RL board game engine), and Firefighter Bot (custom PCB embedded robotics). You can download his resume directly using the 'Download Resume' button at the top of his page.`
   }
 ];
 
@@ -483,7 +712,7 @@ const KNOWLEDGE_BASE = [
 // ----------------------------------------------------
 // 3. UI STATE & INITIALIZATION
 // ----------------------------------------------------
-const PROJECT_ORDER = ["scoreshift", "hvac-model", "hvac-rag", "othello-az"];
+const PROJECT_ORDER = ["scoreshift", "hvac-model", "hvac-rag", "othello-az", "firefighter-bot"];
 // Paste your Supabase Project URL and public anon key here before deploying comments.
 const SUPABASE_URL = "https://ufdkrzjyinmjbivmncch.supabase.co";
 const SUPABASE_ANON_KEY = "sb_publishable_j4Qf-GU3slwGoLxU8vq7Iw_utNc-wb3";
@@ -1882,6 +2111,9 @@ function queryRAGIndexer(query) {
     if (entry.project === "othello-az" && (cleanQuery.includes("othello") || cleanQuery.includes("alphazero") || cleanQuery.includes("bitboard") || cleanQuery.includes("numba") || cleanQuery.includes("mcts") || cleanQuery.includes("resnet") || cleanQuery.includes("game"))) {
       score += 5;
     }
+    if (entry.project === "firefighter-bot" && (cleanQuery.includes("firefighter") || cleanQuery.includes("robot") || cleanQuery.includes("bot") || cleanQuery.includes("pcb") || cleanQuery.includes("traxmaker") || cleanQuery.includes("solder") || cleanQuery.includes("sensor") || cleanQuery.includes("flame") || cleanQuery.includes("maze") || cleanQuery.includes("atmega"))) {
+      score += 5;
+    }
     if (entry.project === "general" && (cleanQuery.includes("resume") || cleanQuery.includes("education") || cleanQuery.includes("experience") || cleanQuery.includes("skills") || cleanQuery.includes("matthew") || cleanQuery.includes("contact"))) {
       score += 4;
     }
@@ -1929,11 +2161,19 @@ function queryRAGIndexer(query) {
              `It implements 64-bit uint64 bitboards compiled with Numba JIT. Check out the board grid and search code inside the fourth post in Matthew's feed.`;
     }
 
+    if (bestMatch.project === "firefighter-bot") {
+      return `Here is the retrieved documentation for <strong>Firefighter Bot</strong>:<br><br>` +
+             `- ${data.text}<br><br>` +
+             `- <strong>Hardware details:</strong> ${data.metrics}<br><br>` +
+             `- <strong>Stack:</strong> ${data.tech.join(", ")}<br><br>` +
+             `Open the fifth post to see the custom PCB, sensor, maze-logic, extinguisher-circuit, and demo-video slides.`;
+    }
+
     if (bestMatch.project === "general") {
       return `Sure! Matthew is a software engineer. Here is a summary of his background:<br><br>` +
              `• ${data.text}<br><br>` +
              `• ${data.metrics}<br><br>` +
-             `You can download his resume by clicking the <strong>Download Resume</strong> button on the header of the page, or check out his four main project posts in the feed below.`;
+             `You can download his resume by clicking the <strong>Download Resume</strong> button on the header of the page, or check out his five main project posts in the feed below.`;
     }
   }
 
@@ -1944,7 +2184,8 @@ function queryRAGIndexer(query) {
          `• <strong>ScoreShift</strong> (OMR and sheet music transposition)<br>` +
          `• <strong>HavenIQ HVAC Model</strong> (XGBoost regression)<br>` +
          `• <strong>HavenIQ RAG</strong> (FastAPI, Qdrant & LLM)<br>` +
-         `• <strong>AlphaZero Othello</strong> (MCTS and bitboards)`;
+         `• <strong>AlphaZero Othello</strong> (MCTS and bitboards)<br>` +
+         `• <strong>Firefighter Bot</strong> (custom PCB embedded robotics)`;
 }
 
 // Simple HTML escaping helper
