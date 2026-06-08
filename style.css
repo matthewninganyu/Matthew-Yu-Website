@@ -308,6 +308,21 @@ body {
   transition: filter 0.2s ease;
 }
 
+.grid-post-card::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  background-color: rgba(0, 0, 0, 0.32);
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.2s ease;
+}
+
+.grid-post-card:hover::before {
+  opacity: 1;
+}
+
 .grid-post-card::after {
   content: "";
   position: absolute;
@@ -319,6 +334,7 @@ body {
   border-radius: 3px;
   box-shadow: -4px 4px 0 -1px #ffffff;
   opacity: 0.95;
+  z-index: 3;
   pointer-events: none;
 }
 
