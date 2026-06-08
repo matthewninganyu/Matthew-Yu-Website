@@ -1580,22 +1580,23 @@ async function handleVisitorCommentSubmit({
   }
 
   postButton.disabled = true;
-  postButton.textContent = "Posting";
+  postButton.textContent = "Reviewing";
   updateButton();
 
   try {
-    await submitVisitorComment(projectKey, authorValidation.authorName, commentVal);
+    const submittedComment = await submitVisitorComment(projectKey, authorValidation.authorName, commentVal);
     localStorage.setItem(COMMENT_COOLDOWN_STORAGE_KEY, String(Date.now()));
     if (authorValidation.authorName !== "visitor") {
-      localStorage.setItem(COMMENT_AUTHOR_STORAGE_KEY, authorValidation.authorName);
+      localStorage.setItem(COMMENT_AUTHOR_STORAGE_KEY, submittedComment.authorName);
     } else {
       localStorage.removeItem(COMMENT_AUTHOR_STORAGE_KEY);
     }
     commentField.value = "";
-    setCommentStatus("Comment submitted for review.", "success", statusEl);
+    appendSubmittedVisitorComment(projectKey, submittedComment);
+    setCommentStatus("Comment posted.", "success", statusEl);
   } catch (error) {
     console.error("Comment submit failed:", error);
-    setCommentStatus("Could not submit comment right now. Please try again later.", "error", statusEl);
+    setCommentStatus(error.message || "Could not submit comment right now. Please try again later.", "error", statusEl);
   } finally {
     postButton.disabled = false;
     postButton.textContent = "Post";
@@ -1742,23 +1743,53 @@ async function loadApprovedVisitorComments(projectKey, targetList = null) {
 }
 
 async function submitVisitorComment(projectKey, authorName, body) {
-  const response = await fetch(`${SUPABASE_URL}/rest/v1/comments`, {
+  const response = await fetch("/api/comments", {
     method: "POST",
     headers: {
-      ...getSupabaseHeaders(),
-      "Content-Type": "application/json",
-      "Prefer": "return=minimal"
+      "Content-Type": "application/json"
     },
     body: JSON.stringify({
-      project_key: projectKey,
-      author_name: authorName,
-      body,
-      status: "pending"
+      projectKey,
+      authorName,
+      body
     })
   });
 
+  let data = {};
+  try {
+    data = await response.json();
+  } catch {
+    data = {};
+  }
+
   if (!response.ok) {
-    throw new Error(`Supabase insert failed: ${response.status}`);
+    throw new Error(data.error || "Could not submit comment right now. Please try again later.");
+  }
+
+  if (!data.comment) {
+    throw new Error("Could not submit comment right now. Please try again later.");
+  }
+
+  return data.comment;
+}
+
+function appendSubmittedVisitorComment(projectKey, comment) {
+  const row = createCommentRow({
+    user: comment.authorName || "visitor",
+    text: comment.body,
+    time: formatVisitorCommentTime(comment.createdAt),
+    avatar: (comment.authorName || "visitor").charAt(0),
+    showReply: true
+  });
+
+  if (activeProject === projectKey) {
+    const desktopList = document.getElementById("modal-approved-comments");
+    desktopList?.appendChild(row.cloneNode(true));
+  }
+
+  if (activeMobileProject === projectKey) {
+    const mobileList = document.getElementById("mobile-comments-list");
+    mobileList?.appendChild(row);
   }
 }
 
@@ -2023,6 +2054,19 @@ async function fetchBotReply(userText) {
     });
 
     if (!response.ok) {
+      let errorData = {};
+      try {
+        errorData = await response.json();
+      } catch {
+        errorData = {};
+      }
+
+      if (response.status === 429) {
+        const rateLimitReply = errorData.error || "Please slow down a little before sending another chat message.";
+        chatHistory.push({ role: "assistant", content: rateLimitReply });
+        return renderReply(rateLimitReply);
+      }
+
       throw new Error(`Chat API returned ${response.status}`);
     }
 

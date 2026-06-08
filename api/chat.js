@@ -1,3 +1,18 @@
+import { checkRateLimit } from "./_rateLimit.js";
+
+const CHAT_RATE_LIMITS = [
+  {
+    windowMs: 60 * 1000,
+    limit: 10,
+    message: "Please slow down a little before sending another chat message.",
+  },
+  {
+    windowMs: 24 * 60 * 60 * 1000,
+    limit: 60,
+    message: "Chat limit reached for today. Please try again tomorrow.",
+  },
+];
+
 export default async function handler(req, res) {
   if (req.method !== "POST") {
     return res.status(405).json({ error: "Method not allowed" });
@@ -26,6 +41,12 @@ export default async function handler(req, res) {
       return res.status(400).json({ error: "No valid messages" });
     }
 
+    const limitResult = await checkRateLimit(req, "chat", CHAT_RATE_LIMITS);
+    if (limitResult.limited) {
+      res.setHeader("Retry-After", String(limitResult.retryAfterSeconds));
+      return res.status(429).json({ error: limitResult.message });
+    }
+
     if (!process.env.GROQ_API_KEY) {
       return res.status(500).json({ error: "Missing GROQ_API_KEY" });
     }
@@ -45,6 +66,7 @@ Known projects:
 - HVAC Model: a machine learning project for HVAC/system prediction.
 - HVAC RAG: a retrieval-augmented generation project for HVAC incident/question answering.
 - Othello AlphaZero: an ML/game-engine project using self-play and search ideas.
+- Firefighter Bot: a custom PCB embedded robotics project with soldered electronics, sensors, maze navigation, and flame extinguishing.
 
 Style:
 - Keep replies short.
