@@ -11,9 +11,9 @@ const COMMENT_MAX_LENGTH = 500;
 const COMMENT_AUTHOR_MAX_LENGTH = 30;
 const COMMENT_RATE_LIMITS = [
   {
-    windowMs: 10 * 60 * 1000,
-    limit: 3,
-    message: "Please wait a bit before posting another comment.",
+    windowMs: 60 * 1000,
+    limit: 10,
+    message: "Comment limit reached. Please wait a minute before posting again.",
   },
   {
     windowMs: 24 * 60 * 60 * 1000,
