@@ -322,44 +322,6 @@ body {
   pointer-events: none;
 }
 
-/* Overlay on Hover */
-.card-overlay {
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background-color: rgba(0, 0, 0, 0.3);
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  gap: 30px;
-  opacity: 0;
-  transition: opacity 0.2s ease;
-  color: #ffffff;
-  font-weight: 600;
-}
-
-.grid-post-card:hover .card-overlay {
-  opacity: 1;
-}
-
-.overlay-stat {
-  display: flex;
-  align-items: center;
-  gap: 7px;
-}
-
-.overlay-stat-icon {
-  width: 20px;
-  height: 20px;
-  fill: currentColor;
-}
-
-.stat-val {
-  font-size: 16px;
-}
-
 /* Project Themed Media Cards */
 .card-media {
   width: 100%;

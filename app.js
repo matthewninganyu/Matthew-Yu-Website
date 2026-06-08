@@ -834,6 +834,26 @@ function initResumeDownload() {
   });
 }
 
+function toggleHeartState(heartSvg) {
+  if (!heartSvg) return false;
+
+  const heartPath = heartSvg.querySelector("path") || heartSvg;
+  const isLiked = heartPath.getAttribute("fill") === "red";
+  if (isLiked) {
+    heartSvg.setAttribute("fill", "none");
+    heartSvg.setAttribute("stroke", "currentColor");
+    heartPath.setAttribute("fill", "none");
+    heartPath.setAttribute("stroke", "currentColor");
+    return false;
+  }
+
+  heartSvg.setAttribute("fill", "red");
+  heartSvg.setAttribute("stroke", "red");
+  heartPath.setAttribute("fill", "red");
+  heartPath.setAttribute("stroke", "red");
+  return true;
+}
+
 function initEmojiPicker() {
   const picker = document.getElementById("emoji-picker");
   const search = document.getElementById("emoji-search");
@@ -1120,27 +1140,14 @@ function initModals() {
   // Like & Bookmark toggles inside modal
   const btnLike = document.getElementById("btn-modal-like");
   const heartSvg = document.getElementById("modal-heart-svg");
-  const likesCountText = document.getElementById("modal-likes-count");
   
   btnLike.addEventListener("click", () => {
-    if (activeProject) {
-      const proj = PROJECT_DATA[activeProject];
-      const isLiked = heartSvg.getAttribute("fill") === "red";
-      
-      if (isLiked) {
-        heartSvg.setAttribute("fill", "none");
-        heartSvg.setAttribute("stroke", "currentColor");
-        proj.likes -= 1;
-      } else {
-        heartSvg.setAttribute("fill", "red");
-        heartSvg.setAttribute("stroke", "red");
-        proj.likes += 1;
-        
-        // Add pop bounce effect
-        btnLike.style.transform = "scale(1.3)";
-        setTimeout(() => btnLike.style.transform = "scale(1)", 150);
-      }
-      likesCountText.textContent = `Liked by luc4s.l1 and ${proj.likes - 1} others`;
+    if (!activeProject) return;
+    const isLiked = toggleHeartState(heartSvg);
+
+    if (isLiked) {
+      btnLike.style.transform = "scale(1.3)";
+      setTimeout(() => btnLike.style.transform = "scale(1)", 150);
     }
   });
 
@@ -1274,10 +1281,12 @@ async function openProjectModal(projectKey) {
 
   // 4. Populate Statistics
   const heartSvg = document.getElementById("modal-heart-svg");
+  const heartPath = heartSvg.querySelector("path");
   heartSvg.setAttribute("fill", "none");
   heartSvg.setAttribute("stroke", "currentColor");
+  heartPath?.setAttribute("fill", "none");
+  heartPath?.setAttribute("stroke", "currentColor");
   
-  document.getElementById("modal-likes-count").textContent = `Liked by luc4s.l1 and ${project.likes - 1} others`;
   document.getElementById("modal-post-date").textContent = project.date;
 
   // Show Modal
@@ -1363,7 +1372,6 @@ function renderMobilePostFeed() {
             <button class="btn-icon-interact mobile-like-btn" aria-label="Like post">
               <svg viewBox="0 0 24 24" class="heart-svg"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z" fill="none" stroke="currentColor" stroke-width="2"/></svg>
             </button>
-            <span>${project.likes}</span>
             <button class="btn-icon-interact mobile-comment-open" data-mobile-comment-project="${projectKey}" aria-label="Open comments">
               <svg viewBox="0 0 24 24" class="comment-svg"><path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2v10z" fill="none" stroke="currentColor" stroke-width="2"/></svg>
             </button>
@@ -1388,6 +1396,17 @@ function renderMobilePostFeed() {
   feed.querySelectorAll("[data-mobile-comment-project]").forEach(button => {
     button.addEventListener("click", () => {
       openMobileCommentsSheet(button.getAttribute("data-mobile-comment-project"));
+    });
+  });
+
+  feed.querySelectorAll(".mobile-like-btn").forEach(button => {
+    button.addEventListener("click", () => {
+      const heart = button.querySelector(".heart-svg");
+      const isLiked = toggleHeartState(heart);
+      if (isLiked) {
+        button.style.transform = "scale(1.18)";
+        setTimeout(() => button.style.transform = "scale(1)", 150);
+      }
     });
   });
 
