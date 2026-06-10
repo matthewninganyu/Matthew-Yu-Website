@@ -195,7 +195,7 @@ const PROJECT_DATA = {
             <div class="flow-chart" style="width: 90%;">
               <div class="flow-node"><strong>Chronological windowing:</strong> Groups 12,709 telemetry rows by device into sliding W=8 windows</div>
               <div class="flow-node"><strong>Feature Engineering:</strong> Computes comfort deviation (temp - setpoint) and slope metrics</div>
-              <div class="flow-node" style="border-color:#10b981; background:rgba(16,185,129,0.1)"><strong>XGBoost Performance:</strong> Held-out R² of <strong>0.949</strong> and MAE of <strong>4.576</strong> points</div>
+              <div class="flow-node" style="border-color:#10b981; background:rgba(16,185,129,0.1)"><strong>XGBoost Performance:</strong> Held-out R² of <strong>0.871</strong> and MAE of <strong>4.576</strong> points</div>
             </div>
           </div>
         `
@@ -225,7 +225,7 @@ const PROJECT_DATA = {
       {
         user: DISPLAY_NAME,
         avatar: "avatar",
-        text: "Built a dual-model regression pipeline using XGBoost and PyTorch to predict HVAC operational confidence scores. The pipeline reads telemetry windows, engineers features like temp deviation and slope trends, and outputs scores with an R² of 0.949 on held-out tests.",
+        text: "Built a dual-model regression pipeline using XGBoost and PyTorch to predict HVAC operational confidence scores. The pipeline reads telemetry windows, engineers features like temp deviation and slope trends, and outputs scores with an R² of 0.871 on held-out tests.",
         time: "6w"
       },
       {
@@ -256,63 +256,196 @@ const PROJECT_DATA = {
     link: "#",
     github: "https://github.com",
     slides: [
-      // Slide 1: Cover
+      // Slide 1: Cover / Hook
       {
         type: "visual",
         html: `
-          <div class="slide-cover-root rag-theme" style="color:#1e293b">
-            <div class="slide-cover-title" style="color:#0f172a">HavenIQ HVAC RAG</div>
-            <div class="slide-cover-subtitle" style="color:#334155">FastAPI service explaining HVAC anomalies using PyTorch encoders, Qdrant database, and OpenAI GPT grounding.</div>
-            <div class="slide-tech-badges">
-              <span class="tech-badge" style="background:rgba(0,0,0,0.1); color:#334155">FastAPI</span>
-              <span class="tech-badge" style="background:rgba(0,0,0,0.1); color:#334155">PyTorch</span>
-              <span class="tech-badge" style="background:rgba(0,0,0,0.1); color:#334155">Qdrant Cloud</span>
-              <span class="tech-badge" style="background:rgba(0,0,0,0.1); color:#334155">OpenAI API</span>
-              <span class="tech-badge" style="background:rgba(0,0,0,0.1); color:#334155">Docker</span>
+          <div class="rag-slide rag-cover-slide">
+            <div class="rag-cover-copy">
+              <span class="rag-kicker">Telemetry RAG</span>
+              <h3>HavenIQ HVAC RAG</h3>
+              <p>RAG for sensor telemetry, not documents. The service turns live HVAC readings into grounded operator guidance.</p>
+              <div class="rag-badge-row">
+                <span>FastAPI</span>
+                <span>PyTorch</span>
+                <span>Qdrant Cloud</span>
+                <span>OpenAI</span>
+                <span>Docker</span>
+              </div>
+            </div>
+            <div class="rag-pipeline-card" aria-hidden="true">
+              <span>8 readings</span>
+              <i></i>
+              <span>features</span>
+              <i></i>
+              <span>128-D vector</span>
+              <i></i>
+              <span>operator advice</span>
             </div>
           </div>
         `
       },
-      // Slide 2: Vector DB Grid Matcher
+      // Slide 2: Problem
       {
         type: "visual",
         html: `
-          <div class="slide-database-root">
-            <h4 style="color:#ffffff; margin-bottom:10px; font-family:var(--header-font)">Qdrant Cosine Retrieval (128-D)</h4>
-            <div class="db-grid">
-              <div class="db-cell">Incident #120<br/>Drift Risk</div>
-              <div class="db-cell matched">Incident #415<br/>Freeze Risk<div class="db-match-label">Match 98%</div></div>
-              <div class="db-cell">Incident #98<br/>Normal</div>
-              <div class="db-cell">Incident #503<br/>Drift Risk</div>
-              <div class="db-cell matched">Incident #1440<br/>Freeze Risk<div class="db-match-label">Match 95%</div></div>
-              <div class="db-cell">Incident #311<br/>Humidity Risk</div>
+          <div class="rag-slide rag-problem-slide">
+            <div class="rag-section-heading">
+              <span class="rag-kicker">Problem</span>
+              <h3>Raw telemetry gives signals, not explanations.</h3>
+              <p>Operators need to know what pattern is emerging, how severe it is, whether it resembles past incidents, and what to check next.</p>
+            </div>
+            <div class="rag-before-after">
+              <div>
+                <strong>Before</strong>
+                <ul>
+                  <li>Temperature and humidity readings</li>
+                  <li>Confidence scores</li>
+                  <li>Manual chart inspection</li>
+                  <li>Threshold alerts without context</li>
+                </ul>
+              </div>
+              <div>
+                <strong>After</strong>
+                <ul>
+                  <li>Incident type and severity</li>
+                  <li>Similar historical cases</li>
+                  <li>Risk explanation</li>
+                  <li>Recommended operator checks</li>
+                </ul>
+              </div>
             </div>
           </div>
         `
       },
-      // Slide 3: Code Card
+      // Slide 3: 8-reading telemetry window
       {
-        type: "code",
-        filename: "app/explainer.py",
-        code: `
-<span class="code-keyword">def</span> <span class="code-function">build_grounded_prompt</span>(incident, matches):
-    <span class="code-comment"># Ground the LLM with direct database citations</span>
-    prompt = f<span class="code-string">"Explain this anomaly: {incident.summary_text}\\n"</span>
-    prompt += <span class="code-string">"Reference these similar historical incidents:\\n"</span>
-    
-    <span class="code-keyword">for</span> idx, match <span class="code-keyword">in</span> enumerate(matches):
-        prompt += f<span class="code-string">"- Incident {idx}: {match.payload['summary_text']} "</span>
-        prompt += f<span class="code-string">"(Similarity: {match.score:.3f})\\n"</span>
-        
-    prompt += <span class="code-string">"Generate concise JSON operator advice."</span>
-    <span class="code-keyword">return</span> prompt`
+        type: "visual",
+        html: `
+          <div class="rag-slide rag-window-slide">
+            <div class="rag-section-heading compact">
+              <span class="rag-kicker">Input</span>
+              <h3>8 readings become an 8 x 8 feature window.</h3>
+            </div>
+            <div class="rag-feature-grid" aria-label="Telemetry feature matrix">
+              <span class="head">t</span><span class="head">temp</span><span class="head">setpoint</span><span class="head">humidity</span><span class="head">error</span><span class="head">slope</span>
+              <span>1</span><span>8.2C</span><span>21.0C</span><span>48%</span><span class="hot">12.8</span><span>-</span>
+              <span>2</span><span>7.6C</span><span>21.0C</span><span>49%</span><span class="hot">13.4</span><span>-0.6</span>
+              <span>3</span><span>6.9C</span><span>21.0C</span><span>50%</span><span class="hot">14.1</span><span>-0.7</span>
+              <span>4</span><span>6.1C</span><span>21.0C</span><span>52%</span><span class="hot">14.9</span><span>-0.8</span>
+              <span>5</span><span>5.4C</span><span>21.0C</span><span>54%</span><span class="hot">15.6</span><span>-0.7</span>
+              <span>6</span><span class="risk">4.8C</span><span>21.0C</span><span>56%</span><span class="hot">16.2</span><span>-0.6</span>
+              <span>7</span><span class="risk">4.2C</span><span>21.0C</span><span>57%</span><span class="hot">16.8</span><span>-0.6</span>
+              <span>8</span><span class="risk">3.7C</span><span>21.0C</span><span>59%</span><span class="hot">17.3</span><span>-0.5</span>
+            </div>
+            <div class="rag-feature-notes">
+              <span>temp_minus_setpoint</span>
+              <span>temp_delta</span>
+              <span>humidity_delta</span>
+              <span>abs_temp_error</span>
+            </div>
+          </div>
+        `
+      },
+      // Slide 4: Encoder + Qdrant retrieval
+      {
+        type: "visual",
+        html: `
+          <div class="rag-slide rag-retrieval-slide">
+            <div class="rag-section-heading compact">
+              <span class="rag-kicker">Retrieval</span>
+              <h3>Find past incidents by sensor behavior.</h3>
+            </div>
+            <div class="rag-retrieval-flow">
+              <div class="rag-flow-node">[8,8] tensor</div>
+              <div class="rag-flow-arrow"></div>
+              <div class="rag-flow-node">PyTorch MLP</div>
+              <div class="rag-flow-arrow"></div>
+              <div class="rag-flow-node accent">128-D vector</div>
+              <div class="rag-flow-arrow"></div>
+              <div class="rag-flow-node">Qdrant cosine search</div>
+              <div class="rag-flow-arrow"></div>
+              <div class="rag-flow-node accent">top 5 incidents</div>
+            </div>
+            <div class="rag-metric-grid">
+              <div><strong>1,996</strong><span>raw readings</span></div>
+              <div><strong>1,611</strong><span>searchable windows</span></div>
+              <div><strong>128-D</strong><span>embeddings</span></div>
+              <div><strong>5</strong><span>incident classes</span></div>
+            </div>
+          </div>
+        `
+      },
+      // Slide 5: Swagger docs screenshot
+      {
+        type: "visual",
+        html: `
+          <div class="rag-slide rag-screenshot-slide">
+            <div class="rag-screenshot-copy">
+              <span class="rag-kicker">FastAPI Surface</span>
+              <h3>Interactive API docs for the RAG service.</h3>
+              <p>Swagger exposes build, train, backfill, retrieve, explain, and embed endpoints for the telemetry pipeline.</p>
+              <div class="rag-endpoint-tags">
+                <span>/v1/hvac/explain</span>
+                <span>/v1/hvac/retrieve</span>
+                <span>/v1/hvac/backfill-qdrant</span>
+              </div>
+            </div>
+            <div class="rag-browser-frame docs-frame">
+              <img src="HavenIQ%20RAG/docs.png" alt="HavenIQ HVAC RAG FastAPI documentation page">
+            </div>
+          </div>
+        `
+      },
+      // Slide 6: RAG response screenshot
+      {
+        type: "visual",
+        html: `
+          <div class="rag-slide rag-screenshot-slide response-proof">
+            <div class="rag-screenshot-copy">
+              <span class="rag-kicker">Grounded Output</span>
+              <h3>Structured operator guidance.</h3>
+              <p>The response turns a freeze-risk pattern into summary, risk reasoning, similar incidents, recommended checks, evidence strength, and limitations.</p>
+              <div class="rag-endpoint-tags">
+                <span>operator_summary</span>
+                <span>why_this_is_risky</span>
+                <span>recommended_next_checks</span>
+                <span>evidence_strength</span>
+              </div>
+            </div>
+            <div class="rag-browser-frame response-frame">
+              <img src="HavenIQ%20RAG/response.png" alt="HavenIQ HVAC RAG JSON response showing operator guidance">
+            </div>
+          </div>
+        `
+      },
+      // Slide 7: Production notes
+      {
+        type: "visual",
+        html: `
+          <div class="rag-slide rag-production-slide">
+            <div class="rag-section-heading">
+              <span class="rag-kicker">Engineering Notes</span>
+              <h3>Grounded explanations with production-minded fallbacks.</h3>
+              <p>The LLM explains the evidence, but rule-derived severity and incident type remain model-owned.</p>
+            </div>
+            <div class="rag-production-grid">
+              <div><strong>FastAPI</strong><span>/v1/hvac/explain runtime endpoint</span></div>
+              <div><strong>Docker</strong><span>Packaged service and model artifacts</span></div>
+              <div><strong>Qdrant Cloud</strong><span>Cosine retrieval over telemetry windows</span></div>
+              <div><strong>OpenAI Grounding</strong><span>Explains only supplied current and historical evidence</span></div>
+              <div><strong>Fallback</strong><span>Deterministic local explanation when OpenAI is unavailable</span></div>
+              <div><strong>Tests</strong><span>Feature engineering, rules, and embedding fallback coverage</span></div>
+            </div>
+          </div>
+        `
       }
     ],
     comments: [
       {
         user: DISPLAY_NAME,
         avatar: "avatar",
-        text: "Built a containerized RAG service for HVAC monitoring. The FastAPI service processes live sensor windows, embeds them into a 128-dimensional space using a PyTorch encoder, queries Qdrant Cloud for matching historical anomalies, and prompts OpenAI to generate structured operator-facing guidance.",
+        text: "Built a containerized RAG service that turns raw HVAC telemetry into operator-facing explanations. The FastAPI pipeline converts 8-reading sensor windows into engineered feature tensors, embeds them into 128-dimensional vectors with a PyTorch encoder, retrieves the top 5 similar historical incidents from Qdrant Cloud, and generates grounded guidance with incident type, severity, risk reasoning, recommended checks, evidence strength, and limitations. The first corpus processed 1,996 raw readings into 1,611 searchable windows across 5 incident classes.",
         time: "3w"
       },
       {
@@ -675,7 +808,7 @@ const KNOWLEDGE_BASE = [
     project: "hvac-model",
     title: "HavenIQ HVAC Confidence Model",
     tech: ["python", "xgboost", "pytorch", "pandas", "numpy", "scikit-learn", "cuda"],
-    metrics: "Trained on 12,709 telemetry rows from 350 devices. Achieved R-squared (R²) score of 0.949 and Mean Absolute Error (MAE) of 4.576 points on held-out test data.",
+    metrics: "Trained on 12,709 telemetry rows from 350 devices. Achieved R-squared (R²) score of 0.871 and Mean Absolute Error (MAE) of 4.576 points on held-out test data.",
     text: "This project is a machine learning regression pipeline predicting HVAC operational confidence scores. Telemetry is sorted chronologically and grouped by device into W=8 sliding windows (input shape [8, 4]). Features engineered include temperature values, target setpoints, deviation (temp - setpoint), and slope. Trained an interpretable XGBoost model (25 features per window) and a PyTorch feedforward comparison neural net."
   },
   {
