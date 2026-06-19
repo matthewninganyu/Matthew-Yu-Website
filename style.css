@@ -1893,13 +1893,26 @@ body {
 
 .maze-robot {
   position: absolute;
-  left: 122px;
-  bottom: 76px;
+  right: 118px;
+  top: 104px;
   width: 46px;
   height: 46px;
   border-radius: 10px;
   background: linear-gradient(145deg, #60a5fa, #2563eb);
-  transform: rotate(-10deg);
+  transform: rotate(12deg);
+}
+
+.maze-robot::after {
+  content: "";
+  position: absolute;
+  right: -11px;
+  top: 50%;
+  width: 0;
+  height: 0;
+  border-top: 7px solid transparent;
+  border-bottom: 7px solid transparent;
+  border-left: 12px solid #2563eb;
+  transform: translateY(-50%);
 }
 
 .maze-arrow {
@@ -1913,7 +1926,7 @@ body {
 }
 
 .arrow-a { left: 56px; bottom: 96px; }
-.arrow-b { right: 36px; top: 58px; }
+.arrow-b { right: 22px; top: 126px; }
 
 .nav-copy {
   text-align: left;
