@@ -963,7 +963,7 @@ function initTabs() {
 function initResumeDownload() {
   const btnResume = document.getElementById("btn-resume");
   btnResume.addEventListener("click", () => {
-    window.open("Matthew_Yu_Resume.pdf", "_blank", "noopener,noreferrer");
+    window.open("Matthew%20Yu%20Resume.pdf", "_blank", "noopener,noreferrer");
   });
 }
 

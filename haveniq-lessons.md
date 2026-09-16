@@ -1,3 +1,5 @@
+At havenIQ i built a 24/7 end-to-end property monitoring platform that ingests data in real-time by integrating with REST API's, analyzes the data with machine learning models, and predicts property health/risk. The service is shipped and on 9 pilot properties. 
+
 Rebuilding a No-Code System for Scale
 
 When I joined HavenIQ, parts of the platform relied heavily on Zapier for automation. While it worked initially, I realized the costs and operational limits would become a bottleneck as more devices and properties were onboarded.
@@ -197,3 +199,4 @@ HavenIQ Strengthened My Interest in AI Infrastructure
 The project reinforced my interest in the intersection of software engineering, data engineering, and machine learning.
 
 It showed me that successful AI systems depend just as much on reliable data pipelines and infrastructure as they do on models themselves.
+
