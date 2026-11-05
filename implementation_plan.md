@@ -20,7 +20,7 @@ Create a personal portfolio website replicating the exact visual layout, color s
 >   * Stats bar: `4 posts` | `1 follower` | `1 following`
 >   * Main buttons: **"Download Resume"** (styled like the "Following" button with dropdown arrow) and **"Message"** (styled standard).
 > * **Project Posts Grid:**
->   * Render **4 posts** showing your main projects: *ScoreShift*, *Haveniq HVAC*, *Haveniq RAG*, and *Othello AlphaZero*.
+>   * Render **4 posts** showing your main projects: *ScoreShift*, *HomeWise AI HVAC*, *HomeWise AI RAG*, and *Othello AlphaZero*.
 >   * Each grid item is a square thumbnail with hover overlay (showing mock likes/comments count).
 > * **Split-Screen Detailed Post Modal:**
 >   * Triggered by clicking any project post grid item.

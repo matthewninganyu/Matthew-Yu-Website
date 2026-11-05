@@ -65,14 +65,16 @@ class Chunk:
 
 
 SOURCES = [
+    Source("CAMPUS_COLLECTIVES_OVERVIEW.md", "campus-collectives", "Campus Collectives", "markdown"),
     Source("SCORESHIFT_CODEBASE_OVERVIEW.md", "scoreshift", "ScoreShift", "markdown"),
     Source("score-shift-lessons.md", "scoreshift", "ScoreShift Lessons", "markdown"),
-    Source("HAVENIQ_HVAC_MODEL_CODEBASE_OVERVIEW.md", "hvac-model", "HavenIQ HVAC Confidence Model", "markdown"),
-    Source("HAVENIQ_RAG_CODEBASE_OVERVIEW.md", "hvac-rag", "HavenIQ HVAC RAG System", "markdown"),
+    Source("HOMEWISE_AI_HVAC_MODEL_CODEBASE_OVERVIEW.md", "hvac-model", "HomeWise AI HVAC Confidence Model", "markdown"),
+    Source("HOMEWISE_AI_RAG_CODEBASE_OVERVIEW.md", "hvac-rag", "HomeWise AI HVAC RAG System", "markdown"),
     Source("OTHELLO_ALPHAZERO_CODEBASE_OVERVIEW.md", "othello-az", "AlphaZero-Style Othello Engine", "markdown"),
-    Source("haveniq-lessons.md", "general", "HavenIQ Engineering Lessons", "markdown"),
+    Source("VISUAL_HOOK_STUDIO_OVERVIEW.md", "visual-hook-studio", "Visual Hook Studio", "markdown"),
+    Source("homewise-ai-lessons.md", "general", "HomeWise AI Engineering Lessons", "markdown"),
     Source("Firefighter bot/Firefighter Bot Proposal.docx", "firefighter-bot", "Firefighter Bot Proposal", "docx"),
-    Source("Matthew_Yu_Resume.pdf", "general", "Matthew Yu Resume", "pdf"),
+    Source("Matthew Yu Resume.pdf", "general", "Matthew Yu Resume", "pdf"),
     Source("index.html", "general", "About Page", "about-html"),
 ]
 

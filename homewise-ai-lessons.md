@@ -1,8 +1,8 @@
-At havenIQ i built a 24/7 end-to-end property monitoring platform that ingests data in real-time by integrating with REST API's, analyzes the data with machine learning models, and predicts property health/risk. The service is shipped and on 9 pilot properties. 
+During my internship at HomeWise AI, I built a 24/7 end-to-end property monitoring platform that ingests data in real-time by integrating with REST API's, analyzes the data with machine learning models, and predicts property health/risk. The service is shipped and on 9 pilot properties. 
 
 Rebuilding a No-Code System for Scale
 
-When I joined HavenIQ, parts of the platform relied heavily on Zapier for automation. While it worked initially, I realized the costs and operational limits would become a bottleneck as more devices and properties were onboarded.
+When I joined HomeWise AI, parts of the platform relied heavily on Zapier for automation. While it worked initially, I realized the costs and operational limits would become a bottleneck as more devices and properties were onboarded.
 
 At our projected scale, Zapier would have cost roughly $69/month and introduced task limits that constrained growth. I helped redesign parts of the system using AWS services, reducing infrastructure costs to roughly $1–2/month while giving us significantly more flexibility and control.
 
@@ -62,7 +62,7 @@ This approach consistently produced better decisions than relying on intuition a
 Skills Developed
 SQL and Analytics Engineering
 
-HavenIQ significantly improved my SQL skills.
+HomeWise AI significantly improved my SQL skills.
 
 I spent a large amount of time writing analytical queries, debugging data pipelines, validating telemetry ingestion, building incident logic, and investigating production issues through BigQuery.
 
@@ -92,14 +92,14 @@ This was my first experience designing infrastructure that continuously processe
 
 Data Modeling
 
-As HavenIQ evolved, I became more involved in discussions around how telemetry, incidents, devices, and properties should be represented in the data layer.
+As HomeWise AI evolved, I became more involved in discussions around how telemetry, incidents, devices, and properties should be represented in the data layer.
 
 This improved my understanding of schema design, relationships between entities, and long-term maintainability.
 
 Professional Growth
 Participating in Architectural Decisions
 
-One of the most valuable aspects of HavenIQ was being included in discussions about system design rather than only implementation.
+One of the most valuable aspects of HomeWise AI was being included in discussions about system design rather than only implementation.
 
 I regularly evaluated tradeoffs between different approaches, considered cost implications, and helped determine how new features should integrate into the broader platform.
 
@@ -125,7 +125,7 @@ I became much more comfortable exploring unfamiliar systems, gathering informati
 Engineering Philosophy
 BigQuery Is the Source of Truth
 
-One principle that emerged repeatedly throughout HavenIQ was treating BigQuery as the authoritative source of data.
+One principle that emerged repeatedly throughout HomeWise AI was treating BigQuery as the authoritative source of data.
 
 This created a clear separation between operational workflows and analytical systems while reducing confusion about where information should live.
 
@@ -184,7 +184,7 @@ What initially looked like a convenient solution became difficult to justify onc
 Personal Reflections
 I Enjoy Architecture as Much as Implementation
 
-One thing I discovered through HavenIQ is that I enjoy system design discussions just as much as writing code.
+One thing I discovered through HomeWise AI is that I enjoy system design discussions just as much as writing code.
 
 Thinking through tradeoffs, evaluating alternative approaches, and designing scalable systems became some of the most rewarding parts of the project.
 
@@ -194,7 +194,7 @@ I originally viewed databases as a supporting component of software systems.
 
 Working with telemetry, analytics, and operational workflows showed me how central data infrastructure is to building intelligent systems.
 
-HavenIQ Strengthened My Interest in AI Infrastructure
+HomeWise AI Strengthened My Interest in AI Infrastructure
 
 The project reinforced my interest in the intersection of software engineering, data engineering, and machine learning.
 

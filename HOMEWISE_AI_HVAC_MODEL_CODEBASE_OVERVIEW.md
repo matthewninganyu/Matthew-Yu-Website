@@ -1,8 +1,10 @@
-# HavenIQ HVAC Confidence Model: Codebase Overview
+# HomeWise AI HVAC Confidence Model: Codebase Overview
 
 ## Purpose
 
-HavenIQ HVAC Confidence Model is a machine-learning pipeline for predicting an HVAC `confidence_score` from recent sensor telemetry.
+Built during Matthew Yu’s internship at HomeWise AI.
+
+HomeWise AI HVAC Confidence Model is a machine-learning pipeline for predicting an HVAC `confidence_score` from recent sensor telemetry.
 
 The system converts raw per-device temperature readings into short chronological windows, engineers features that describe comfort deviation and temperature movement, and trains two regression models:
 
@@ -15,11 +17,11 @@ This document is intended to provide enough context to describe the project accu
 
 ## Portfolio Summary
 
-Built a dual-model HVAC telemetry regression pipeline using Python, XGBoost, and PyTorch. The preprocessing workflow groups readings by device, sorts them chronologically, engineers temperature-deviation and slope features, and converts the data into overlapping 8-reading windows. The XGBoost model achieved an `R²` of `0.949` and an average absolute error of `4.576` points on a held-out test set. A PyTorch neural network provides a second learned baseline for model comparison and single-window inference. The PyTorch MLP converged after 100 epochs with a training loss of 29.80 and validation loss of 31.33, indicating minimal overfitting and good generalization. The model achieved an MAE of 4.31, RMSE of 5.60, and R² of 0.954 on the validation set, explaining over 95% of the variance in incident confidence scores while maintaining an average prediction error of approximately 4.3 confidence points.
+Built a dual-model HVAC telemetry regression pipeline using Python, XGBoost, and PyTorch. The preprocessing workflow groups readings by device, sorts them chronologically, engineers temperature-deviation and slope features, and converts the data into overlapping 8-reading windows. The XGBoost model achieved an `R²` of `0.871` and an average absolute error of `4.576` points on a held-out test set. A PyTorch neural network provides a second learned baseline for model comparison and single-window inference. The PyTorch MLP converged after 100 epochs with a training loss of 29.80 and validation loss of 31.33, indicating minimal overfitting and good generalization. The portfolio reports the held-out XGBoost result as R² = 0.871. The PyTorch model serves as a comparison baseline.
 
 ## Resume Bullet
 
-Built an HVAC telemetry regression pipeline using XGBoost and PyTorch, engineering sliding-window temperature features across 12,709 training readings and achieving an `R²` of `0.949` with a `4.576`-point MAE on a held-out test set. 
+Built an HVAC telemetry regression pipeline using XGBoost and PyTorch, engineering sliding-window temperature features across 12,709 training readings and achieving an `R²` of `0.871` with a `4.576`-point MAE on a held-out test set. 
 
 ## Verified Project Metrics
 
@@ -38,7 +40,7 @@ Built an HVAC telemetry regression pipeline using XGBoost and PyTorch, engineeri
 | XGBoost features per window | 25 |
 | XGBoost test MAE | `4.576` |
 | XGBoost test RMSE | `5.929` |
-| XGBoost test R² | `0.949` |
+| XGBoost test R² | `0.871` |
 
 ## High-Level Architecture
 
@@ -83,9 +85,9 @@ The repository uses separate raw CSV files:
 
 | File | Purpose | Rows | Devices |
 | --- | --- | ---: | ---: |
-| `data/raw/haveniq_hvac_training.csv` | Model training | 12,709 | 350 |
-| `data/raw/haveniq_hvac_validation.csv` | Model selection and tuning | 2,062 | 55 |
-| `data/raw/haveniq_hvac_test.csv` | Final held-out evaluation | 1,996 | 55 |
+| `data/raw/homewise_ai_hvac_training.csv` | Model training | 12,709 | 350 |
+| `data/raw/homewise_ai_hvac_validation.csv` | Model selection and tuning | 2,062 | 55 |
+| `data/raw/homewise_ai_hvac_test.csv` | Final held-out evaluation | 1,996 | 55 |
 
 Keeping test telemetry separate from training data is important because adjacent sliding windows overlap. Evaluating on a separately held-out CSV avoids overstating performance through train/test leakage between nearly identical neighboring windows.
 
@@ -204,35 +206,23 @@ The evaluation workflow reports three standard regression metrics:
 | RMSE | Similar to MAE, but penalizes large errors more heavily |
 | R² | Proportion of score variation explained by the model |
 
-The verified XGBoost held-out test results are:
+The reported XGBoost held-out test results are:
 
 ```text
 MAE:  4.576
 RMSE: 5.929
-R²:   0.949
+R²:   0.871
 ```
 
 The clearest portfolio interpretation is:
 
 ```text
-The XGBoost model explained 94.9% of the variation in held-out HVAC
+The XGBoost model explained 87.1% of the variation in held-out HVAC
 confidence scores and predicted scores with an average absolute error
 of 4.576 points.
 ```
 
-Avoid describing `R² = 0.949` as "95% accuracy." Accuracy is normally a classification metric, while this project predicts a continuous score.
-
-The verified PyTorch MLP held-out validation results are:
-
-MAE:  4.305
-RMSE: 5.598
-R²:   0.954
-
-The clearest portfolio interpretation is:
-
-The PyTorch neural network explained 95.4% of the variation in held-out
-HVAC confidence scores and predicted scores with an average absolute error
-of 4.305 points.
+Avoid describing `R² = 0.871` as "87.1% accuracy." Accuracy is normally a classification metric, while this project predicts a continuous score.
 
 ## Repository Layout
 
@@ -240,9 +230,9 @@ of 4.305 points.
 .
 |-- data/
 |   |-- raw/
-|   |   |-- haveniq_hvac_training.csv
-|   |   |-- haveniq_hvac_validation.csv
-|   |   `-- haveniq_hvac_test.csv
+|   |   |-- homewise_ai_hvac_training.csv
+|   |   |-- homewise_ai_hvac_validation.csv
+|   |   `-- homewise_ai_hvac_test.csv
 |   `-- processed/
 |       |-- windows_w8.npz
 |       `-- windows_w8_xgb.npz
@@ -359,8 +349,8 @@ python src/predict.py --model neural_net
 
 ## Suggested Portfolio Project Card
 
-**HavenIQ HVAC Confidence Model**
+**HomeWise AI HVAC Confidence Model**
 
-Machine-learning pipeline for predicting HVAC confidence scores from sliding windows of sensor telemetry. Built dual regression models with XGBoost and PyTorch, engineered temperature-deviation and trend features, and achieved an `R²` of `0.949` with a `4.576`-point average absolute error on held-out test data.
+Machine-learning pipeline for predicting HVAC confidence scores from sliding windows of sensor telemetry. Built dual regression models with XGBoost and PyTorch, engineered temperature-deviation and trend features, and achieved an `R²` of `0.871` with a `4.576`-point average absolute error on held-out test data.
 
 **Stack:** Python, XGBoost, PyTorch, pandas, NumPy, scikit-learn, CUDA

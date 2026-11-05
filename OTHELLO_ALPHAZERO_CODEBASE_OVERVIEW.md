@@ -96,7 +96,7 @@ The training pipeline is defined in `othello/train.py`.
 
 Each training iteration performs:
 
-1. **Phase scaling** - linearly increases MCTS search depth and the number of
+1. **Phase scaling** - linearly increases MCTS simulation count and the number of
    self-play games as training progresses.
 2. **Self-play** - reconstructs the current model inside worker processes and
    plays multiple games in parallel.
@@ -159,8 +159,7 @@ MCTS repeatedly performs:
    value and neural-network prior probability.
 2. **Expansion** - evaluate queued leaf positions with the ResNet and create
    legal child nodes.
-3. **Backpropagation** - propagate values toward the root while flipping the
-   sign at each level because the player perspective changes.
+3. **Backpropagation** - the current implementation flips the value sign at each tree level. Pass handling can retain the same player across a move edge, so this should not be presented as verified perspective handling for every edge case.
 4. **Move selection** - sample from visit counts early in self-play and switch
    to greedy play after move `20`.
 
@@ -271,6 +270,8 @@ It behaves as a ring buffer: once full, new self-play positions overwrite the
 oldest samples. This limits memory usage while keeping training focused on
 recent model behavior.
 
+The current configuration uses four training epochs per iteration and a batch size of 2,048.
+
 The training loss is:
 
 ```text
@@ -291,6 +292,7 @@ The repository contains checkpoint comparison utilities:
   colors with randomized opening moves.
 - `tests/test_game.py` runs a human-versus-bot terminal session using a selected
   checkpoint.
+- `tests/test_vs_egaroucid.py` provides an external-engine match runner using a locally configured Egaroucid executable. Its presence does not establish a measured win rate or rating.
 - `plot_loss.py` reads checkpoint CSV logs and saves smoothed policy, value,
   and total-loss curves.
 
@@ -392,3 +394,9 @@ neural-guided Monte Carlo Tree Search. To make training practical, it batches
 MCTS leaf evaluations on the GPU, parallelizes self-play across worker
 processes, augments positions with all 8 board symmetries, and saves checkpoints
 for model comparison and loss analysis.
+
+## Reported Training Speedup and Architecture Rationale
+
+Matthew reports over 60× faster training from batching and parallel processing combined. This is an author-reported project result; the baseline implementation, hardware, workload, and timing protocol have not been supplied. Do not describe it as an independently reproduced benchmark or infer a separate speedup for either optimization.
+
+Convolutions capture spatial board patterns, residual connections support deeper feature learning, and a shared trunk avoids separate policy/value encoders. MCTS improves policy targets beyond raw network preferences. Bitboards and Numba reduce Python overhead in repeated move generation. Batched GPU inference amortizes launches across active games, while four worker processes produce self-play data concurrently. Eight symmetries teach orientation invariance; the bounded replay buffer mixes recent experience and reduces correlation between training updates.

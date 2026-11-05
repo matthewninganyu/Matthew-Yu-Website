@@ -5,9 +5,11 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Matthew Yu • Portfolio</title>
   <link rel="icon" type="image/png" href="favicon.png">
-  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="style.css?v=20261105-policy-ivory">
   <!-- Link to Google Fonts for modern typography -->
   <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&family=Space+Grotesk:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="Campus%20Collectives/slides.css">
+  <link rel="stylesheet" href="J%20Healthcare/slides.css?v=3">
 </head>
 <body>
 
@@ -48,7 +50,7 @@
 
               <!-- Follower/Post Stats -->
               <ul class="stats-row">
-                <li><span class="stat-count">5</span> posts</li>
+                <li><span class="stat-count">8</span> posts</li>
                 <li><span class="stat-count">∞</span> followers</li>
                 <li><span class="stat-count">∞</span> following</li>
               </ul>
@@ -107,82 +109,29 @@
 
         <!-- Main Posts Grid -->
         <div class="posts-grid" id="grid-posts">
+          <div class="grid-post-card" data-project="visual-hook-studio">
+            <div class="card-media visual-hook-cover">
+              <img src="Visual%20Hook%20Studio/dashboard.png" alt="Visual Hook Studio dashboard">
+              <div class="visual-hook-cover-copy"><span>Visual Hook Studio</span><strong>1M+ views</strong><span>IN 3 WEEKS</span><strong>5× waitlist</strong><span>40 → 200+ SIGNUPS</span></div>
+            </div>
+          </div>
+          <div class="grid-post-card" data-project="campus-collectives"><div class="card-media cc-cover"><img src="Campus%20Collectives/storefront.png" alt="Campus Collectives storefront"><div class="cc-cover-copy"><span>CAMPUS COLLECTIVES</span><strong>AI agents<br>80% less<br>manual work</strong><span>10 → 2 HOURS / WEEK</span><small>98 orders · $6K+ revenue</small></div></div></div>
+<div class="grid-post-card" data-project="overdose-policy"><div class="card-media editorial-cover editorial-policy"><div class="editorial-backdrop" aria-hidden="true"><svg viewBox="0 0 400 400" class="editorial-graphic" aria-hidden="true"><g transform="translate(190 30) rotate(8 90 75)"><rect width="180" height="135" rx="14" fill="#d8eee9" stroke="#16786f" stroke-opacity=".65"/><g stroke="#78a99b" stroke-width="4"><path d="M22 35h136M22 68h136M22 101h136"/></g><g fill="#c43f4b" stroke="#faf8f2" stroke-width="2"><circle cx="65" cy="35" r="9"/><circle cx="123" cy="68" r="9"/><circle cx="88" cy="101" r="9"/></g></g><g stroke="#8baa9e" stroke-opacity=".2" fill="none"><path d="M0 225h400M0 270h400M0 315h400M70 180v190M160 180v190M250 180v190M340 180v190"/></g><path d="M0 280Q100 270 170 220T400 170L400 320Q260 265 170 265T0 300Z" fill="#16786f" opacity=".18"/><path d="M0 290Q100 265 170 250T400 215" stroke="#16786f" stroke-width="3" fill="none"/><path d="M0 290Q100 280 170 265T400 280" stroke="#677580" stroke-width="2" stroke-dasharray="7 7" fill="none"/><g transform="translate(44 49)" stroke="#c43f4b" fill="none" stroke-width="3"><path d="M0 22h22l9-17 13 37 10-20h24"/></g></svg></div><div class="editorial-copy"><span class="editorial-name">OVERDOSE POLICY SIMULATOR</span><strong class="editorial-purpose"><span class="cover-purpose-full">Policy choices<br>Health outcomes</span><span class="cover-purpose-short">Policy choices<br>Health outcomes</span></strong><span class="editorial-detail">J HEALTHCARE · INTERNSHIP<br>BC + ALBERTA · AUGUST 2026</span></div></div></div>
           <!-- Post 1: ScoreShift -->
-          <div class="grid-post-card" data-project="scoreshift">
-            <div class="card-media">
-              <div class="score-card-bg score-card-logo-cover">
-                <div class="score-logo-lockup" aria-label="ScoreShift">
-                  <img class="score-logo-icon" src="ScoreShift/logo.png" alt="ScoreShift logo">
-                  <span class="score-logo-wordmark">ScoreShift</span>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <!-- Post 2: HavenIQ HVAC Model -->
-          <div class="grid-post-card" data-project="hvac-model">
-            <div class="card-media model-theme">
-              <div class="model-card-bg">
-                <div class="chart-line"></div>
-                <div class="chart-dot d1"></div>
-                <div class="chart-dot d2"></div>
-                <div class="chart-dot d3"></div>
-                <div class="r2-badge">R² = 0.871</div>
-                <div class="project-tag">XGBoost HVAC</div>
-              </div>
-            </div>
-          </div>
-
-          <!-- Post 3: HavenIQ HVAC RAG System -->
-          <div class="grid-post-card" data-project="hvac-rag">
-            <div class="card-media rag-theme">
-              <div class="rag-card-bg">
-                <div class="vector-network"></div>
-                <div class="database-icon"></div>
-                <div class="retrieval-query">Vector Search</div>
-                <div class="project-tag">HVAC RAG</div>
-              </div>
-            </div>
-          </div>
+          <div class="grid-post-card" data-project="scoreshift"><div class="card-media editorial-cover editorial-score"><div class="editorial-staff" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i></div><div class="score-logo-lockup"><img class="score-logo-icon" src="ScoreShift/logo.png" alt="ScoreShift logo"><span class="score-logo-wordmark">ScoreShift</span></div><div class="editorial-score-caption"><strong><span class="cover-purpose-full">Scan and transpose<br>sheet music</span><span class="cover-purpose-short">Transpose<br>sheet music</span></strong><small>PHOTO → SCORE → NEW KEY</small></div></div></div>
 
           <!-- Post 4: AlphaZero Othello Engine -->
-          <div class="grid-post-card" data-project="othello-az">
-            <div class="card-media othello-theme">
-              <div class="othello-card-bg">
-                <div class="othello-board">
-                  <div class="ob-cell val-w"></div>
-                  <div class="ob-cell val-b"></div>
-                  <div class="ob-cell val-b"></div>
-                  <div class="ob-cell val-w"></div>
-                </div>
-                <div class="project-tag">AlphaZero Othello</div>
-              </div>
-            </div>
-          </div>
+          <div class="grid-post-card" data-project="othello-az"><div class="card-media editorial-cover editorial-othello-az"><div class="editorial-backdrop" aria-hidden="true"><svg viewBox="0 0 400 400" class="editorial-graphic" aria-hidden="true"><g transform="translate(180 12) rotate(14 100 100)"><rect width="240" height="240" rx="12" fill="#215d50" stroke="#8dc9a8" stroke-width="2"/><path d="M30 0v240M0 30h240" stroke="#6caa8e" stroke-opacity=".4"/><path d="M60 0v240M0 60h240" stroke="#6caa8e" stroke-opacity=".4"/><path d="M90 0v240M0 90h240" stroke="#6caa8e" stroke-opacity=".4"/><path d="M120 0v240M0 120h240" stroke="#6caa8e" stroke-opacity=".4"/><path d="M150 0v240M0 150h240" stroke="#6caa8e" stroke-opacity=".4"/><path d="M180 0v240M0 180h240" stroke="#6caa8e" stroke-opacity=".4"/><path d="M210 0v240M0 210h240" stroke="#6caa8e" stroke-opacity=".4"/><circle cx="105" cy="105" r="11" fill="#eef4e8" stroke="#9cc9af" stroke-width="1"/><circle cx="135" cy="135" r="11" fill="#eef4e8" stroke="#9cc9af" stroke-width="1"/><circle cx="105" cy="135" r="11" fill="#0a1d20" stroke="#9cc9af" stroke-width="1"/><circle cx="135" cy="105" r="11" fill="#0a1d20" stroke="#9cc9af" stroke-width="1"/><circle cx="75" cy="105" r="11" fill="#eef4e8" stroke="#9cc9af" stroke-width="1"/><circle cx="165" cy="135" r="11" fill="#0a1d20" stroke="#9cc9af" stroke-width="1"/><circle cx="165" cy="165" r="11" fill="#eef4e8" stroke="#9cc9af" stroke-width="1"/><circle cx="75" cy="135" r="11" fill="#0a1d20" stroke="#9cc9af" stroke-width="1"/></g></svg></div><div class="editorial-copy"><span class="editorial-name">ALPHAZERO OTHELLO</span><strong class="editorial-purpose"><span class="cover-purpose-full">AI that learns<br>through self-play</span><span class="cover-purpose-short">Learns through<br>self-play</span></strong><span class="editorial-detail">REINFORCEMENT LEARNING<br>+ TREE SEARCH</span></div></div></div>
 
           <!-- Post 5: Firefighter Bot -->
-          <div class="grid-post-card" data-project="firefighter-bot">
-            <div class="card-media firefighter-theme">
-              <div class="firefighter-card-bg">
-                <div class="maze-path">
-                  <span class="maze-line line-a"></span>
-                  <span class="maze-line line-b"></span>
-                  <span class="maze-line line-c"></span>
-                  <span class="maze-line line-d"></span>
-                </div>
-                <div class="robot-body">
-                  <span class="robot-eye"></span>
-                  <span class="robot-sensor"></span>
-                </div>
-                <div class="sensor-beam beam-left"></div>
-                <div class="sensor-beam beam-front"></div>
-                <div class="flame-mark">
-                  <span></span>
-                </div>
-                <div class="project-tag">Firefighter Bot</div>
-              </div>
-            </div>
-          </div>
+          <div class="grid-post-card" data-project="firefighter-bot"><div class="card-media editorial-cover editorial-firefighter-bot"><div class="editorial-backdrop" aria-hidden="true"><img class="editorial-photo" src="Firefighter%20bot/Flahamey.jpeg" alt=""></div><div class="editorial-copy"><span class="editorial-name">FIREFIGHTER BOT</span><strong class="editorial-purpose"><span class="cover-purpose-full">Find the flame<br>Navigate<br>Respond</span><span class="cover-purpose-short">Find flames<br>Navigate<br>Respond</span></strong><span class="editorial-detail">AUTONOMOUS ROBOTICS<br>CUSTOM PCBs + SENSORS</span></div></div></div>
+
+          <!-- Post 2: HomeWise AI HVAC Model -->
+          <div class="grid-post-card" data-project="hvac-model"><div class="card-media editorial-cover editorial-hvac-model"><div class="editorial-backdrop" aria-hidden="true"><svg viewBox="0 0 400 400" class="editorial-graphic" aria-hidden="true"><g fill="none" stroke="#719de4" stroke-opacity=".32"><path d="M0 50h400M50 0v400"/><path d="M0 100h400M100 0v400"/><path d="M0 150h400M150 0v400"/><path d="M0 200h400M200 0v400"/><path d="M0 250h400M250 0v400"/><path d="M0 300h400M300 0v400"/><path d="M0 350h400M350 0v400"/></g><path d="M0 270Q80 250 120 175T230 140T400 25L400 150Q300 245 230 210T120 270T0 340Z" fill="#4599ef" opacity=".2"/><path d="M0 305 55 280 95 292 140 211 180 233 220 155 260 168 305 100 350 115 400 49" fill="none" stroke="#6fc5ff" stroke-width="4"/><circle cx="55" cy="280" r="5" fill="#d9efff"/><circle cx="140" cy="211" r="5" fill="#d9efff"/><circle cx="220" cy="155" r="5" fill="#d9efff"/><circle cx="305" cy="100" r="5" fill="#d9efff"/><circle cx="350" cy="115" r="5" fill="#d9efff"/></svg></div><div class="editorial-copy"><span class="editorial-name">HOMEWISE AI / HVAC MODEL</span><strong class="editorial-purpose"><span class="cover-purpose-full">Predict HVAC<br>confidence</span><span class="cover-purpose-short">Predict HVAC<br>confidence</span></strong><span class="editorial-detail">INTERNSHIP · HELD-OUT R² 0.871</span></div></div></div>
+
+          <!-- Post 3: HomeWise AI HVAC RAG System -->
+          <div class="grid-post-card" data-project="hvac-rag"><div class="card-media editorial-cover editorial-hvac-rag"><div class="editorial-backdrop" aria-hidden="true"><svg viewBox="0 0 400 400" class="editorial-graphic" aria-hidden="true"><g stroke="#8acfc6" stroke-width="2" fill="none"><path d="M80 60 255 115 350 230" opacity=".45"/><path d="M130 155 255 115 350 230" opacity=".45"/><path d="M75 270 255 115 350 230" opacity=".45"/><path d="M195 300 255 115 350 230" opacity=".45"/></g><circle cx="80" cy="60" r="12" fill="#234c58" stroke="#8acfc6" stroke-width="2"/><circle cx="130" cy="155" r="17" fill="#234c58" stroke="#8acfc6" stroke-width="2"/><circle cx="75" cy="270" r="11" fill="#234c58" stroke="#8acfc6" stroke-width="2"/><circle cx="195" cy="300" r="12" fill="#234c58" stroke="#8acfc6" stroke-width="2"/><circle cx="255" cy="115" r="32" fill="#234c58" stroke="#8acfc6" stroke-width="2"/><g transform="translate(285 180)"><rect width="100" height="88" rx="10" fill="#c1e6dc"/><path d="M18 25h64M18 40h52M18 55h60" stroke="#307d73" stroke-width="4"/><path d="M22 88v14l19-14" fill="#c1e6dc"/></g><g transform="translate(230 90)" stroke="#bfe8db" stroke-width="3"><path d="M5 11h40M5 25h40M5 39h40"/><circle cx="14" cy="11" r="4" fill="#204f54"/><circle cx="33" cy="25" r="4" fill="#204f54"/><circle cx="20" cy="39" r="4" fill="#204f54"/></g></svg></div><div class="editorial-copy"><span class="editorial-name">HOMEWISE AI / HVAC RAG</span><strong class="editorial-purpose"><span class="cover-purpose-full">Sensor data<br>to explanations</span><span class="cover-purpose-short">Sensor data<br>to explanations</span></strong><span class="editorial-detail">RETRIEVE SIMILAR INCIDENTS<br>GROUNDED EXPLANATIONS</span></div></div></div>
+
         </div>
 
         <!-- About Me Section -->
@@ -352,7 +301,7 @@
           </div>
           <h3>Matthew Yu</h3>
           <p class="sub-profile-label">Matthew Yu • Portfolio Assistant</p>
-          <span class="chat-badge">∞ followers • 5 posts</span>
+          <span class="chat-badge">∞ followers • 8 posts</span>
           <button class="btn-chat-action" id="btn-view-profile-dm">View Profile</button>
         </div>
 
@@ -366,10 +315,12 @@
           </div>
           <div class="msg-bubble">
             Hi! I am Matthew's RAG portfolio assistant. Ask me anything about his technical experience, or ask questions about these projects:<br><br>
+            • <strong>Visual Hook Studio</strong> (Reel Automation)<br>
             • <strong>ScoreShift</strong> (Music Transposition)<br>
-            • <strong>HavenIQ HVAC Model</strong> (XGBoost/PyTorch)<br>
-            • <strong>HavenIQ HVAC RAG</strong> (Qdrant anomaly explainer)<br>
-            • <strong>AlphaZero Othello Engine</strong>
+            • <strong>HomeWise AI HVAC Model</strong> (internship; XGBoost/PyTorch)<br>
+            • <strong>HomeWise AI HVAC RAG</strong> (internship; Qdrant anomaly explainer)<br>
+            • <strong>AlphaZero Othello Engine</strong><br>
+            • <strong>Firefighter Bot</strong> (Embedded Robotics)
           </div>
         </div>
 
@@ -556,6 +507,6 @@
   </div>
 
   <!-- Core application logic script -->
-  <script src="app.js"></script>
+  <script src="app.js?v=20261105-policy"></script>
 </body>
 </html>

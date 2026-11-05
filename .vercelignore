@@ -1,0 +1,12 @@
+.git/
+.vercel/
+.claude/
+.env
+.env.*
+*.log
+*.key
+*.pem
+secrets.*
+node_modules/
+**/__pycache__/
+*.pyc

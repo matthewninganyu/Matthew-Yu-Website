@@ -11,6 +11,158 @@ const OWNER_COMMENT_NAMES = new Set([DISPLAY_NAME, FULL_NAME]);
 // 1. PROJECT DATA DATABASE
 // ----------------------------------------------------
 const PROJECT_DATA = {
+  "visual-hook-studio": {
+  "title": "Visual Hook Studio",
+  "likes": 0,
+  "commentsCount": 0,
+  "date": "October 2026",
+  "slides": [
+    {
+      "type": "visual",
+      "html": "<section class=\"visual-hook-diagram vh-results\"><header>VISUAL HOOK STUDIO · 01 / 10</header><h2>Content automation.<br>Measurable growth.</h2><div class=\"vh-result\"><strong>1M+</strong><p>views in 3 weeks</p><span>Helped generate</span></div><div class=\"vh-result\"><strong>40 → 200+</strong><p>waitlist signups · 5× growth</p></div><footer>Built to create, schedule, and publish consistently.</footer></section>"
+    },
+    {
+      "type": "visual",
+      "html": "<section class=\"visual-hook-shot vh-video-slide\"><h2>See the finished reel</h2><video controls playsinline preload=\"metadata\" aria-label=\"UGC reel created with Visual Hook Studio\"><source src=\"Visual%20Hook%20Studio/ugc-example.mp4\" type=\"video/mp4\">Your browser does not support embedded video.</video><div class=\"visual-hook-caption\"><span>02 / 10</span><strong>A reel created with Visual Hook Studio. Play with sound to hear the timed reveal.</strong></div></section>"
+    },
+    {
+      "type": "visual",
+      "html": "<section class=\"visual-hook-shot vh-insights\"><h2>The results in view</h2><a class=\"vh-image-link\" href=\"Visual%20Hook%20Studio/instagram-insights.png\" target=\"_blank\" rel=\"noopener noreferrer\" aria-label=\"Open full Instagram insights screenshot\"><img src=\"Visual%20Hook%20Studio/instagram-insights.png\" alt=\"Instagram Insights showing 1,066,748 views, 692 net new followers, 98.7 percent non-follower views, and 475,323 viewers\"></a><div class=\"visual-hook-caption\"><span>03 / 10</span><strong>1,066,748 views · +692 net followers</strong><a href=\"Visual%20Hook%20Studio/instagram-insights.png\" target=\"_blank\" rel=\"noopener noreferrer\">View full screenshot ↗</a></div></section>"
+    },
+    {
+      "type": "visual",
+      "html": "<section class=\"visual-hook-shot vh-dashboard\"><h2>One place to run content</h2><a class=\"vh-image-link\" href=\"Visual%20Hook%20Studio/dashboard.png\" target=\"_blank\" rel=\"noopener noreferrer\" aria-label=\"Open full one place to run content screenshot\"><img src=\"Visual%20Hook%20Studio/dashboard.png\" alt=\"One place to run content: Visual Hook Studio interface\"></a><div class=\"visual-hook-caption\"><span>04 / 10</span><strong>Manage the content workflow from one dashboard.</strong><a href=\"Visual%20Hook%20Studio/dashboard.png\" target=\"_blank\" rel=\"noopener noreferrer\">View full screenshot ↗</a></div></section>"
+    },
+    {
+      "type": "visual",
+      "html": "<section class=\"visual-hook-shot \"><h2>More content variations</h2><a class=\"vh-image-link\" href=\"Visual%20Hook%20Studio/hooks.png\" target=\"_blank\" rel=\"noopener noreferrer\" aria-label=\"Open full more content variations screenshot\"><img src=\"Visual%20Hook%20Studio/hooks.png\" alt=\"More content variations: Visual Hook Studio interface\"></a><div class=\"visual-hook-caption\"><span>05 / 10</span><strong>Reuse and rotate hooks across new reels.</strong><a href=\"Visual%20Hook%20Studio/hooks.png\" target=\"_blank\" rel=\"noopener noreferrer\">View full screenshot ↗</a></div></section>"
+    },
+    {
+      "type": "visual",
+      "html": "<section class=\"visual-hook-shot vh-compose\"><h2>Less repeated editing</h2><a class=\"vh-image-link\" href=\"Visual%20Hook%20Studio/compose.png\" target=\"_blank\" rel=\"noopener noreferrer\" aria-label=\"Open full less repeated editing screenshot\"><img src=\"Visual%20Hook%20Studio/compose.png\" alt=\"Less repeated editing: Visual Hook Studio interface\"></a><div class=\"visual-hook-caption\"><span>06 / 10</span><strong>Combine clips, captions, and music with a timed product reveal.</strong><a href=\"Visual%20Hook%20Studio/compose.png\" target=\"_blank\" rel=\"noopener noreferrer\">View full screenshot ↗</a></div></section>"
+    },
+    {
+      "type": "visual",
+      "html": "<section class=\"visual-hook-shot vh-campaign\"><h2>Keep the schedule moving</h2><a class=\"vh-image-link\" href=\"Visual%20Hook%20Studio/campaign.png\" target=\"_blank\" rel=\"noopener noreferrer\" aria-label=\"Open full keep the schedule moving screenshot\"><img src=\"Visual%20Hook%20Studio/campaign.png\" alt=\"Keep the schedule moving: Visual Hook Studio interface\"></a><div class=\"visual-hook-caption\"><span>07 / 10</span><strong>Plan days of content across selected accounts.</strong><a href=\"Visual%20Hook%20Studio/campaign.png\" target=\"_blank\" rel=\"noopener noreferrer\">View full screenshot ↗</a></div></section>"
+    },
+    {
+      "type": "visual",
+      "html": "<section class=\"visual-hook-shot \"><h2>Reach across accounts</h2><a class=\"vh-image-link\" href=\"Visual%20Hook%20Studio/accounts.png\" target=\"_blank\" rel=\"noopener noreferrer\" aria-label=\"Open full reach across accounts screenshot\"><img src=\"Visual%20Hook%20Studio/accounts.png\" alt=\"Reach across accounts: Visual Hook Studio interface\"></a><div class=\"visual-hook-caption\"><span>08 / 10</span><strong>Save account captions and reuse them when publishing.</strong><a href=\"Visual%20Hook%20Studio/accounts.png\" target=\"_blank\" rel=\"noopener noreferrer\">View full screenshot ↗</a></div></section>"
+    },
+    {
+      "type": "visual",
+      "html": "<section class=\"visual-hook-diagram\"><header>THE WORKFLOW · 09 / 10</header><h2>A repeatable path to publishing</h2><div class=\"visual-hook-workers\"><div><strong>1 · Curate</strong><span>Choose hooks, clips, music, and demos.</span></div><div><strong>2 · Render</strong><span>Build vertical reels with a timed reveal.</span></div><div><strong>3 · Publish</strong><span>Schedule content through Instagram.</span></div><div><strong>4 · Learn</strong><span>Review insights to inform the next batch.</span></div></div><footer>FastAPI · FFmpeg · SQLite · Meta API</footer></section>"
+    },
+    {
+      "type": "visual",
+      "html": "<section class=\"visual-hook-diagram\"><header>ALWAYS-ON INFRASTRUCTURE · 10 / 10</header><h2>Powered by a private VPS</h2><p>The pipeline keeps running between dashboard visits.</p><div class=\"visual-hook-workers\"><div><strong>Create</strong><span>A dedicated worker renders the reels.</span></div><div><strong>Publish</strong><span>Workers prepare media and publish on schedule.</span></div><div><strong>Measure</strong><span>Insights are collected over time.</span></div><div><strong>Respond</strong><span>Keyword rules support comment-to-DM replies.</span></div></div><footer>Persistent storage · encrypted credentials · backups</footer></section>"
+    }
+  ],
+  "comments": [
+    {
+      "user": "Matthew Yu",
+      "avatar": "avatar",
+      "text": "I built Visual Hook Studio to automate short-form app marketing. It helped generate over 1 million views in 3 weeks and grow the waitlist from 40 to 200+. The system renders reels, schedules Instagram publishing, and runs continuously on a private VPS so content production can keep moving.",
+      "time": "October 2026"
+    }
+  ]
+},
+  "overdose-policy": {
+  "title": "Overdose Policy Simulator",
+  "date": "August 2026",
+  "likes": 0,
+  "commentsCount": 0,
+  "slides": [
+    {
+      "type": "visual",
+      "html": "<section class=\"hc-slide hp-slide hp-cover-slide\"><header><span>J HEALTHCARE INITIATIVE</span><span>01 / 08</span></header><h2>Explore the impact of harm reduction</h2><div class=\"hp-content\"><div class=\"hp-hero-art\"><div class=\"hp-region\"><span>BRITISH COLUMBIA</span><strong>BC</strong><div class=\"hp-mini-bars\"><i></i><i></i><i></i><i></i><i></i></div></div><div class=\"hp-hero-core\"><svg class=\"hp-icon\" viewBox=\"0 0 64 64\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2.4\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\"><path d=\"M8 16h48M8 32h48M8 48h48\"/><circle cx=\"23\" cy=\"16\" r=\"6\"/><circle cx=\"43\" cy=\"32\" r=\"6\"/><circle cx=\"28\" cy=\"48\" r=\"6\"/></svg><span>POLICY<br>SIMULATION</span></div><div class=\"hp-region\"><span>ALBERTA</span><strong>AB</strong><div class=\"hp-mini-bars\"><i></i><i></i><i></i><i></i><i></i></div></div></div><div class=\"hp-outcome-strip\"><span><svg class=\"hp-icon\" viewBox=\"0 0 64 64\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2.4\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\"><path d=\"M32 54 10 33C-2 19 15 2 32 19 49 2 66 19 54 33z\"/><path d=\"M12 32h12l5-9 6 18 5-9h12\"/></svg>Health outcomes</span><span><svg class=\"hp-icon\" viewBox=\"0 0 64 64\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2.4\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\"><ellipse cx=\"26\" cy=\"16\" rx=\"20\" ry=\"8\"/><path d=\"M6 16v26c0 10 40 10 40 0V16M6 29c0 10 40 10 40 0M48 29c15 2 15 13 0 16m0 0v11c15-3 15-13 15-13\"/></svg>Economic impact</span></div><div class=\"hp-facts\"><div><strong>5+ <small>years</small></strong><span>provincial data</span></div><div><strong>10,000</strong><span>Monte Carlo draws</span></div></div></div><p class=\"hp-caption\">An independently built prototype connecting policy choices, health outcomes, and costs.</p><footer><span>Internship · August 2026</span></footer></section>"
+    },
+    {
+      "type": "visual",
+      "html": "<section class=\"hc-slide hp-slide hp-controls-slide\"><header><span>J HEALTHCARE INITIATIVE</span><span>02 / 08</span></header><h2>Four levers, multiple outcomes</h2><div class=\"hp-content\"><div class=\"hp-control-board\"><div><span><b>01</b>Naloxone distribution</span><div class=\"hp-slider\" style=\"--level:62%\"><i></i></div></div><div><span><b>02</b>Supervised consumption capacity</span><div class=\"hp-slider\" style=\"--level:40%\"><i></i></div></div><div><span><b>03</b>Drug checking</span><div class=\"hp-slider\" style=\"--level:75%\"><i></i></div></div><div><span><b>04</b>Safer / prescribed supply</span><div class=\"hp-slider\" style=\"--level:48%\"><i></i></div></div></div><div class=\"hp-flow-label\">↓ Compare projected outcomes ↓</div><div class=\"hp-output-grid\"><span><svg class=\"hp-icon\" viewBox=\"0 0 64 64\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2.4\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\"><path d=\"M32 54 10 33C-2 19 15 2 32 19 49 2 66 19 54 33z\"/><path d=\"M12 32h12l5-9 6 18 5-9h12\"/></svg>Deaths + overdoses</span><span><svg class=\"hp-icon\" viewBox=\"0 0 64 64\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2.4\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\"><path d=\"M12 58V9h40v49M6 58h52M26 58V44h12v14M26 18h12m-6-6v12M21 31h4m14 0h4\"/></svg>Healthcare use</span><span><svg class=\"hp-icon\" viewBox=\"0 0 64 64\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2.4\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\"><ellipse cx=\"26\" cy=\"16\" rx=\"20\" ry=\"8\"/><path d=\"M6 16v26c0 10 40 10 40 0V16M6 29c0 10 40 10 40 0M48 29c15 2 15 13 0 16m0 0v11c15-3 15-13 15-13\"/></svg>Costs</span></div></div><p class=\"hp-caption\">Compare intervention levels to explore projected health outcomes and costs.</p><footer><span>Illustrated controls · Not live simulator inputs</span></footer></section>"
+    },
+    {
+      "type": "visual",
+      "html": "<section class=\"hc-slide hp-slide hp-data-slide\"><header><span>J HEALTHCARE INITIATIVE</span><span>03 / 08</span></header><h2>Usable data came first</h2><div class=\"hp-content\"><div class=\"hp-source-files\"><div><svg class=\"hp-icon\" viewBox=\"0 0 64 64\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2.4\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\"><path d=\"M14 5h24l14 14v40H14zM38 5v15h14M22 31h22M22 40h22M22 49h14\"/></svg><b>CSV</b><span>Different dates</span></div><div><svg class=\"hp-icon\" viewBox=\"0 0 64 64\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2.4\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\"><path d=\"M14 5h24l14 14v40H14zM38 5v15h14M22 31h22M22 40h22M22 49h14\"/></svg><b>Reports</b><span>Different formats</span></div><div><svg class=\"hp-icon\" viewBox=\"0 0 64 64\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2.4\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\"><path d=\"M14 5h24l14 14v40H14zM38 5v15h14M22 31h22M22 40h22M22 49h14\"/></svg><b>Web data</b><span>Different labels</span></div></div><div class=\"hp-clean-stage\"><svg class=\"hp-icon\" viewBox=\"0 0 64 64\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2.4\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\"><path d=\"M7 12h50L39 33v18l-14 8V33zM46 3v10m-5-5h10\"/></svg><div><strong>Standardize + align</strong><span>Dates · definitions · monthly records</span></div></div><div class=\"hp-table\"><div class=\"hp-table-label\">ONE CONSISTENT MONTHLY PANEL</div><table><thead><tr><th>Month</th><th>Province</th><th>Outcomes</th><th>Policy</th></tr></thead><tbody><tr><td>YYYY-MM</td><td>BC</td><td>Aligned</td><td>Aligned</td></tr><tr><td>YYYY-MM</td><td>Alberta</td><td>Aligned</td><td>Aligned</td></tr></tbody></table></div></div><p class=\"hp-caption\">Sourcing and standardizing 5+ years of BC and Alberta data was the hardest part.</p><footer><span>Illustrative table structure · No patient data</span></footer></section>"
+    },
+    {
+      "type": "visual",
+      "html": "<section class=\"hc-slide hp-slide hp-chart-slide\"><header><span>J HEALTHCARE INITIATIVE</span><span>04 / 08</span></header><h2>Separate policy effects from trends</h2><div class=\"hp-content\"><div class=\"hp-legend\"><span><i></i>Observed</span><span><i class=\"hp-dashed\"></i>Counterfactual</span></div><svg class=\"hp-plot\" viewBox=\"0 0 560 220\" role=\"img\" aria-label=\"Conceptual time series with a policy-change marker, observed trajectory, and dashed counterfactual; not model results\" xmlns=\"http://www.w3.org/2000/svg\"><path d=\"M38 24V180H534\" fill=\"none\" stroke=\"#aebbb5\" stroke-width=\"1.5\"/><path d=\"M38 65h496M38 120h496\" fill=\"none\" stroke=\"#e3e9e4\"/><text x=\"40\" y=\"15\">Outcome</text><text x=\"470\" y=\"210\">Time →</text><path d=\"M48 132 100 117 150 126 205 102 260 110 310 91 365 96 420 77 475 72 520 60\" fill=\"none\" stroke=\"#7c8794\" stroke-width=\"3\" stroke-dasharray=\"7 6\"/><path d=\"M48 132 100 117 150 126 205 102 260 110 310 107 365 118 420 126 475 146 520 152\" fill=\"none\" stroke=\"#16786f\" stroke-width=\"4\"/><path d=\"M260 30v150\" stroke=\"#c43f4b\" stroke-width=\"2\" stroke-dasharray=\"4 5\"/><text x=\"270\" y=\"42\" class=\"hp-coral-label\">Policy change</text><path d=\"M270 164h82\" stroke=\"#c43f4b\" stroke-width=\"2\"/><text x=\"278\" y=\"198\">Delayed effect</text></svg><div class=\"hp-methods\"><span><b>Trends</b>ITSA</span><span><b>Counts</b>Count models</span><span><b>Delays</b>Lag models</span></div></div><p class=\"hp-caption\">Account for changing conditions and delayed responses when estimating effects.</p><footer><span>Illustrative — not model results</span><a href=\"J%20Healthcare/assets/web/time-effects.svg\" target=\"_blank\" rel=\"noopener noreferrer\">Full diagram ↗</a></footer></section>"
+    },
+    {
+      "type": "visual",
+      "html": "<section class=\"hc-slide hp-slide hp-comparison-slide\"><header><span>J HEALTHCARE INITIATIVE</span><span>05 / 08</span></header><h2>Build a credible comparison</h2><div class=\"hp-content\"><div class=\"hp-donor-mix\"><div><span>A</span><span>B</span><span>C</span></div><b>→</b><div class=\"hp-weighted\"><i></i><strong>Weighted comparison</strong></div></div><svg class=\"hp-plot\" viewBox=\"0 0 560 220\" role=\"img\" aria-label=\"Conceptual observed and weighted-comparison trajectories; generic comparison regions and no empirical results\" xmlns=\"http://www.w3.org/2000/svg\"><path d=\"M38 24V180H534\" fill=\"none\" stroke=\"#aebbb5\" stroke-width=\"1.5\"/><path d=\"M38 65h496M38 120h496\" fill=\"none\" stroke=\"#e3e9e4\"/><text x=\"40\" y=\"15\">Outcome</text><text x=\"470\" y=\"210\">Time →</text><path d=\"M48 138 105 122 160 129 215 108 270 115 330 95 390 89 455 78 520 65\" fill=\"none\" stroke=\"#7c8794\" stroke-width=\"3\" stroke-dasharray=\"7 6\"/><path d=\"M48 140 105 120 160 131 215 106 270 114 330 125 390 137 455 141 520 157\" fill=\"none\" stroke=\"#16786f\" stroke-width=\"4\"/><path d=\"M280 28v152\" stroke=\"#c43f4b\" stroke-width=\"2\" stroke-dasharray=\"4 5\"/><text x=\"48\" y=\"42\">Match before</text><text x=\"310\" y=\"42\">Compare after</text></svg><div class=\"hp-legend\"><span><i></i>Observed</span><span><i class=\"hp-dashed\"></i>Weighted comparison</span></div></div><p class=\"hp-caption\">SDID needs suitable comparison regions and enough pre-policy history. BC and Alberta alone do not establish adequacy.</p><footer><span>Generic regions · Not model results</span><a href=\"J%20Healthcare/assets/web/comparison.svg\" target=\"_blank\" rel=\"noopener noreferrer\">Full diagram ↗</a></footer></section>"
+    },
+    {
+      "type": "visual",
+      "html": "<section class=\"hc-slide hp-slide hp-uncertainty-slide\"><header><span>J HEALTHCARE INITIATIVE</span><span>06 / 08</span></header><h2>Explore a range, not one forecast</h2><div class=\"hp-content\"><div class=\"hp-simulation\"><div><svg class=\"hp-icon\" viewBox=\"0 0 64 64\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2.4\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\"><path d=\"M8 16h48M8 32h48M8 48h48\"/><circle cx=\"23\" cy=\"16\" r=\"6\"/><circle cx=\"43\" cy=\"32\" r=\"6\"/><circle cx=\"28\" cy=\"48\" r=\"6\"/></svg><span>Example policy change<strong>Naloxone +30%</strong></span></div><b>→</b><div><svg class=\"hp-icon\" viewBox=\"0 0 64 64\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2.4\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\"><path d=\"M6 32h17M23 32C36 32 34 10 57 10M23 32h34M23 32c13 0 11 22 34 22\"/><circle cx=\"57\" cy=\"10\" r=\"4\"/><circle cx=\"57\" cy=\"32\" r=\"4\"/><circle cx=\"57\" cy=\"54\" r=\"4\"/></svg><span>Explore uncertainty<strong>10,000 draws</strong></span></div></div><svg class=\"hp-plot\" viewBox=\"0 0 560 220\" role=\"img\" aria-label=\"Conceptual simulation paths and widening uncertainty band, dashed baseline and solid scenario; not actual model results\" xmlns=\"http://www.w3.org/2000/svg\"><path d=\"M38 24V180H534\" fill=\"none\" stroke=\"#aebbb5\" stroke-width=\"1.5\"/><path d=\"M38 65h496M38 120h496\" fill=\"none\" stroke=\"#e3e9e4\"/><text x=\"40\" y=\"15\">Outcome</text><text x=\"470\" y=\"210\">Time →</text><path d=\"M48 120 140 109 230 94 320 71 420 46 520 30L520 169 420 154 320 140 230 131 140 126 48 120Z\" fill=\"#d8eee9\"/><path d=\"M48 120 140 116 230 110 320 103 420 96 520 88\" fill=\"none\" stroke=\"#7c8794\" stroke-width=\"3\" stroke-dasharray=\"7 6\"/><path d=\"M48 120 Q220 85 520 43\" fill=\"none\" stroke=\"#16786f\" stroke-opacity=\".2\" stroke-width=\"1.5\"/><path d=\"M48 120 Q220 91 520 58\" fill=\"none\" stroke=\"#16786f\" stroke-opacity=\".2\" stroke-width=\"1.5\"/><path d=\"M48 120 Q220 97 520 73\" fill=\"none\" stroke=\"#16786f\" stroke-opacity=\".2\" stroke-width=\"1.5\"/><path d=\"M48 120 Q220 103 520 88\" fill=\"none\" stroke=\"#16786f\" stroke-opacity=\".2\" stroke-width=\"1.5\"/><path d=\"M48 120 Q220 109 520 103\" fill=\"none\" stroke=\"#16786f\" stroke-opacity=\".2\" stroke-width=\"1.5\"/><path d=\"M48 120 Q220 115 520 118\" fill=\"none\" stroke=\"#16786f\" stroke-opacity=\".2\" stroke-width=\"1.5\"/><path d=\"M48 120 Q220 121 520 133\" fill=\"none\" stroke=\"#16786f\" stroke-opacity=\".2\" stroke-width=\"1.5\"/><path d=\"M48 120 Q220 127 520 148\" fill=\"none\" stroke=\"#16786f\" stroke-opacity=\".2\" stroke-width=\"1.5\"/><path d=\"M48 120Q240 118 520 135\" fill=\"none\" stroke=\"#16786f\" stroke-width=\"4\"/><text x=\"340\" y=\"20\">Possible paths</text></svg><div class=\"hp-legend\"><span><i></i>Scenario</span><span><i class=\"hp-dashed\"></i>Baseline</span></div><div class=\"hp-band-key\"><i></i>Shaded band: illustrative uncertainty</div></div><p class=\"hp-caption\">Propagate parameter uncertainty, plus predictive variability where applicable.</p><footer><span>Illustrative — not model results</span><a href=\"J%20Healthcare/assets/web/uncertainty.svg\" target=\"_blank\" rel=\"noopener noreferrer\">Full diagram ↗</a></footer></section>"
+    },
+    {
+      "type": "visual",
+      "html": "<section class=\"hc-slide hp-slide hp-cost-slide\"><header><span>J HEALTHCARE INITIATIVE</span><span>07 / 08</span></header><h2>Connect health outcomes to costs</h2><div class=\"hp-content\"><div class=\"hp-care-icons\"><div><svg class=\"hp-icon\" viewBox=\"0 0 64 64\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2.4\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\"><path d=\"M12 58V9h40v49M6 58h52M26 58V44h12v14M26 18h12m-6-6v12M21 31h4m14 0h4\"/></svg><strong>Hospital</strong></div><div><svg class=\"hp-icon\" viewBox=\"0 0 64 64\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2.4\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\"><rect x=\"10\" y=\"17\" width=\"44\" height=\"36\" rx=\"5\"/><path d=\"M24 17V9h16v8M23 35h18m-9-9v18\"/></svg><strong>Emergency dept</strong></div><div><svg class=\"hp-icon\" viewBox=\"0 0 64 64\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2.4\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\"><path d=\"M5 16h32v34H5zM37 28h12l10 12v10H37M16 26h12m-6-6v12M42 33v8h14\"/><circle cx=\"17\" cy=\"51\" r=\"6\"/><circle cx=\"48\" cy=\"51\" r=\"6\"/></svg><strong>EMS</strong></div></div><div class=\"hp-cost-rule\">Utilization <b>×</b> unit costs</div><div class=\"hp-cost-ledger\"><div><span>Scenario healthcare costs</span></div><div><b>+</b><span>Intervention costs</span></div><div><b>−</b><span>Baseline healthcare costs</span></div><div><b>=</b><strong>Net cost change</strong></div></div></div><p class=\"hp-caption\">A negative net change means savings after intervention spending is included.</p><footer><span>Conceptual cost calculation · No dollar estimates</span></footer></section>"
+    },
+    {
+      "type": "visual",
+      "html": "<section class=\"hc-slide hp-slide hp-build-slide\"><header><span>J HEALTHCARE INITIATIVE</span><span>08 / 08</span></header><h2>Built from data to decisions</h2><div class=\"hp-content\"><ol class=\"hp-build\"><li><svg class=\"hp-icon\" viewBox=\"0 0 64 64\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2.4\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\"><ellipse cx=\"32\" cy=\"13\" rx=\"23\" ry=\"8\"/><path d=\"M9 13v35c0 11 46 11 46 0V13M9 30c0 11 46 11 46 0\"/></svg><div><small>01</small><strong>Prepare the data</strong><span>Pandas · NumPy · SQL</span></div></li><li><svg class=\"hp-icon\" viewBox=\"0 0 64 64\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2.4\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\"><path d=\"M10 8v46h46M18 40l10-15 12 8 15-20\"/><circle cx=\"28\" cy=\"25\" r=\"3\"/><circle cx=\"40\" cy=\"33\" r=\"3\"/></svg><div><small>02</small><strong>Estimate policy effects</strong><span>Statsmodels · SciPy</span></div></li><li><svg class=\"hp-icon\" viewBox=\"0 0 64 64\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2.4\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\"><path d=\"M6 32h17M23 32C36 32 34 10 57 10M23 32h34M23 32c13 0 11 22 34 22\"/><circle cx=\"57\" cy=\"10\" r=\"4\"/><circle cx=\"57\" cy=\"32\" r=\"4\"/><circle cx=\"57\" cy=\"54\" r=\"4\"/></svg><div><small>03</small><strong>Simulate outcomes + costs</strong><span>NumPy · SciPy</span></div></li><li><svg class=\"hp-icon\" viewBox=\"0 0 64 64\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2.4\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\"><rect x=\"6\" y=\"8\" width=\"52\" height=\"37\" rx=\"4\"/><path d=\"M24 45v12m16-12v12M17 57h30M14 34l10-12 11 7 14-13\"/></svg><div><small>04</small><strong>Explore in the application</strong><span>FastAPI · Streamlit · Plotly</span></div></li></ol><div class=\"hp-built-badge\">Built independently <span>Packaged with Docker</span></div></div><p class=\"hp-caption\">Interpret projections in light of data quality, observational assumptions, comparison regions, and historical support.</p><footer><span>J Healthcare Initiative · August 2026</span></footer></section>"
+    }
+  ],
+  "comments": [
+    {
+      "user": "Matthew Yu",
+      "avatar": "avatar",
+      "text": "During my August 2026 internship with the J Healthcare Initiative, I independently built a statistical policy simulator using more than five years of British Columbia and Alberta drug data. I sourced and standardized datasets, implemented controlled ITSA, SDID robustness checks, count and lag models, and 10,000-draw Monte Carlo scenarios to explore health outcomes and costs. Projections depend on data quality and modeling assumptions; conceptual visuals here are not actual results.",
+      "time": "August 2026"
+    }
+  ]
+},
+  "campus-collectives": {
+  "title": "Campus Collectives",
+  "date": "December 2025",
+  "likes": 0,
+  "commentsCount": 0,
+  "slides": [
+    {
+      "type": "visual",
+      "html": "<section class=\"cc-slide cc-hero\"><header><span>CAMPUS COLLECTIVES / AI OPERATIONS</span><span>01 / 08</span></header><h2>AI agents, 80% less manual work</h2><div class=\"cc-body\"><a class=\"cc-storefront\" href=\"Campus%20Collectives/storefront.png\" target=\"_blank\" rel=\"noopener noreferrer\"><img src=\"Campus%20Collectives/storefront.png\" alt=\"Campus Collectives apparel storefront with a campus hoodie hero image\"></a><div class=\"cc-time\"><strong>10 <span>→</span> 2</strong><span>hours of manual work / week</span></div><div class=\"cc-metrics\"><span><b>98</b> orders</span><span><b>$6K+</b> revenue</span><span><b>8h</b> saved weekly</span></div></div><footer>AI orchestration behind a working ecommerce business</footer></section>"
+    },
+    {
+      "type": "visual",
+      "html": "<section class=\"cc-slide cc-journey-slide\"><header><span>CAMPUS COLLECTIVES / AI OPERATIONS</span><span>02 / 08</span></header><h2>One order, many moving parts</h2><div class=\"cc-body\"><div class=\"cc-journey\"><div class=\"cc-stop\"><div class=\"cc-stop-art\"><svg class=\"cc-icon\" viewBox=\"0 0 64 64\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2.5\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\"><path d=\"M14 20h36l4 34H10z\"/><path d=\"M23 23V16a9 9 0 0 1 18 0v7\"/></svg><span>01</span></div><strong>Order arrives</strong><p>Import from the marketplace</p></div><div class=\"cc-stop\"><div class=\"cc-stop-art\"><svg class=\"cc-icon\" viewBox=\"0 0 64 64\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2.5\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\"><path d=\"m8 20 24-12 24 12v26L32 58 8 46zM8 20l24 12 24-12M32 32v26M20 14l24 12v12\"/></svg><span>02</span></div><strong>Supplier prep</strong><p>Map products + validate freight</p></div><div class=\"cc-stop\"><div class=\"cc-stop-art\"><svg class=\"cc-icon\" viewBox=\"0 0 64 64\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2.5\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\"><rect x=\"7\" y=\"14\" width=\"50\" height=\"36\" rx=\"5\"/><path d=\"m8 17 24 18 24-18M8 48l17-16m31 16L39 32\"/></svg><span>03</span></div><strong>Shipment arrives</strong><p>Read the email evidence</p></div><div class=\"cc-stop\"><div class=\"cc-stop-art\"><svg class=\"cc-icon\" viewBox=\"0 0 64 64\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2.5\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\"><path d=\"m15 32 11 11 24-25\"/><circle cx=\"32\" cy=\"32\" r=\"26\"/></svg><span>04</span></div><strong>Tracking updated</strong><p>Match, validate, and send</p></div></div><div class=\"cc-takeaway\"><svg class=\"cc-icon\" viewBox=\"0 0 64 64\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2.5\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\"><rect x=\"18\" y=\"18\" width=\"28\" height=\"28\" rx=\"8\"/><path d=\"M25 7v11m14-11v11M25 46v11m14-11v11M7 25h11M7 39h11m28-14h11M46 39h11M26 32h12m-6-6v12\"/></svg><p><strong>The agent connects the steps</strong><br>One workflow instead of repeated handoffs</p></div></div><footer>Order intake → supplier preparation → shipment → tracking</footer></section>"
+    },
+    {
+      "type": "visual",
+      "html": "<section class=\"cc-slide cc-graph-slide\"><header><span>CAMPUS COLLECTIVES / AI OPERATIONS</span><span>03 / 08</span></header><h2>Inside the AI agent workflow</h2><div class=\"cc-body\"><div class=\"cc-orchestrator\"><svg class=\"cc-icon\" viewBox=\"0 0 64 64\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2.5\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\"><rect x=\"18\" y=\"18\" width=\"28\" height=\"28\" rx=\"8\"/><path d=\"M25 7v11m14-11v11M25 46v11m14-11v11M7 25h11M7 39h11m28-14h11M46 39h11M26 32h12m-6-6v12\"/></svg><div><strong>Custom orchestrator</strong><span>Coordinates tools + AI reasoning</span></div><b>AI</b></div><ol class=\"cc-nodes\"><li class=\"\"><svg class=\"cc-icon\" viewBox=\"0 0 64 64\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2.5\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\"><path d=\"M14 20h36l4 34H10z\"/><path d=\"M23 23V16a9 9 0 0 1 18 0v7\"/></svg><div><small>01 / TOOL</small><strong>Order intake</strong><span>Eligible marketplace orders</span></div></li><li class=\"\"><svg class=\"cc-icon\" viewBox=\"0 0 64 64\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2.5\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\"><path d=\"m8 20 24-12 24 12v26L32 58 8 46zM8 20l24 12 24-12M32 32v26M20 14l24 12v12\"/></svg><div><small>02 / TOOL</small><strong>Supplier preparation</strong><span>Draft + freight checks</span></div></li><li class=\"cc-ai\"><svg class=\"cc-icon\" viewBox=\"0 0 64 64\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2.5\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\"><rect x=\"7\" y=\"14\" width=\"50\" height=\"36\" rx=\"5\"/><path d=\"m8 17 24 18 24-18M8 48l17-16m31 16L39 32\"/></svg><div><small>03 / AI</small><strong>Shipment evidence</strong><span>Parsing + AI enrichment</span></div></li><li class=\"\"><svg class=\"cc-icon\" viewBox=\"0 0 64 64\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2.5\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\"><path d=\"M6 12h52L39 34v17l-14 7V34z\"/></svg><div><small>04 / TOOL</small><strong>Candidate matching</strong><span>Deterministic shortlisting</span></div></li><li class=\"cc-ai\"><svg class=\"cc-icon\" viewBox=\"0 0 64 64\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2.5\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\"><rect x=\"18\" y=\"18\" width=\"28\" height=\"28\" rx=\"8\"/><path d=\"M25 7v11m14-11v11M25 46v11m14-11v11M7 25h11M7 39h11m28-14h11M46 39h11M26 32h12m-6-6v12\"/></svg><div><small>05 / AI</small><strong>AI adjudication</strong><span>Match + confidence + risk flags</span></div></li><li class=\"\"><svg class=\"cc-icon\" viewBox=\"0 0 64 64\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2.5\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\"><path d=\"m32 6 22 8v18c0 12-13 22-22 26C23 54 10 44 10 32V14zM22 31l7 7 14-16\"/></svg><div><small>06 / TOOL</small><strong>Confidence gate</strong><span>Proceed or request review</span></div></li></ol><div class=\"cc-branches\"><div><svg class=\"cc-icon\" viewBox=\"0 0 64 64\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2.5\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\"><path d=\"m15 32 11 11 24-25\"/><circle cx=\"32\" cy=\"32\" r=\"26\"/></svg><p><b>PASS</b><strong>Validate carrier → update tracking</strong></p></div><div><svg class=\"cc-icon\" viewBox=\"0 0 64 64\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2.5\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\"><circle cx=\"32\" cy=\"20\" r=\"10\"/><path d=\"M12 55v-8c0-10 9-15 20-15s20 5 20 15v8\"/></svg><p><b>UNCERTAIN</b><strong>Human review</strong></p></div></div><div class=\"cc-state\"><svg class=\"cc-icon\" viewBox=\"0 0 64 64\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2.5\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\"><ellipse cx=\"32\" cy=\"14\" rx=\"23\" ry=\"8\"/><path d=\"M9 14v34c0 11 46 11 46 0V14M9 31c0 11 46 11 46 0\"/></svg>Shared state · Orders · Evidence · Decisions · Events</div></div><footer>Simplified workflow · <a href=\"Campus%20Collectives/workflow.html\" target=\"_blank\" rel=\"noopener noreferrer\">Explore full diagram ↗</a></footer></section>"
+    },
+    {
+      "type": "visual",
+      "html": "<section class=\"cc-slide cc-email-slide\"><header><span>CAMPUS COLLECTIVES / AI OPERATIONS</span><span>04 / 08</span></header><h2>Turn an email into evidence</h2><div class=\"cc-body\"><div class=\"cc-letter\"><div class=\"cc-letter-bar\"><svg class=\"cc-icon\" viewBox=\"0 0 64 64\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2.5\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\"><rect x=\"7\" y=\"14\" width=\"50\" height=\"36\" rx=\"5\"/><path d=\"m8 17 24 18 24-18M8 48l17-16m31 16L39 32\"/></svg><span>SUPPLIER / SHIPPING UPDATE</span><i>•••</i></div><h3>Your order is on its way</h3><p>Hi <mark>Alex Example</mark>, your <mark>navy hoodie · M</mark> has shipped to <mark>12 Sample Lane</mark></p><div class=\"cc-tracking\">TRACKING <strong>DEMO-TRACK-001</strong></div></div><div class=\"cc-extract-flow\"><span>Parse</span><b>↓</b><svg class=\"cc-icon\" viewBox=\"0 0 64 64\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2.5\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\"><rect x=\"18\" y=\"18\" width=\"28\" height=\"28\" rx=\"8\"/><path d=\"M25 7v11m14-11v11M25 46v11m14-11v11M7 25h11M7 39h11m28-14h11M46 39h11M26 32h12m-6-6v12\"/></svg><strong>AI fills evidence gaps</strong></div><dl class=\"cc-fields\"><div><dt>Recipient</dt><dd>Alex Example</dd></div><div><dt>Address</dt><dd>12 Sample Lane</dd></div><div><dt>Item + variant</dt><dd>Hoodie / Navy / M</dd></div><div><dt>Tracking</dt><dd>DEMO-TRACK-001</dd></div></dl></div><footer>Fictional example · AI enriches missing or suspect fields</footer></section>"
+    },
+    {
+      "type": "visual",
+      "html": "<section class=\"cc-slide cc-match-slide\"><header><span>CAMPUS COLLECTIVES / AI OPERATIONS</span><span>05 / 08</span></header><h2>Find the right order with AI</h2><div class=\"cc-body\"><div class=\"cc-match-scene\"><div class=\"cc-candidates\"><small>SHORTLIST</small><div>DEMO-018<span>Different item</span></div><div class=\"cc-candidate-selected\">DEMO-042<span>Evidence aligns</span></div><div>DEMO-067<span>Different recipient</span></div></div><span class=\"cc-connector\">→</span><div class=\"cc-brain\"><svg class=\"cc-icon\" viewBox=\"0 0 64 64\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2.5\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\"><rect x=\"18\" y=\"18\" width=\"28\" height=\"28\" rx=\"8\"/><path d=\"M25 7v11m14-11v11M25 46v11m14-11v11M7 25h11M7 39h11m28-14h11M46 39h11M26 32h12m-6-6v12\"/></svg><strong>AI match</strong><span>LangChain + Groq</span></div><span class=\"cc-connector\">→</span><div class=\"cc-match-result\"><svg class=\"cc-icon\" viewBox=\"0 0 64 64\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2.5\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\"><path d=\"m15 32 11 11 24-25\"/><circle cx=\"32\" cy=\"32\" r=\"26\"/></svg><small>MATCH FOUND</small><strong>DEMO-042</strong><span>High confidence</span></div></div><div class=\"cc-evidence\"><span>✓ Recipient</span><span>✓ Item + variant</span><span>✓ Address</span></div><p class=\"cc-lead\">Rules shortlist candidates<br><strong>AI weighs the evidence</strong></p></div><footer>Illustrative match · Structured output includes confidence and risk flags</footer></section>"
+    },
+    {
+      "type": "visual",
+      "html": "<section class=\"cc-slide cc-gate-slide\"><header><span>CAMPUS COLLECTIVES / AI OPERATIONS</span><span>06 / 08</span></header><h2>Know when to ask for help</h2><div class=\"cc-body\"><div class=\"cc-decision-root\"><svg class=\"cc-icon\" viewBox=\"0 0 64 64\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2.5\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\"><path d=\"m32 6 22 8v18c0 12-13 22-22 26C23 54 10 44 10 32V14zM22 31l7 7 14-16\"/></svg><strong>Confidence gate</strong><span>Evidence determines the next step</span></div><svg class=\"cc-fork\" viewBox=\"0 0 500 55\" aria-hidden=\"true\"><path d=\"M250 0v20H95v30m155-30h155v30\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\"/><path d=\"m89 43 6 7 6-7m298 0 6 7 6-7\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\"/></svg><div class=\"cc-paths\"><div class=\"cc-pass\"><svg class=\"cc-icon\" viewBox=\"0 0 64 64\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2.5\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\"><path d=\"m15 32 11 11 24-25\"/><circle cx=\"32\" cy=\"32\" r=\"26\"/></svg><small>STRONG EVIDENCE</small><h3>Update tracking</h3><p>Confident match<br>Valid tracking + carrier</p></div><div><svg class=\"cc-icon\" viewBox=\"0 0 64 64\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2.5\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\"><circle cx=\"32\" cy=\"20\" r=\"10\"/><path d=\"M12 55v-8c0-10 9-15 20-15s20 5 20 15v8\"/></svg><small>NEEDS ATTENTION</small><h3>Human review</h3><p>Unclear match<br>Missing shipment details</p></div></div></div><footer>Supplier purchasing remains an explicit human action</footer></section>"
+    },
+    {
+      "type": "visual",
+      "html": "<section class=\"cc-slide cc-ledger-slide\"><header><span>CAMPUS COLLECTIVES / AI OPERATIONS</span><span>07 / 08</span></header><h2>A workflow that remembers</h2><div class=\"cc-body\"><div class=\"cc-triggers\"><span><svg class=\"cc-icon\" viewBox=\"0 0 64 64\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2.5\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\"><path d=\"m36 4-23 31h17l-3 25 24-34H34z\"/></svg>Webhook</span><span><svg class=\"cc-icon\" viewBox=\"0 0 64 64\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2.5\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\"><circle cx=\"32\" cy=\"32\" r=\"25\"/><path d=\"M32 15v18l12 7\"/></svg>Schedule</span><span><svg class=\"cc-icon\" viewBox=\"0 0 64 64\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2.5\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\"><circle cx=\"32\" cy=\"20\" r=\"10\"/><path d=\"M12 55v-8c0-10 9-15 20-15s20 5 20 15v8\"/></svg>Manual</span></div><div class=\"cc-ledger\"><div class=\"cc-ledger-title\"><svg class=\"cc-icon\" viewBox=\"0 0 64 64\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2.5\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\"><ellipse cx=\"32\" cy=\"14\" rx=\"23\" ry=\"8\"/><path d=\"M9 14v34c0 11 46 11 46 0V14M9 31c0 11 46 11 46 0\"/></svg><div><small>PERSISTENT WORKFLOW STATE</small><strong>Every step leaves a record</strong></div></div><ol class=\"cc-event-list\"><li><span class=\"cc-event-dot\"></span><div><strong>Order imported</strong><span>Saved in the fulfillment queue</span></div><b>01</b></li><li><span class=\"cc-event-dot\"></span><div><strong>Shipment evidence stored</strong><span>Processed messages are recognized</span></div><b>02</b></li><li><span class=\"cc-event-dot\"></span><div><strong>Decision recorded</strong><span>Match, confidence, and next action</span></div><b>03</b></li></ol></div></div><footer>Illustrative event history · Traceable states and message deduplication</footer></section>"
+    },
+    {
+      "type": "visual",
+      "html": "<section class=\"cc-slide cc-outcome\"><header><span>CAMPUS COLLECTIVES / AI OPERATIONS</span><span>08 / 08</span></header><h2>8 hours back every week</h2><div class=\"cc-body\"><div class=\"cc-savings\"><strong>80<span>%</span></strong><div>less manual work<span>10 → 2 hours / week</span></div></div><div class=\"cc-hours\" role=\"img\" aria-label=\"Ten weekly hours: two hours of manual work remaining and eight hours saved\"><span class=\"cc-hour-work\"><svg class=\"cc-icon\" viewBox=\"0 0 64 64\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2.5\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\"><circle cx=\"32\" cy=\"32\" r=\"25\"/><path d=\"M32 15v18l12 7\"/></svg></span><span class=\"cc-hour-work\"><svg class=\"cc-icon\" viewBox=\"0 0 64 64\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2.5\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\"><circle cx=\"32\" cy=\"32\" r=\"25\"/><path d=\"M32 15v18l12 7\"/></svg></span><span class=\"cc-hour-saved\"><svg class=\"cc-icon\" viewBox=\"0 0 64 64\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2.5\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\"><circle cx=\"32\" cy=\"32\" r=\"25\"/><path d=\"M32 15v18l12 7\"/></svg></span><span class=\"cc-hour-saved\"><svg class=\"cc-icon\" viewBox=\"0 0 64 64\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2.5\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\"><circle cx=\"32\" cy=\"32\" r=\"25\"/><path d=\"M32 15v18l12 7\"/></svg></span><span class=\"cc-hour-saved\"><svg class=\"cc-icon\" viewBox=\"0 0 64 64\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2.5\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\"><circle cx=\"32\" cy=\"32\" r=\"25\"/><path d=\"M32 15v18l12 7\"/></svg></span><span class=\"cc-hour-saved\"><svg class=\"cc-icon\" viewBox=\"0 0 64 64\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2.5\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\"><circle cx=\"32\" cy=\"32\" r=\"25\"/><path d=\"M32 15v18l12 7\"/></svg></span><span class=\"cc-hour-saved\"><svg class=\"cc-icon\" viewBox=\"0 0 64 64\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2.5\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\"><circle cx=\"32\" cy=\"32\" r=\"25\"/><path d=\"M32 15v18l12 7\"/></svg></span><span class=\"cc-hour-saved\"><svg class=\"cc-icon\" viewBox=\"0 0 64 64\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2.5\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\"><circle cx=\"32\" cy=\"32\" r=\"25\"/><path d=\"M32 15v18l12 7\"/></svg></span><span class=\"cc-hour-saved\"><svg class=\"cc-icon\" viewBox=\"0 0 64 64\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2.5\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\"><circle cx=\"32\" cy=\"32\" r=\"25\"/><path d=\"M32 15v18l12 7\"/></svg></span><span class=\"cc-hour-saved\"><svg class=\"cc-icon\" viewBox=\"0 0 64 64\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2.5\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\"><circle cx=\"32\" cy=\"32\" r=\"25\"/><path d=\"M32 15v18l12 7\"/></svg></span></div><div class=\"cc-hours-key\"><span><i></i>2h remaining</span><span><i></i>8h saved</span></div><div class=\"cc-business\"><div><strong>98</strong><span>orders</span></div><div><strong>$6K+</strong><span>revenue</span></div></div><div class=\"cc-stack\">TypeScript · Next.js · LangChain · Groq<br>Persistent workflow storage</div></div><footer>Business totals and time savings reported by Matthew</footer></section>"
+    }
+  ],
+  "comments": [
+    {
+      "user": "Matthew Yu",
+      "avatar": "avatar",
+      "text": "I built Campus Collectives and an AI-powered fulfillment workflow that reduced manual operations from 10 hours to 2 hours per week — an 80% reduction, saving 8 hours weekly. The business reached 98 orders and over $6K in revenue.\n\nBehind the storefront, an agent orchestrator coordinates marketplace orders, supplier preparation, shipment-email extraction, AI-assisted matching, and tracking updates. Built with LangChain and Groq, it combines structured model decisions with deterministic checks and routes uncertain cases to human review.",
+      "time": "December 2025"
+    }
+  ]
+},
   "scoreshift": {
     title: "ScoreShift",
     likes: 1245,
@@ -161,7 +313,7 @@ const PROJECT_DATA = {
     ]
   },
   "hvac-model": {
-    title: "HavenIQ HVAC Model",
+    title: "HomeWise AI HVAC Model",
     likes: 840,
     commentsCount: 12,
     date: "April 15, 2026",
@@ -173,8 +325,8 @@ const PROJECT_DATA = {
         type: "visual",
         html: `
           <div class="slide-cover-root model-theme">
-            <div class="slide-cover-title">HavenIQ HVAC Model</div>
-            <div class="slide-cover-subtitle">Machine learning pipeline predicting HVAC confidence scores from sliding sensor telemetry.</div>
+            <div class="slide-cover-title">HomeWise AI HVAC Model</div>
+            <div class="slide-cover-subtitle">Built during my HomeWise AI internship: predicting HVAC confidence scores from sliding sensor telemetry.</div>
             <div class="slide-tech-badges">
               <span class="tech-badge">Python</span>
               <span class="tech-badge">XGBoost</span>
@@ -225,7 +377,7 @@ const PROJECT_DATA = {
       {
         user: DISPLAY_NAME,
         avatar: "avatar",
-        text: "Built a dual-model regression pipeline using XGBoost and PyTorch to predict HVAC operational confidence scores. The pipeline reads telemetry windows, engineers features like temp deviation and slope trends, and outputs scores with an R² of 0.871 on held-out tests.",
+        text: "During my internship at HomeWise AI, I built a dual-model regression pipeline using XGBoost and PyTorch to predict HVAC operational confidence scores. The pipeline reads telemetry windows, engineers features like temp deviation and slope trends, and outputs scores with an R² of 0.871 on held-out tests.",
         time: "6w"
       },
       {
@@ -249,7 +401,7 @@ const PROJECT_DATA = {
     ]
   },
   "hvac-rag": {
-    title: "HavenIQ HVAC RAG System",
+    title: "HomeWise AI HVAC RAG System",
     likes: 950,
     commentsCount: 28,
     date: "May 10, 2026",
@@ -262,8 +414,8 @@ const PROJECT_DATA = {
         html: `
           <div class="rag-slide rag-cover-slide">
             <div class="rag-cover-copy">
-              <span class="rag-kicker">Telemetry RAG</span>
-              <h3>HavenIQ HVAC RAG</h3>
+              <span class="rag-kicker">HomeWise AI internship · Telemetry RAG</span>
+              <h3>HomeWise AI HVAC RAG</h3>
               <p>RAG for sensor telemetry, not documents. The service turns live HVAC readings into grounded operator guidance.</p>
               <div class="rag-badge-row">
                 <span>FastAPI</span>
@@ -392,7 +544,7 @@ const PROJECT_DATA = {
               </div>
             </div>
             <div class="rag-browser-frame docs-frame">
-              <img src="HavenIQ%20RAG/docs.png" alt="HavenIQ HVAC RAG FastAPI documentation page">
+              <div class="homewise-api-preview" aria-label="HomeWise AI API endpoint overview"><h4>HomeWise AI HVAC RAG</h4><span>Internship project · FastAPI endpoint overview</span><div><b>GET</b><code>/health</code></div><div><b>POST</b><code>/v1/hvac/windows/build</code></div><div><b>POST</b><code>/v1/hvac/train-encoder</code></div><div><b>POST</b><code>/v1/hvac/backfill-qdrant</code></div><div><b>POST</b><code>/v1/hvac/retrieve</code></div><div><b>POST</b><code>/v1/hvac/explain</code></div><div><b>POST</b><code>/v1/embed</code></div></div>
             </div>
           </div>
         `
@@ -414,7 +566,7 @@ const PROJECT_DATA = {
               </div>
             </div>
             <div class="rag-browser-frame response-frame">
-              <img src="HavenIQ%20RAG/response.png" alt="HavenIQ HVAC RAG JSON response showing operator guidance">
+              <img src="HomeWise%20AI%20RAG/response.png" alt="HomeWise AI HVAC RAG JSON response showing operator guidance">
             </div>
           </div>
         `
@@ -445,7 +597,7 @@ const PROJECT_DATA = {
       {
         user: DISPLAY_NAME,
         avatar: "avatar",
-        text: "Built a containerized RAG service that turns raw HVAC telemetry into operator-facing explanations. The FastAPI pipeline converts 8-reading sensor windows into engineered feature tensors, embeds them into 128-dimensional vectors with a PyTorch encoder, retrieves the top 5 similar historical incidents from Qdrant Cloud, and generates grounded guidance with incident type, severity, risk reasoning, recommended checks, evidence strength, and limitations. The first corpus processed 1,996 raw readings into 1,611 searchable windows across 5 incident classes.",
+        text: "During my internship at HomeWise AI, I built a containerized RAG service that turns raw HVAC telemetry into operator-facing explanations. The FastAPI pipeline converts 8-reading sensor windows into engineered feature tensors, embeds them into 128-dimensional vectors with a PyTorch encoder, retrieves the top 5 similar historical incidents from Qdrant Cloud, and generates grounded guidance with incident type, severity, risk reasoning, recommended checks, evidence strength, and limitations. The first corpus processed 1,996 raw readings into 1,611 searchable windows across 5 incident classes.",
         time: "3w"
       },
       {
@@ -480,72 +632,21 @@ const PROJECT_DATA = {
     commentsCount: 52,
     date: "April 2, 2026",
     link: "#",
-    github: "https://github.com",
+    github: "https://github.com/matthewninganyu/Othello-Bot",
     slides: [
-      // Slide 1: Cover
-      {
-        type: "visual",
-        html: `
-          <div class="slide-cover-root othello-theme">
-            <div class="slide-cover-title">AlphaZero Othello</div>
-            <div class="slide-cover-subtitle">Self-play reinforcement-learning engine combining PyTorch ResNet and neural-guided MCTS.</div>
-            <div class="slide-tech-badges">
-              <span class="tech-badge">Python</span>
-              <span class="tech-badge">PyTorch</span>
-              <span class="tech-badge">Numba JIT</span>
-              <span class="tech-badge">MCTS</span>
-              <span class="tech-badge">CUDA</span>
-              <span class="tech-badge">Multiprocessing</span>
-            </div>
-          </div>
-        `
-      },
-      // Slide 2: Board Visual representation
-      {
-        type: "visual",
-        html: `
-          <div class="slide-diagram-root" style="background:#0e3a2f">
-            <h4 style="color:#ffffff; margin-bottom:10px; font-family:var(--header-font)">Move Policies (PUCT Simulation)</h4>
-            <div class="othello-board">
-              <div class="ob-cell val-w" style="font-size:10px; color:#111">P=0.04</div>
-              <div class="ob-cell val-b" style="font-size:10px; color:#fff">P=0.45</div>
-              <div class="ob-cell val-b" style="font-size:10px; color:#fff">P=0.32</div>
-              <div class="ob-cell val-w" style="font-size:10px; color:#111">P=0.19</div>
-            </div>
-            <p style="font-size:11px; color:#a3e635; font-family:var(--code-font)">Batched leaf nodes evaluated in shared GPU forward pass</p>
-          </div>
-        `
-      },
-      // Slide 3: Code Card
-      {
-        type: "code",
-        filename: "othello/board.py",
-        code: `
-<span class="code-keyword">@njit</span>
-<span class="code-keyword">def</span> <span class="code-function">apply_move</span>(black_bb, white_bb, move_idx, player):
-    <span class="code-comment"># W=64 uint64 bit index operations</span>
-    move_mask = uint64(1) &lt;&lt; move_idx
-    flipped = uint64(0)
-    
-    <span class="code-comment"># Scan and flip pieces across 8 directions</span>
-    for d in range(8):
-        dir_flipped = scan_direction(black_bb, white_bb, move_mask, d, player)
-        flipped |= dir_flipped
-        
-    if player == 1: <span class="code-comment"># Black</span>
-        black_bb |= move_mask | flipped
-        white_bb &= ~flipped
-    else:           <span class="code-comment"># White</span>
-        white_bb |= move_mask | flipped
-        black_bb &= ~flipped
-    return black_bb, white_bb`
-      }
+      { type: "visual", html: "<section class=\"oz-slide oz-graphic-slide\"><header><span>OTHELLO / ENGINEERING</span><span>01 / 07</span></header><h2>Learning to play. Learning faster.</h2><div class=\"oz-art\"><div class=\"oz-overview\"><div class=\"oz-board\" role=\"img\" aria-label=\"Othello opening board with game pieces\"><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div><i class=\"oz-disc legal\"></i></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div><i class=\"oz-disc white\"></i></div><div><i class=\"oz-disc black\"></i></div><div></div><div></div><div></div><div></div><div></div><div></div><div><i class=\"oz-disc black\"></i></div><div><i class=\"oz-disc white\"></i></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div></div><div class=\"oz-bigstat\"><strong>&gt;60×</strong><span>faster training</span><small>Reported project result<br>Batching + parallel processing</small></div></div></div><p class=\"oz-takeaway\">Self-play supplies the experience. Search turns it into a better teacher.</p><details class=\"oz-details\"><summary>Technical notes</summary><p>AlphaZero-style Othello: a shared policy/value network guides MCTS, which generates training targets without expert-game labels. The reported speedup combines batching and parallel processing; baseline timings and hardware have not been supplied.</p></details><footer>Python · PyTorch · Numba · CUDA</footer></section>" },
+      { type: "visual", html: "<section class=\"oz-slide oz-graphic-slide\"><header><span>OTHELLO / ENGINEERING</span><span>02 / 07</span></header><h2>A teacher that improves with practice.</h2><div class=\"oz-art\"><div class=\"oz-loop\"><div class=\"oz-node\"><b>01 · PLAY</b><span>Network-guided self-play</span></div><span class=\"oz-arrow\" aria-hidden=\"true\">→</span><div class=\"oz-node\"><b>02 · COLLECT</b><span>Visits + final outcomes</span></div><span class=\"oz-loop-return\">↻ repeat with updated weights</span><div class=\"oz-node\"><b>04 · UPDATE</b><span>Learn policy + value</span></div><span class=\"oz-arrow\">←</span><div class=\"oz-node\"><b>03 · REMEMBER</b><span>Augment + replay</span></div></div></div><p class=\"oz-takeaway\">Search teaches the network. The updated network guides the next search.</p><details class=\"oz-details\"><summary>Technical notes</summary><p>Normalized MCTS visit counts become policy targets. Final game outcomes become value targets from the player-to-move perspective. Retained samples are rotated and mirrored before entering replay memory.</p></details><footer>No expert-game dataset required</footer></section>" },
+      { type: "visual", html: "<section class=\"oz-slide oz-graphic-slide\"><header><span>OTHELLO / ENGINEERING</span><span>03 / 07</span></header><h2>Two integers. An entire board.</h2><div class=\"oz-art\"><div class=\"oz-mask-pair\"><figure><div class=\"oz-board\" role=\"img\" aria-label=\"Othello opening board with black pieces\"><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div><i class=\"oz-disc black\"></i></div><div></div><div></div><div></div><div></div><div></div><div></div><div><i class=\"oz-disc black\"></i></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div></div><figcaption>BLACK · uint64</figcaption></figure><span class=\"oz-plus\">+</span><figure><div class=\"oz-board\" role=\"img\" aria-label=\"Othello opening board with white pieces\"><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div><i class=\"oz-disc white\"></i></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div><i class=\"oz-disc white\"></i></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div></div><figcaption>WHITE · uint64</figcaption></figure></div><div class=\"oz-capture\"><span>●</span><span>○</span><span>○</span><span class=\"oz-target\">◎</span><b>→ scan → legal move</b></div></div><p class=\"oz-takeaway\">Bit shifts scan capture lines. Edge masks prevent row wraparound.</p><details class=\"oz-details\"><summary>Technical notes</summary><p>Each bit maps to one square: row = i // 8, column = i % 8. Capture-line illustration is schematic.</p><p>Verbatim north-scan excerpt · othello/board.py</p><pre><code>    # North\n    candidates = opp &amp; (me &gt;&gt; 8)\n    for _ in range(6):\n        candidates |= opp &amp; (candidates &gt;&gt; 8)\n    moves |= empty &amp; (candidates &gt;&gt; 8)</code></pre></details><footer>Why Numba? Compile the move logic repeated throughout search.</footer></section>" },
+      { type: "visual", html: "<section class=\"oz-slide oz-graphic-slide\"><header><span>OTHELLO / ENGINEERING</span><span>04 / 07</span></header><h2>One shared trunk. Two useful answers.</h2><div class=\"oz-art\"><div class=\"oz-network\"><div class=\"oz-node\"><b>3 input planes</b><span>Own · opponent · turn</span></div><span class=\"oz-down\">↓</span><div class=\"oz-residual\"><span>↷ skip connection</span><div class=\"oz-node\"><b>10 residual blocks</b><span>128 channels · spatial features</span></div></div><span class=\"oz-down\">↓ split</span><div class=\"oz-heads\"><div><div class=\"oz-board\" role=\"img\" aria-label=\"Illustrative policy heatmap\"><div><span class=\"oz-heat\" style=\"opacity:0.15\"></span></div><div><span class=\"oz-heat\" style=\"opacity:0.4833333333333333\"></span></div><div><span class=\"oz-heat\" style=\"opacity:0.8166666666666667\"></span></div><div><span class=\"oz-heat\" style=\"opacity:0.4\"></span></div><div><span class=\"oz-heat\" style=\"opacity:0.7333333333333334\"></span></div><div><span class=\"oz-heat\" style=\"opacity:0.31666666666666665\"></span></div><div><span class=\"oz-heat\" style=\"opacity:0.65\"></span></div><div><span class=\"oz-heat\" style=\"opacity:0.23333333333333334\"></span></div><div><span class=\"oz-heat\" style=\"opacity:0.5666666666666667\"></span></div><div><span class=\"oz-heat\" style=\"opacity:0.15\"></span></div><div><span class=\"oz-heat\" style=\"opacity:0.4833333333333333\"></span></div><div><span class=\"oz-heat\" style=\"opacity:0.8166666666666667\"></span></div><div><span class=\"oz-heat\" style=\"opacity:0.4\"></span></div><div><span class=\"oz-heat\" style=\"opacity:0.7333333333333334\"></span></div><div><span class=\"oz-heat\" style=\"opacity:0.31666666666666665\"></span></div><div><span class=\"oz-heat\" style=\"opacity:0.65\"></span></div><div><span class=\"oz-heat\" style=\"opacity:0.23333333333333334\"></span></div><div><span class=\"oz-heat\" style=\"opacity:0.5666666666666667\"></span></div><div><span class=\"oz-heat\" style=\"opacity:0.15\"></span></div><div><span class=\"oz-heat\" style=\"opacity:0.4833333333333333\"></span></div><div><span class=\"oz-heat\" style=\"opacity:0.8166666666666667\"></span></div><div><span class=\"oz-heat\" style=\"opacity:0.4\"></span></div><div><span class=\"oz-heat\" style=\"opacity:0.7333333333333334\"></span></div><div><span class=\"oz-heat\" style=\"opacity:0.31666666666666665\"></span></div><div><span class=\"oz-heat\" style=\"opacity:0.65\"></span></div><div><span class=\"oz-heat\" style=\"opacity:0.23333333333333334\"></span></div><div><span class=\"oz-heat\" style=\"opacity:0.5666666666666667\"></span></div><div><span class=\"oz-heat\" style=\"opacity:0.15\"></span></div><div><span class=\"oz-heat\" style=\"opacity:0.4833333333333333\"></span></div><div><span class=\"oz-heat\" style=\"opacity:0.8166666666666667\"></span></div><div><span class=\"oz-heat\" style=\"opacity:0.4\"></span></div><div><span class=\"oz-heat\" style=\"opacity:0.7333333333333334\"></span></div><div><span class=\"oz-heat\" style=\"opacity:0.31666666666666665\"></span></div><div><span class=\"oz-heat\" style=\"opacity:0.65\"></span></div><div><span class=\"oz-heat\" style=\"opacity:0.23333333333333334\"></span></div><div><span class=\"oz-heat\" style=\"opacity:0.5666666666666667\"></span></div><div><span class=\"oz-heat\" style=\"opacity:0.15\"></span></div><div><span class=\"oz-heat\" style=\"opacity:0.4833333333333333\"></span></div><div><span class=\"oz-heat\" style=\"opacity:0.8166666666666667\"></span></div><div><span class=\"oz-heat\" style=\"opacity:0.4\"></span></div><div><span class=\"oz-heat\" style=\"opacity:0.7333333333333334\"></span></div><div><span class=\"oz-heat\" style=\"opacity:0.31666666666666665\"></span></div><div><span class=\"oz-heat\" style=\"opacity:0.65\"></span></div><div><span class=\"oz-heat\" style=\"opacity:0.23333333333333334\"></span></div><div><span class=\"oz-heat\" style=\"opacity:0.5666666666666667\"></span></div><div><span class=\"oz-heat\" style=\"opacity:0.15\"></span></div><div><span class=\"oz-heat\" style=\"opacity:0.4833333333333333\"></span></div><div><span class=\"oz-heat\" style=\"opacity:0.8166666666666667\"></span></div><div><span class=\"oz-heat\" style=\"opacity:0.4\"></span></div><div><span class=\"oz-heat\" style=\"opacity:0.7333333333333334\"></span></div><div><span class=\"oz-heat\" style=\"opacity:0.31666666666666665\"></span></div><div><span class=\"oz-heat\" style=\"opacity:0.65\"></span></div><div><span class=\"oz-heat\" style=\"opacity:0.23333333333333334\"></span></div><div><span class=\"oz-heat\" style=\"opacity:0.5666666666666667\"></span></div><div><span class=\"oz-heat\" style=\"opacity:0.15\"></span></div><div><span class=\"oz-heat\" style=\"opacity:0.4833333333333333\"></span></div><div><span class=\"oz-heat\" style=\"opacity:0.8166666666666667\"></span></div><div><span class=\"oz-heat\" style=\"opacity:0.4\"></span></div><div><span class=\"oz-heat\" style=\"opacity:0.7333333333333334\"></span></div><div><span class=\"oz-heat\" style=\"opacity:0.31666666666666665\"></span></div><div><span class=\"oz-heat\" style=\"opacity:0.65\"></span></div><div><span class=\"oz-heat\" style=\"opacity:0.23333333333333334\"></span></div><div><span class=\"oz-heat\" style=\"opacity:0.5666666666666667\"></span></div><div><span class=\"oz-heat\" style=\"opacity:0.15\"></span></div></div><b>POLICY · 64 squares</b><small>Where to search</small></div><div><div class=\"oz-gauge\"><span>−1</span><i></i><span>+1</span></div><b>VALUE · one scalar</b><small>Expected outcome</small></div></div></div></div><p class=\"oz-takeaway\">Convolutions learn board patterns; residual connections support deeper learning.</p><details class=\"oz-details\"><summary>Technical notes</summary><p>Input shape is (batch, 3, 8, 8). Illegal policy moves are masked and remaining probabilities renormalized in search. Value is from the current player’s perspective. Heatmap and gauge are illustrative, not model outputs.</p></details><footer>Shared features avoid duplicating the policy and value encoders.</footer></section>" },
+      { type: "visual", html: "<section class=\"oz-slide oz-graphic-slide\"><header><span>OTHELLO / ENGINEERING</span><span>05 / 07</span></header><h2>Explore beyond the obvious move.</h2><div class=\"oz-art\"><svg class=\"oz-tree\" viewBox=\"0 0 500 240\" role=\"img\" aria-label=\"Illustrative search tree highlighting a selected branch\"><g fill=\"none\" stroke=\"#54796a\" stroke-width=\"3\"><path d=\"M250 35L95 115M250 35L250 115M250 35L405 115M95 115L45 205M95 115L145 205M250 115L205 205M250 115L295 205\"/><path d=\"M250 35L250 115L295 205\" stroke=\"#d2f79c\" stroke-width=\"6\"/></g><g fill=\"#183f34\" stroke=\"#b5d897\" stroke-width=\"2\"><circle cx=\"250\" cy=\"35\" r=\"23\"/><circle cx=\"95\" cy=\"115\" r=\"25\"/><circle cx=\"250\" cy=\"115\" r=\"25\"/><circle cx=\"405\" cy=\"115\" r=\"25\"/><circle cx=\"45\" cy=\"205\" r=\"13\"/><circle cx=\"145\" cy=\"205\" r=\"13\"/><circle cx=\"205\" cy=\"205\" r=\"13\"/><circle cx=\"295\" cy=\"205\" r=\"13\" fill=\"#d2f79c\"/></g><g fill=\"#edf6ed\" font-size=\"15\" text-anchor=\"middle\"><text x=\"250\" y=\"40\">root</text><text x=\"95\" y=\"120\">18</text><text x=\"250\" y=\"120\">62</text><text x=\"405\" y=\"120\">20</text></g></svg><div class=\"oz-choice\"><div class=\"oz-node\"><b>VALUE</b><span>Favor promising moves</span></div><div class=\"oz-node\"><b>EXPLORATION</b><span>Prior × room to explore</span></div></div></div><p class=\"oz-takeaway\">PUCT balances expected value with opportunities worth exploring.</p><details class=\"oz-details\"><summary>Technical notes</summary><p>PUCT = −Q(child) + 1.5 × P(child) × √N(parent) / (1 + N(child)). Q is mean child value; P is its prior; N counts visits.</p><p>Self-play root noise: Dirichlet α = 0.3, ε = 0.25. Child visit counts become policy targets. Move sampling becomes greedy at move 20.</p></details><footer>Illustrative visit counts · highlighted search path</footer></section>" },
+      { type: "visual", html: "<section class=\"oz-slide oz-graphic-slide\"><header><span>OTHELLO / ENGINEERING</span><span>06 / 07</span></header><h2>Give the GPU more work per call.</h2><div class=\"oz-art\"><div class=\"oz-speed\">&gt;60× <span>reported training speedup</span></div><div class=\"oz-workers\"><div class=\"oz-node\"><b>WORKER 1</b><span>games → leaves → batch</span></div><div class=\"oz-node\"><b>WORKER 2</b><span>games → leaves → batch</span></div><div class=\"oz-node\"><b>WORKER 3</b><span>games → leaves → batch</span></div><div class=\"oz-node\"><b>WORKER 4</b><span>games → leaves → batch</span></div></div><div class=\"oz-down\">↓ batched inference per worker</div><div class=\"oz-node\"><b>GPU · policy + value evaluations</b><span>Results return to each game’s search tree</span></div><div class=\"oz-chips\"><span>4 worker processes</span><span>8 board symmetries</span></div></div><p class=\"oz-takeaway\">Batching amortizes GPU calls. Parallel workers generate experience concurrently.</p><details class=\"oz-details\"><summary>Technical notes</summary><p>Each worker gathers selected leaves across its active games into a shared forward pass. This is per-worker batching, not a centralized cross-worker inference queue. Four rotations and their mirrors teach orientation invariance while transforming board and policy targets together.</p></details><footer>Speedup reported for batching and parallel processing combined.</footer></section>" },
+      { type: "visual", html: "<section class=\"oz-slide oz-graphic-slide\"><header><span>OTHELLO / ENGINEERING</span><span>07 / 07</span></header><h2>Remember. Sample. Learn.</h2><div class=\"oz-art\"><div class=\"oz-replay\"><div class=\"oz-ring\"><b>384,000</b><span>replay positions</span><small>↻ overwrite oldest</small></div><span class=\"oz-arrow\" aria-hidden=\"true\">→</span><div class=\"oz-node\"><b>2,048</b><span>samples per batch</span></div></div><div class=\"oz-losses\"><div class=\"oz-node\"><b>POLICY LOSS</b><span>Cross-entropy</span></div><span>+</span><div class=\"oz-node\"><b>VALUE LOSS</b><span>Mean squared error</span></div></div><div class=\"oz-chips\"><span>Mixed precision</span><span>Adam + gradient clipping</span><span>Checkpoint every 5 iterations</span></div></div><p class=\"oz-takeaway\">Replay mixes recent games to reduce correlation between updates.</p><details class=\"oz-details\"><summary>Technical notes</summary><p>Capacity: 800 games × approximately 60 positions × 8 symmetries = 384,000 positions. Checkpoint matches and an Egaroucid runner support evaluation. Automatic model promotion is disabled in the training loop. No measured playing strength is claimed.</p></details><footer>Bounded memory · two learning targets · saved progress</footer></section>" }
     ],
     comments: [
       {
         user: DISPLAY_NAME,
         avatar: "avatar",
-        text: "Completed the PyTorch residual network for Othello. It learns entirely from self-play games utilizing MCTS. The game state is encoded into 64-bit uint64 bitboards, key moves compiled with Numba, and evaluations batched for GPU parallelization. 2.97 million parameters ResNet.",
+        text: "I built an AlphaZero-style Othello engine around a self-play learning loop: MCTS visit counts teach a policy head, and game outcomes teach a value head. Two uint64 bitboards and Numba handle move logic; batched leaf evaluations share GPU forward passes across active games. A 10-block ResNet learns from an eight-way augmented replay buffer. Batching and parallel processing sped up training by over 60× in my experiments. Swipe through the architecture choices, search, and training design.",
         time: "8w"
       },
       {
@@ -576,198 +677,16 @@ const PROJECT_DATA = {
     link: "#",
     github: "https://github.com",
     slides: [
-      {
-        type: "visual",
-        html: `
-          <div class="slide-cover-root firefighter-cover">
-            <div class="slide-cover-title">Firefighter Bot</div>
-            <div class="slide-cover-subtitle">Autonomous maze robot with custom PCB boards, soldered sensor circuits, wall-following logic, and flame response.</div>
-            <div class="slide-tech-badges">
-              <span class="tech-badge">Embedded Systems</span>
-              <span class="tech-badge">TraxMaker PCB</span>
-              <span class="tech-badge">Sensors</span>
-              <span class="tech-badge">Motor Control</span>
-            </div>
-          </div>
-        `
-      },
-      {
-        type: "visual",
-        html: `
-          <div class="firefighter-photo-slide">
-            <img class="firefighter-build-photo" src="Firefighter%20bot/Flahamey.jpeg" alt="Firefighter Bot chassis with custom electronics and wiring">
-            <div class="build-callout callout-fan">Fan / extinguisher module</div>
-            <div class="build-callout callout-pcb">Soldered PCB boards</div>
-            <div class="build-callout callout-sensor">Sensor wiring</div>
-            <div class="workflow-caption">
-              <span>Build</span>
-              <strong>Triple-layer chassis with custom electronics mounted directly into the robot.</strong>
-            </div>
-          </div>
-        `
-      },
-      {
-        type: "visual",
-        html: `
-          <div class="firefighter-system-slide">
-            <h4>System Architecture</h4>
-            <div class="system-flow-grid">
-              <div class="system-node">Line Sensor</div>
-              <div class="system-node">Wall Sensors</div>
-              <div class="system-node">Flame Sensor</div>
-              <div class="system-bus">ATMEGA328P Controller</div>
-              <div class="system-node">Motor Driver</div>
-              <div class="system-node">LCD Debug</div>
-              <div class="system-node">Extinguisher Circuit</div>
-            </div>
-            <p>Separate sensing boards feed an embedded controller that decides whether to navigate, correct drift, turn, or trigger the extinguisher.</p>
-          </div>
-        `
-      },
-      {
-        type: "visual",
-        html: `
-          <div class="pcb-slide">
-            <div class="pcb-board">
-              <span class="pcb-chip">ATMEGA</span>
-              <span class="pcb-component comp-a"></span>
-              <span class="pcb-component comp-b"></span>
-              <span class="pcb-component comp-c"></span>
-              <span class="pcb-header header-a"></span>
-              <span class="pcb-header header-b"></span>
-              <span class="pcb-trace trace-a"></span>
-              <span class="pcb-trace trace-b"></span>
-              <span class="pcb-trace trace-c"></span>
-            </div>
-            <div class="pcb-copy">
-              <h4>Custom PCB Boards in TraxMaker</h4>
-              <ul>
-                <li>Designed custom boards for sensing, control, and power circuits.</li>
-                <li>Soldered headers, screw terminals, resistors, capacitors, sensors, and transistor-driver components.</li>
-                <li>Debugged sensor noise, power stability, loose wiring, and board-level reliability.</li>
-              </ul>
-            </div>
-          </div>
-        `
-      },
-      {
-        type: "visual",
-        html: `
-          <div class="sensor-stack-slide">
-            <h4>Sensor Stack</h4>
-            <div class="sensor-card-grid">
-              <div class="sensor-card">
-                <span>Line</span>
-                <strong>LED + Vishay BPW17N</strong>
-                <p>Detects black floor versus white maze lines for room tracking.</p>
-              </div>
-              <div class="sensor-card">
-                <span>Wall</span>
-                <strong>Parallax 28015</strong>
-                <p>Uses front and left distance readings for wall-following navigation.</p>
-              </div>
-              <div class="sensor-card">
-                <span>Flame</span>
-                <strong>QSD123 IR Sensor</strong>
-                <p>Detects candle flame signatures and switches the robot into extinguish mode.</p>
-              </div>
-            </div>
-          </div>
-        `
-      },
-      {
-        type: "visual",
-        html: `
-          <div class="navigation-slide">
-            <div class="maze-diagram">
-              <span class="maze-wall wall-a"></span>
-              <span class="maze-wall wall-b"></span>
-              <span class="maze-wall wall-c"></span>
-              <span class="maze-wall wall-d"></span>
-              <span class="maze-robot"></span>
-              <span class="maze-arrow arrow-a">12 cm</span>
-              <span class="maze-arrow arrow-b">turn right</span>
-            </div>
-            <div class="nav-copy">
-              <h4>Wall-Hugging Maze Logic</h4>
-              <p>The bot maintains roughly 12 cm from the left wall, corrects drift through motor timing, tracks line crossings, and turns right when front and left paths are blocked.</p>
-              <code>if flame_detected: extinguish()</code>
-              <code>elif front_blocked and left_blocked: turn_right()</code>
-              <code>else: follow_left_wall()</code>
-            </div>
-          </div>
-        `
-      },
-      {
-        type: "visual",
-        html: `
-          <div class="extinguisher-slide">
-            <h4>Extinguisher Driver Circuit</h4>
-            <div class="circuit-flow">
-              <div class="circuit-node">ATMEGA Signal</div>
-              <div class="circuit-node">TIP120 Switch</div>
-              <div class="circuit-node">Fan Motor</div>
-            </div>
-            <div class="circuit-notes">
-              <span>1N4001G flyback diode</span>
-              <span>1000 uF power capacitor</span>
-              <span>10k clean switching resistor</span>
-            </div>
-            <p>Low-power control logic safely triggers the higher-current fan mechanism when the IR flame sensor crosses threshold.</p>
-          </div>
-        `
-      },
-      {
-        type: "visual",
-        html: `
-          <div class="motor-control-slide">
-            <h4>Embedded Control System</h4>
-            <div class="control-blocks">
-              <div><strong>ATMEGA328P-PU</strong><span>sensor processing and navigation decisions</span></div>
-              <div><strong>SN754410NE</strong><span>bidirectional motor driver</span></div>
-              <div><strong>Nema 17 Motors</strong><span>high-torque movement</span></div>
-              <div><strong>LCD Display</strong><span>real-time debugging output</span></div>
-              <div><strong>10,000 uF Capacitor</strong><span>motor power smoothing</span></div>
-            </div>
-          </div>
-        `
-      },
-      {
-        type: "visual",
-        html: `
-          <div class="firefighter-video-slide">
-            <video class="project-video" controls muted playsinline preload="metadata" poster="Firefighter%20bot/Flahamey.jpeg">
-              <source src="Firefighter%20bot/firefighter-demo.webm" type="video/webm">
-              <source src="Firefighter%20bot/firefighter-demo.mp4" type="video/mp4">
-              Your browser does not support embedded video.
-            </video>
-            <div class="workflow-caption">
-              <span>Demo</span>
-              <strong>Maze testing exposed the real engineering work: calibration, timing, power stability, and physical debugging.</strong>
-            </div>
-          </div>
-        `
-      },
-      {
-        type: "code",
-        filename: "firefighter_bot/navigation.ino",
-        code: `
-<span class="code-keyword">loop</span>() {
-  line_state = readLineSensor();
-  left_cm = readLeftDistance();
-  front_cm = readFrontDistance();
-  flame = readFlameSensor();
-
-  <span class="code-keyword">if</span> (flame.detected) {
-    stopMotors();
-    activateExtinguisher();
-  } <span class="code-keyword">else if</span> (front_cm &lt; FRONT_LIMIT &amp;&amp; left_cm &lt; LEFT_LIMIT) {
-    turnRight();
-  } <span class="code-keyword">else</span> {
-    followLeftWall(left_cm, 12);
-  }
-}`
-      }
+      { type: "visual", html: "<section class=\"fb-story\"><header><span>FIREFIGHTER BOT</span><span>01 / THE BUILD</span></header><h2>Built to find the flame.</h2><div class=\"fb-art\"><div class=\"fb-hero\"><div class=\"fb-photo\"><img src=\"Firefighter%20bot/Flahamey.jpeg\" alt=\"Three-level Firefighter Bot with fan, circuit boards and front sensors\"></div><div class=\"fb-hero-copy\"><span class=\"fb-kicker\">AUTONOMOUS ROBOTICS</span><strong>Sense.<br>Navigate.<br>Respond.</strong><div class=\"fb-tags\"><span>Custom PCBs</span><span>Embedded control</span></div></div></div></div><p class=\"fb-takeaway\">A physical build connecting sensing, maze navigation and a transistor-driven fan.</p></section>" },
+      { type: "visual", html: "<section class=\"fb-story\"><header><span>FIREFIGHTER BOT</span><span>02 / FIELD DEMO</span></header><h2>Watch the robot in action.</h2><div class=\"fb-art\"><div class=\"fb-video-frame\"><video class=\"project-video\" controls muted playsinline preload=\"metadata\" poster=\"Firefighter%20bot/Flahamey.jpeg\"><source src=\"Firefighter%20bot/firefighter-demo.webm\" type=\"video/webm\"><source src=\"Firefighter%20bot/firefighter-demo.mp4\" type=\"video/mp4\">Your browser does not support embedded video.</video></div></div><p class=\"fb-takeaway\">Maze testing brought calibration, motor timing and power stability into the same loop.</p></section>" },
+      { type: "visual", html: "<section class=\"fb-story\"><header><span>FIREFIGHTER BOT</span><span>03 / HARDWARE INTEGRATION</span></header><h2>Three levels. One integrated system.</h2><div class=\"fb-art\"><div class=\"fb-build\"><div class=\"fb-photo\"><img src=\"Firefighter%20bot/Flahamey.jpeg\" alt=\"Three-level Firefighter Bot with fan, circuit boards and front sensors\"></div><div class=\"fb-levels\"><div class=\"fb-node\"><b>01 · RESPOND</b><span>Fan and air outlet</span></div><div class=\"fb-node\"><b>02 · CONTROL</b><span>Controller, wiring and power</span></div><div class=\"fb-node\"><b>03 · SENSE</b><span>Front-facing sensors and circuit boards</span></div></div></div></div><p class=\"fb-takeaway\">Mounting and wiring matter: stable sensors make repeatable decisions possible.</p></section>" },
+      { type: "visual", html: "<section class=\"fb-story\"><header><span>FIREFIGHTER BOT</span><span>04 / SYSTEM ARCHITECTURE</span></header><h2>From readings to action.</h2><div class=\"fb-art\"><div class=\"fb-row\"><div class=\"fb-node\"><b>LINE</b><span>Floor transitions</span></div><div class=\"fb-node\"><b>WALL</b><span>Distance</span></div><div class=\"fb-node\"><b>FLAME</b><span>Infrared</span></div></div><div class=\"fb-arrow\" aria-hidden=\"true\">↓</div><div class=\"fb-node\"><b>ATMEGA328P</b><span>Read sensors → choose a response</span></div><div class=\"fb-arrow\" aria-hidden=\"true\">↓</div><div class=\"fb-row\"><div class=\"fb-node\"><b>MOTION</b><span>Motor driver</span></div><div class=\"fb-node\"><b>DEBUG</b><span>LCD output</span></div><div class=\"fb-node\"><b>RESPONSE</b><span>Fan circuit</span></div></div></div><p class=\"fb-takeaway\">Separate sensing and actuator stages keep the control logic understandable.</p></section>" },
+      { type: "visual", html: "<section class=\"fb-story\"><header><span>FIREFIGHTER BOT</span><span>05 / PCB DESIGN · CONCEPTUAL GRAPHIC</span></header><h2>Designed. Soldered. Debugged.</h2><div class=\"fb-art\"><svg class=\"fb-svg\" viewBox=\"0 0 520 260\" role=\"img\" aria-label=\"Conceptual PCB with routed traces, component pads and controller\"><rect x=\"60\" y=\"15\" width=\"400\" height=\"230\" rx=\"18\" fill=\"#244d43\"/><g fill=\"none\" stroke=\"#c7aa66\" stroke-width=\"4\"><path d=\"M85 70H170V105H220M85 190H155V150H220M300 100H370V55H430M300 155H390V205H430\"/></g><g fill=\"#e1c885\"><circle cx=\"85\" cy=\"70\" r=\"5\"/><circle cx=\"85\" cy=\"190\" r=\"5\"/><circle cx=\"430\" cy=\"55\" r=\"5\"/><circle cx=\"430\" cy=\"205\" r=\"5\"/></g><rect x=\"210\" y=\"75\" width=\"110\" height=\"110\" rx=\"8\" fill=\"#152e29\" stroke=\"#91ad9d\"/><text x=\"265\" y=\"122\" text-anchor=\"middle\" style=\"fill:#f5f1e7\">CONTROL</text><text x=\"265\" y=\"146\" text-anchor=\"middle\" style=\"fill:#f5f1e7\">BOARD</text><g fill=\"#b4c3ad\"><rect x=\"200\" y=\"90\" width=\"10\" height=\"6\"/><rect x=\"200\" y=\"107\" width=\"10\" height=\"6\"/><rect x=\"200\" y=\"124\" width=\"10\" height=\"6\"/><rect x=\"200\" y=\"141\" width=\"10\" height=\"6\"/><rect x=\"200\" y=\"158\" width=\"10\" height=\"6\"/><rect x=\"200\" y=\"175\" width=\"10\" height=\"6\"/><rect x=\"320\" y=\"90\" width=\"10\" height=\"6\"/><rect x=\"320\" y=\"107\" width=\"10\" height=\"6\"/><rect x=\"320\" y=\"124\" width=\"10\" height=\"6\"/><rect x=\"320\" y=\"141\" width=\"10\" height=\"6\"/><rect x=\"320\" y=\"158\" width=\"10\" height=\"6\"/><rect x=\"320\" y=\"175\" width=\"10\" height=\"6\"/></g></svg><div class=\"fb-row\"><div class=\"fb-node\"><b>LAYOUT</b><span>TraxMaker boards</span></div><div class=\"fb-node\"><b>ASSEMBLY</b><span>Headers + components</span></div><div class=\"fb-node\"><b>BRING-UP</b><span>Power + signal checks</span></div></div></div><p class=\"fb-takeaway\">Board-level reliability depends on the details: connections, noise and stable power.</p><details class=\"fb-notes\"><summary>Engineering details</summary><p>Custom sensing, control and power boards used soldered headers, screw terminals, resistors, capacitors and driver components. The graphic illustrates board structure; it is not a reproduction of the routed PCB.</p></details></section>" },
+      { type: "visual", html: "<section class=\"fb-story\"><header><span>FIREFIGHTER BOT</span><span>06 / SENSOR STACK</span></header><h2>Three sensors. Three questions.</h2><div class=\"fb-art\"><div class=\"fb-sensors\"><div><span class=\"fb-sensor-icon\">▰ ▱</span><div class=\"fb-node\"><b>Where is the line?</b><span>LED + BPW17N · floor contrast</span></div></div><div><span class=\"fb-sensor-icon\">)))</span><div class=\"fb-node\"><b>How close is the wall?</b><span>Parallax 28015 · front + left distance</span></div></div><div><span class=\"fb-sensor-icon\">◉</span><div class=\"fb-node\"><b>Is there a flame?</b><span>QSD123 · infrared detection</span></div></div></div></div><p class=\"fb-takeaway\">Each input answers a different navigation or response question.</p><details class=\"fb-notes\"><summary>Engineering details</summary><p>Line sensing distinguishes dark flooring from white maze lines for room tracking. Flame thresholds and sensor placement require calibration to reduce ambient-light false positives.</p></details></section>" },
+      { type: "visual", html: "<section class=\"fb-story\"><header><span>FIREFIGHTER BOT</span><span>07 / NAVIGATION · ILLUSTRATIVE PATH</span></header><h2>Keep the wall within reach.</h2><div class=\"fb-art\"><svg class=\"fb-svg\" viewBox=\"0 0 520 260\" role=\"img\" aria-label=\"Conceptual wall-following path and left-wall distance\"><path d=\"M65 230V30H450V230H310V125H195V230\" fill=\"none\" stroke=\"#364a48\" stroke-width=\"12\" stroke-linejoin=\"round\"/><path d=\"M125 225V85H385V195\" fill=\"none\" stroke=\"#c75535\" stroke-width=\"4\" stroke-dasharray=\"8 7\"/><rect x=\"100\" y=\"158\" width=\"50\" height=\"60\" rx=\"12\" fill=\"#263f3b\"/><circle cx=\"113\" cy=\"173\" r=\"5\" fill=\"#d9b66e\"/><circle cx=\"137\" cy=\"173\" r=\"5\" fill=\"#d9b66e\"/><path d=\"M72 190H97M76 185L71 190L76 195M92 185L98 190L92 195\" fill=\"none\" stroke=\"#c75535\" stroke-width=\"2\"/><text x=\"160\" y=\"200\">≈12 cm target</text><text x=\"220\" y=\"65\">Follow the left wall</text><path d=\"M372 192L385 207L398 192\" fill=\"none\" stroke=\"#c75535\" stroke-width=\"4\"/></svg><div class=\"fb-tags\"><span>Measure distance</span><span>Correct drift</span><span>Turn at obstacles</span></div></div><p class=\"fb-takeaway\">Follow the left wall at roughly 12 cm; turn right when front and left paths are blocked.</p><details class=\"fb-notes\"><summary>Engineering details</summary><p>Motor timing adjusts drift. Line crossings support room tracking. Flame detection takes priority over normal wall-following behavior.</p></details></section>" },
+      { type: "visual", html: "<section class=\"fb-story\"><header><span>FIREFIGHTER BOT</span><span>08 / FLAME RESPONSE · FUNCTIONAL DIAGRAM</span></header><h2>A small signal drives the fan.</h2><div class=\"fb-art\"><svg class=\"fb-svg\" viewBox=\"0 0 520 260\" role=\"img\" aria-label=\"Functional fan-driver diagram, not a wiring schematic\"><path d=\"M40 130H165M285 130H390\" stroke=\"#c75535\" stroke-width=\"4\" fill=\"none\"/><rect x=\"165\" y=\"90\" width=\"120\" height=\"80\" rx=\"10\" fill=\"#263f3b\"/><text x=\"225\" y=\"126\" text-anchor=\"middle\" style=\"fill:white\">TIP120</text><text x=\"225\" y=\"149\" text-anchor=\"middle\" style=\"fill:#c8d9cf\">switch</text><circle cx=\"420\" cy=\"130\" r=\"54\" fill=\"#e6ebe3\" stroke=\"#7c9387\" stroke-width=\"2\"/><g fill=\"#577b6c\"><path d=\"M420 130C365 95 410 65 420 130M420 130C475 95 470 150 420 130M420 130C420 195 365 160 420 130\"/></g><circle cx=\"420\" cy=\"130\" r=\"8\" fill=\"#263f3b\"/><text x=\"65\" y=\"100\" text-anchor=\"middle\">control</text><text x=\"65\" y=\"163\" text-anchor=\"middle\">signal</text><text x=\"420\" y=\"215\" text-anchor=\"middle\">fan motor</text><path d=\"M310 130V40H465V95\" fill=\"none\" stroke=\"#9aab9f\" stroke-width=\"2\" stroke-dasharray=\"6 5\"/><text x=\"385\" y=\"25\" text-anchor=\"middle\">flyback protection</text></svg><div class=\"fb-tags\"><span>TIP120 switch</span><span>1N4001G diode</span><span>1000 µF capacitor</span></div></div><p class=\"fb-takeaway\">The controller commands a switching stage that handles the fan’s power path.</p><details class=\"fb-notes\"><summary>Engineering details</summary><p>The flyback diode suppresses inductive transients; the capacitor supports power stability. Diagram is functional, not a wiring schematic. Component values come from the existing project description.</p></details></section>" },
+      { type: "visual", html: "<section class=\"fb-story\"><header><span>FIREFIGHTER BOT</span><span>09 / MOTION CONTROL</span></header><h2>Turn decisions into movement.</h2><div class=\"fb-art\"><div class=\"fb-node\"><b>ATMEGA328P-PU</b><span>Navigation decisions</span></div><div class=\"fb-arrow\" aria-hidden=\"true\">↓</div><div class=\"fb-node\"><b>SN754410NE</b><span>Motor driver stage</span></div><div class=\"fb-arrow\" aria-hidden=\"true\">↓</div><div class=\"fb-row\"><div class=\"fb-node\"><b>LEFT MOTOR</b><span>Nema 17</span></div><div class=\"fb-node\"><b>RIGHT MOTOR</b><span>Nema 17</span></div></div><div class=\"fb-support\"><span>LCD → inspect behavior</span><span>10,000 µF → motor power smoothing</span></div></div><p class=\"fb-takeaway\">Motor control, power delivery and debugging have to work together.</p></section>" },
+      { type: "visual", html: "<section class=\"fb-story\"><header><span>FIREFIGHTER BOT</span><span>10 / CONTROL LOGIC · CONCEPTUAL</span></header><h2>A clear priority for every cycle.</h2><div class=\"fb-art\"><div class=\"fb-node\"><b>READ SENSORS</b><span>Line · left distance · front distance · flame</span></div><div class=\"fb-arrow\" aria-hidden=\"true\">↓</div><div class=\"fb-decisions\"><div class=\"fb-node\"><b>01 · FLAME DETECTED</b><span>Stop motion → activate fan</span></div><div class=\"fb-node\"><b>02 · FRONT + LEFT BLOCKED</b><span>Turn right</span></div><div class=\"fb-node\"><b>03 · OTHERWISE</b><span>Follow the left wall</span></div></div></div><p class=\"fb-takeaway\">Simple priorities connect sensor readings to predictable physical actions.</p><details class=\"fb-notes\"><summary>Engineering details</summary><p>This is a conceptual summary of the behavior, not a verbatim firmware listing. The previous code slide used illustrative function names.</p></details></section>" }
     ],
     comments: [
       {
@@ -798,6 +717,29 @@ const PROJECT_DATA = {
 // ----------------------------------------------------
 const KNOWLEDGE_BASE = [
   {
+  "project": "campus-collectives",
+  "title": "Campus Collectives",
+  "tech": [
+    "typescript",
+    "next.js",
+    "langchain",
+    "groq",
+    "ai agents",
+    "orchestration",
+    "ecommerce",
+    "fulfillment"
+  ],
+  "metrics": "Matthew reports 98 orders and over $6K revenue as business totals, with no specified currency. Manual operations fell from 10 to 2 hours weekly: an 80% reduction and 8 hours saved. These totals do not imply all orders were agent-processed.",
+  "text": "Campus Collectives uses a custom AI fulfillment orchestrator with LangChain and Groq. It coordinates marketplace order intake, supplier drafts and freight validation, shipment-email parsing with AI enrichment, deterministic candidate matching, structured AI adjudication, carrier validation, and tracking updates. Ambiguous cases enter human review. Purchasing remains explicit. Displayed project date: December 2025; later capabilities are not attributed to launch."
+},
+  {
+    project: "visual-hook-studio",
+    title: "Visual Hook Studio",
+    tech: ["python", "fastapi", "ffmpeg", "sqlite", "meta api", "instagram", "vps", "automation", "webhooks"],
+    metrics: "Helped generate over 1 million views in 3 weeks and grow the waitlist from 40 to 200+ (5× growth), as reported by Matthew. The three-week timeframe applies to views only. Runs continuously on a private VPS with separate web, rendering, preparation, publishing, insights, and comment-automation processes. Campaigns can create distinct reels for multiple daily slots and selected Instagram accounts.",
+    text: "Visual Hook Studio is an end-to-end short-form content system. It combines a reaction clip, rotating on-video hook, music edit, and app-demo recording into a vertical reel, aligns the marked beat drop with the product reveal, schedules publishing through Meta, records TikTok exports, collects Instagram insight snapshots, and supports signed-webhook comment-to-DM rules."
+  },
+  {
     project: "scoreshift",
     title: "ScoreShift (Sheet Music Transposition App)",
     tech: ["python", "fastapi", "oemer", "omr", "music21", "verovio", "wasm", "docker", "hugging face spaces"],
@@ -806,23 +748,23 @@ const KNOWLEDGE_BASE = [
   },
   {
     project: "hvac-model",
-    title: "HavenIQ HVAC Confidence Model",
+    title: "HomeWise AI HVAC Confidence Model",
     tech: ["python", "xgboost", "pytorch", "pandas", "numpy", "scikit-learn", "cuda"],
     metrics: "Trained on 12,709 telemetry rows from 350 devices. Achieved R-squared (R²) score of 0.871 and Mean Absolute Error (MAE) of 4.576 points on held-out test data.",
-    text: "This project is a machine learning regression pipeline predicting HVAC operational confidence scores. Telemetry is sorted chronologically and grouped by device into W=8 sliding windows (input shape [8, 4]). Features engineered include temperature values, target setpoints, deviation (temp - setpoint), and slope. Trained an interpretable XGBoost model (25 features per window) and a PyTorch feedforward comparison neural net."
+    text: "Built during Matthew’s internship at HomeWise AI, this project is a machine learning regression pipeline predicting HVAC operational confidence scores. Telemetry is sorted chronologically and grouped by device into W=8 sliding windows (input shape [8, 4]). Features engineered include temperature values, target setpoints, deviation (temp - setpoint), and slope. Trained an interpretable XGBoost model (25 features per window) and a PyTorch feedforward comparison neural net."
   },
   {
     project: "hvac-rag",
-    title: "HavenIQ HVAC RAG System",
+    title: "HomeWise AI HVAC RAG System",
     tech: ["fastapi", "pytorch", "qdrant cloud", "openai api", "docker", "postgresql"],
     metrics: "Embeds W=8 HVAC sensor windows into 128-dimensional normalized vectors. Processes 1,996 historical readings into 1,611 indexed database windows. Supports 5 incident classes (freeze_risk, hvac_drift, humidity_risk, normal, hvac_anomaly).",
-    text: "HavenIQ HVAC RAG is an end-to-end telemetry anomaly explainer. A FastAPI server validates 8-reading inputs, engineers an [8, 8] matrix, passes it through a PyTorch MLP encoder to get a 128-d vector, and retrieves the top 5 closest historical match payloads from Qdrant Cloud. Finally, it uses OpenAI API to output structured JSON diagnostic reports containing risk analysis, severity, and recommended operator checks, with a deterministic local rule-based explanation fallback."
+    text: "Built during Matthew’s internship at HomeWise AI, the HVAC RAG system is an end-to-end telemetry anomaly explainer. A FastAPI server validates 8-reading inputs, engineers an [8, 8] matrix, passes it through a PyTorch MLP encoder to get a 128-d vector, and retrieves the top 5 closest historical match payloads from Qdrant Cloud. Finally, it uses OpenAI API to output structured JSON diagnostic reports containing risk analysis, severity, and recommended operator checks, with a deterministic local rule-based explanation fallback."
   },
   {
     project: "othello-az",
     title: "AlphaZero-Style Othello Engine",
     tech: ["python", "pytorch", "numba", "cuda", "multiprocessing", "resnet", "mcts"],
-    metrics: "2.97-million-parameter PyTorch ResNet (10 residual blocks, 128 trunk filters). Pre-allocates replay buffers to hold 384,000 positions. Plays self-play game rounds (75-200 per iteration) across 4 multiprocessing workers.",
+    metrics: "2.97-million-parameter PyTorch ResNet (10 residual blocks, 128 trunk filters). Pre-allocates replay buffers to hold 384,000 positions. Configured for 75–200 games per iteration across 4 workers; integer division can drop remainder games. Training batch size 2,048; checkpoint interval 5 iterations. Matthew reports over 60× faster training from batching and parallel processing combined; baseline hardware and timing protocol are not documented.",
     text: "A self-play reinforcement learning Othello engine modeled on AlphaZero. Boards are represented as two uint64 bitboards, JIT-compiled with Numba for high speed. Uses a neural-guided Monte Carlo Tree Search (MCTS) with PUCT exploration formula (constant 1.5). Evaluates search tree leaf node positions in GPU batches. Positions are rotated and flipped with 8-way board symmetries for data augmentation."
   },
   {
@@ -837,7 +779,7 @@ const KNOWLEDGE_BASE = [
     title: `${DISPLAY_NAME} Portfolio & Background`,
     tech: ["python", "javascript", "pytorch", "fastapi", "docker", "ml", "neural networks", "vector search", "embedded systems"],
     metrics: `${DISPLAY_NAME} is a Software Engineer specializing in Machine Learning, RAG search systems, and robust backend/frontend tool architectures.`,
-    text: `${DISPLAY_NAME} is a software engineer whose full name is ${FULL_NAME}. He has built several key projects: ScoreShift (music processing web app), HavenIQ HVAC Model (XGBoost & PyTorch regression), HavenIQ HVAC RAG (FastAPI/Qdrant vector search explaining anomalies), AlphaZero Othello (an RL board game engine), and Firefighter Bot (custom PCB embedded robotics). You can download his resume directly using the 'Download Resume' button at the top of his page.`
+    text: `${DISPLAY_NAME} is a software engineer whose full name is ${FULL_NAME}. He has built several key projects: Campus Collectives (AI fulfillment orchestration; 80% less manual work), Visual Hook Studio (VPS-hosted reel automation), ScoreShift (music processing web app), HomeWise AI HVAC Model (internship; XGBoost & PyTorch regression), HomeWise AI HVAC RAG (internship; FastAPI/Qdrant vector search explaining anomalies), AlphaZero Othello (an RL board game engine), Overdose Policy Simulator (health policy modeling), and Firefighter Bot (custom PCB embedded robotics). You can download his resume directly using the 'Download Resume' button at the top of his page.`
   }
 ];
 
@@ -845,7 +787,7 @@ const KNOWLEDGE_BASE = [
 // ----------------------------------------------------
 // 3. UI STATE & INITIALIZATION
 // ----------------------------------------------------
-const PROJECT_ORDER = ["scoreshift", "hvac-model", "hvac-rag", "othello-az", "firefighter-bot"];
+const PROJECT_ORDER = ["visual-hook-studio", "campus-collectives", "overdose-policy", "scoreshift", "othello-az", "firefighter-bot", "hvac-model", "hvac-rag"];
 // Paste your Supabase Project URL and public anon key here before deploying comments.
 const SUPABASE_URL = "https://ufdkrzjyinmjbivmncch.supabase.co";
 const SUPABASE_ANON_KEY = "sb_publishable_j4Qf-GU3slwGoLxU8vq7Iw_utNc-wb3";
@@ -2294,6 +2236,8 @@ function queryRAGIndexer(query) {
       if (cleanQuery.includes(t)) score += 3;
     });
 
+    if (entry.project === "campus-collectives" && /campus|collectives|ecommerce|fulfillment|supplier|marketplace|agent|manual work|revenue/.test(cleanQuery)) score += 8;
+
     // Check specific terms
     if (entry.project === "scoreshift" && (cleanQuery.includes("music") || cleanQuery.includes("transpose") || cleanQuery.includes("sheet") || cleanQuery.includes("clef") || cleanQuery.includes("pdf"))) {
       score += 5;
@@ -2310,6 +2254,9 @@ function queryRAGIndexer(query) {
     if (entry.project === "firefighter-bot" && (cleanQuery.includes("firefighter") || cleanQuery.includes("robot") || cleanQuery.includes("bot") || cleanQuery.includes("pcb") || cleanQuery.includes("traxmaker") || cleanQuery.includes("solder") || cleanQuery.includes("sensor") || cleanQuery.includes("flame") || cleanQuery.includes("maze") || cleanQuery.includes("atmega"))) {
       score += 5;
     }
+    if (entry.project === "visual-hook-studio" && (cleanQuery.includes("visual hook") || cleanQuery.includes("reel") || cleanQuery.includes("instagram") || cleanQuery.includes("campaign") || cleanQuery.includes("vps") || cleanQuery.includes("ffmpeg") || cleanQuery.includes("social media") || cleanQuery.includes("content automation"))) {
+      score += 5;
+    }
     if (entry.project === "general" && (cleanQuery.includes("resume") || cleanQuery.includes("education") || cleanQuery.includes("experience") || cleanQuery.includes("skills") || cleanQuery.includes("matthew") || cleanQuery.includes("contact"))) {
       score += 4;
     }
@@ -2324,6 +2271,18 @@ function queryRAGIndexer(query) {
   const bestMatch = scores[0];
   if (bestMatch && bestMatch.score > 1) {
     const data = KNOWLEDGE_BASE.find(k => k.project === bestMatch.project);
+
+    if (bestMatch.project === "campus-collectives") {
+      return `<strong>Campus Collectives</strong><br><br>${data.text}<br><br>${data.metrics}<br><br>Open the second post to explore the AI workflow.`;
+    }
+
+    if (bestMatch.project === "visual-hook-studio") {
+      return `Here is the retrieved documentation for <strong>Visual Hook Studio</strong>:<br><br>` +
+             `• ${data.text}<br><br>` +
+             `• <strong>Deployment:</strong> ${data.metrics}<br><br>` +
+             `• <strong>Stack:</strong> ${data.tech.join(", ")}.<br><br>` +
+             `Open the newest post to see the dashboard, reel composer, campaign planner, pipeline, and VPS workers.`;
+    }
     
     if (bestMatch.project === "scoreshift") {
       return `<strong>ScoreShift</strong> is Matthew's web app designed to transpose printed sheet music. Here is the context retrieved:<br><br>` + 
@@ -2334,7 +2293,7 @@ function queryRAGIndexer(query) {
     }
     
     if (bestMatch.project === "hvac-model") {
-      return `Here is the retrieved documentation for the <strong>HavenIQ HVAC Confidence Model</strong>:<br><br>` + 
+      return `Here is the retrieved documentation for the <strong>HomeWise AI HVAC Confidence Model</strong>, built during Matthew’s internship:<br><br><br>` + 
              `• ${data.text}<br><br>` +
              `• <strong>Key metrics:</strong> ${data.metrics}<br><br>` +
              `• <strong>Stack:</strong> ${data.tech.join(", ")}.<br><br>` +
@@ -2342,7 +2301,7 @@ function queryRAGIndexer(query) {
     }
     
     if (bestMatch.project === "hvac-rag") {
-      return `I found the following specs for the <strong>HavenIQ HVAC RAG system</strong> in the local corpus:<br><br>` + 
+      return `I found the following specs for the <strong>HomeWise AI HVAC RAG system</strong>, built during Matthew’s internship:<br><br>` + 
              `• ${data.text}<br><br>` +
              `• <strong>System details:</strong> ${data.metrics}<br><br>` +
              `• <strong>Stack:</strong> ${data.tech.join(", ")}.<br><br>` +
@@ -2350,11 +2309,11 @@ function queryRAGIndexer(query) {
     }
     
     if (bestMatch.project === "othello-az") {
-      return `Here is the telemetry context for the <strong>AlphaZero Othello Engine</strong>:<br><br>` + 
+      return `Here is the engineering overview for the <strong>AlphaZero-style Othello Engine</strong>:<br><br>` + 
              `• ${data.text}<br><br>` +
              `• <strong>Model parameters & workers:</strong> ${data.metrics}<br><br>` +
              `• <strong>Stack:</strong> ${data.tech.join(", ")}.<br><br>` +
-             `It implements 64-bit uint64 bitboards compiled with Numba JIT. Check out the board grid and search code inside the fourth post in Matthew's feed.`;
+             `It implements 64-bit uint64 bitboards compiled with Numba JIT. Open the Othello post for the seven-slide walkthrough of search, GPU batching, and training. Evaluation runners are available; automatic model promotion is currently disabled.`;
     }
 
     if (bestMatch.project === "firefighter-bot") {
@@ -2362,24 +2321,25 @@ function queryRAGIndexer(query) {
              `- ${data.text}<br><br>` +
              `- <strong>Hardware details:</strong> ${data.metrics}<br><br>` +
              `- <strong>Stack:</strong> ${data.tech.join(", ")}<br><br>` +
-             `Open the fifth post to see the custom PCB, sensor, maze-logic, extinguisher-circuit, and demo-video slides.`;
+             `Open the Firefighter Bot post for the demo on slide two, followed by hardware, sensing, navigation, and control diagrams.`;
     }
 
     if (bestMatch.project === "general") {
       return `Sure! Matthew is a software engineer. Here is a summary of his background:<br><br>` +
              `• ${data.text}<br><br>` +
              `• ${data.metrics}<br><br>` +
-             `You can download his resume by clicking the <strong>Download Resume</strong> button on the header of the page, or check out his five main project posts in the feed below.`;
+             `You can download his resume by clicking the <strong>Download Resume</strong> button on the header of the page, or explore the project posts in the feed below.`;
     }
   }
 
   // Fallback if no specific project scored high enough
   return `I couldn't find a specific match for that question in Matthew's project documentation.<br><br>` +
          `Try asking questions about:<br>` +
+         `• <strong>Visual Hook Studio</strong> (reel generation and VPS automation)<br>` +
          `• Matthew's <strong>resume</strong> or general background<br>` +
          `• <strong>ScoreShift</strong> (OMR and sheet music transposition)<br>` +
-         `• <strong>HavenIQ HVAC Model</strong> (XGBoost regression)<br>` +
-         `• <strong>HavenIQ RAG</strong> (FastAPI, Qdrant & LLM)<br>` +
+         `• <strong>HomeWise AI HVAC Model</strong> (internship; XGBoost regression)<br>` +
+         `• <strong>HomeWise AI RAG</strong> (internship; FastAPI, Qdrant & LLM)<br>` +
          `• <strong>AlphaZero Othello</strong> (MCTS and bitboards)<br>` +
          `• <strong>Firefighter Bot</strong> (custom PCB embedded robotics)`;
 }

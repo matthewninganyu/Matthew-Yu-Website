@@ -1,8 +1,10 @@
-# HavenIQ HVAC RAG System: Codebase Overview
+# HomeWise AI HVAC RAG System: Codebase Overview
 
 ## Purpose
 
-HavenIQ HVAC RAG is an end-to-end retrieval-augmented generation (RAG) system for explaining HVAC telemetry anomalies.
+Built during Matthew Yu’s internship at HomeWise AI.
+
+HomeWise AI HVAC RAG is an end-to-end retrieval-augmented generation (RAG) system for explaining HVAC telemetry anomalies.
 
 The system accepts a short sequence of live HVAC readings, detects the type and severity of the current pattern, retrieves similar historical telemetry incidents from a vector database, and generates a structured explanation for an operator. The goal is to turn raw sensor data into actionable context: what is happening, why it may matter, which historical patterns resemble it, and what an operator should check next.
 
@@ -90,7 +92,7 @@ The output includes:
 The first historical corpus is loaded from:
 
 ```text
-C:\Users\matth\Desktop\programming projects\HavenIQ Hvac Model\data\raw\haveniq_hvac_test.csv
+C:\Users\matth\Desktop\programming projects\HomeWise AI Hvac Model\data\raw\homewise_ai_hvac_test.csv
 ```
 
 The CSV contains:
@@ -237,7 +239,7 @@ The encoder also includes a deterministic SHA-256-based fallback embedding funct
 The vector database collection is:
 
 ```text
-haveniq_hvac_windows
+homewise_ai_hvac_windows
 ```
 
 Collection configuration:
@@ -393,7 +395,7 @@ Qdrant Cloud:
 ```env
 QDRANT_URL=https://your-qdrant-endpoint
 QDRANT_API_KEY=your_qdrant_api_key
-QDRANT_COLLECTION=haveniq_hvac_windows
+QDRANT_COLLECTION=homewise_ai_hvac_windows
 ```
 
 Optional OpenAI explanation generation:
@@ -406,13 +408,13 @@ OPENAI_MODEL=gpt-4.1-mini
 Artifact location override:
 
 ```env
-HAVENIQ_ARTIFACT_DIR=/app/artifacts
+HOMEWISE_AI_ARTIFACT_DIR=/app/artifacts
 ```
 
 Historical CSV override:
 
 ```env
-HAVENIQ_HVAC_CSV=/path/to/haveniq_hvac_test.csv
+HOMEWISE_AI_HVAC_CSV=/path/to/homewise_ai_hvac_test.csv
 ```
 
 Secrets are not committed. The `.env` file is excluded by `.gitignore`.
@@ -476,7 +478,7 @@ Important: PostgreSQL persistence is scaffolded but is not currently wired into 
 ## Repository Structure
 
 ```text
-HavenIQ RAG system/
+HomeWise AI RAG system/
 |-- app/
 |   |-- __init__.py
 |   |-- config.py              Environment variables, paths, and version settings
